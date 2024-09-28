@@ -540,6 +540,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                   ),
                   decoration: const BoxDecoration(),
                   child: SingleChildScrollView(
+                    primary: false,
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [

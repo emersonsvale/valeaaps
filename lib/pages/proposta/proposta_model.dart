@@ -8,14 +8,6 @@ class PropostaModel extends FlutterFlowModel<PropostaWidget> {
 
   // Model for menuWeb component.
   late MenuWebModel menuWebModel;
-  // State field(s) for Switch widget.
-  bool? switchValue1;
-  // State field(s) for Switch widget.
-  bool? switchValue2;
-  // State field(s) for Switch widget.
-  bool? switchValue3;
-  // State field(s) for Switch widget.
-  bool? switchValue4;
 
   @override
   void initState(BuildContext context) {

@@ -81,48 +81,45 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/',
           builder: (context, _) =>
               appStateNotifier.loggedIn ? const ProjetosWidget() : const HomeWidget(),
-        ),
-        FFRoute(
-          name: 'Home',
-          path: '/home',
-          builder: (context, params) => const HomeWidget(),
-        ),
-        FFRoute(
-          name: 'Projetos',
-          path: '/projetos',
-          builder: (context, params) => const ProjetosWidget(),
-        ),
-        FFRoute(
-          name: 'Curriculo',
-          path: '/curriculo',
-          builder: (context, params) => const CurriculoWidget(),
-        ),
-        FFRoute(
-          name: 'projeto',
-          path: '/projeto',
-          builder: (context, params) => ProjetoWidget(
-            idProjeto: params.getParam(
-              'idProjeto',
-              ParamType.int,
+          routes: [
+            FFRoute(
+              name: 'Home',
+              path: 'home',
+              builder: (context, params) => const HomeWidget(),
             ),
-          ),
+            FFRoute(
+              name: 'Projetos',
+              path: 'projetos',
+              builder: (context, params) => const ProjetosWidget(),
+            ),
+            FFRoute(
+              name: 'Curriculo',
+              path: 'curriculo',
+              builder: (context, params) => const CurriculoWidget(),
+            ),
+            FFRoute(
+              name: 'Auth2',
+              path: 'auth2',
+              builder: (context, params) => const Auth2Widget(),
+            ),
+            FFRoute(
+              name: 'dashboard',
+              path: 'dashboard',
+              requireAuth: true,
+              builder: (context, params) => const DashboardWidget(),
+            ),
+            FFRoute(
+              name: 'proposta',
+              path: 'p/:prop',
+              builder: (context, params) => PropostaWidget(
+                prop: params.getParam(
+                  'prop',
+                  ParamType.int,
+                ),
+              ),
+            )
+          ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
-        FFRoute(
-          name: 'Auth2',
-          path: '/auth2',
-          builder: (context, params) => const Auth2Widget(),
-        ),
-        FFRoute(
-          name: 'dashboard',
-          path: '/dashboard',
-          requireAuth: true,
-          builder: (context, params) => const DashboardWidget(),
-        ),
-        FFRoute(
-          name: 'proposta',
-          path: '/proposta',
-          builder: (context, params) => const PropostaWidget(),
-        )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
 
