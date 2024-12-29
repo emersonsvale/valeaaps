@@ -86,7 +86,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
   Widget build(BuildContext context) {
     return FutureBuilder<List<PropostaRow>>(
       future: PropostaTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'id',
           widget.prop,
         ),
@@ -115,7 +115,10 @@ class _PropostaWidgetState extends State<PropostaWidget>
             : null;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,

@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
       });
     jwtTokenStream.listen((_) {});
     Future.delayed(
-      const Duration(milliseconds: 1000),
+      const Duration(milliseconds: 5000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
   }
@@ -82,6 +82,8 @@ class _MyAppState extends State<MyApp> {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
+        FallbackMaterialLocalizationDelegate(),
+        FallbackCupertinoLocalizationDelegate(),
       ],
       locale: _locale,
       supportedLocales: const [
@@ -90,11 +92,11 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         brightness: Brightness.light,
         scrollbarTheme: ScrollbarThemeData(
-          thumbVisibility: WidgetStateProperty.all(true),
-          trackVisibility: WidgetStateProperty.all(false),
-          interactive: true,
+          thumbVisibility: WidgetStateProperty.all(false),
+          trackVisibility: WidgetStateProperty.all(true),
+          interactive: false,
           thickness: WidgetStateProperty.all(2.0),
-          radius: const Radius.circular(9.0),
+          radius: const Radius.circular(0.0),
           thumbColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.dragged)) {
               return const Color(0xffe5ca42);
@@ -102,10 +104,10 @@ class _MyAppState extends State<MyApp> {
             if (states.contains(WidgetState.hovered)) {
               return const Color(0xff7a6c2a);
             }
-            return const Color(0xffbaa647);
+            return const Color(0x00ff0000);
           }),
-          minThumbLength: 1.0,
-          crossAxisMargin: 1.0,
+          minThumbLength: 0.0,
+          crossAxisMargin: 0.0,
         ),
       ),
       themeMode: _themeMode,

@@ -102,7 +102,10 @@ class _Auth2WidgetState extends State<Auth2Widget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -182,6 +185,7 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                     alignment: const Alignment(0.0, 0),
                                     child: TabBar(
                                       isScrollable: true,
+                                      tabAlignment: TabAlignment.center,
                                       labelColor: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       unselectedLabelColor:

@@ -49,13 +49,13 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, -1.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
         child: FutureBuilder<List<ProjetosRow>>(
           future: (_model.requestCompleter ??= Completer<List<ProjetosRow>>()
                 ..complete(ProjetosTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     widget.id,
                   ),
@@ -197,7 +197,8 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                                           .likes!) +
                                                       1,
                                                 },
-                                                matchingRows: (rows) => rows.eq(
+                                                matchingRows: (rows) =>
+                                                    rows.eqOrNull(
                                                   'id',
                                                   widget.id,
                                                 ),
@@ -282,7 +283,7 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                         children: [
                           FutureBuilder<List<FerramentasRow>>(
                             future: FerramentasTable().queryRows(
-                              queryFn: (q) => q.in_(
+                              queryFn: (q) => q.inFilterOrNull(
                                 'id',
                                 projetProjetosRow.ferramentas,
                               ),
@@ -313,7 +314,8 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                       rowFerramentasRowList[rowIndex];
                                   return AlignedTooltip(
                                     content: Padding(
-                                      padding: const EdgeInsets.all(4.0),
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 6.0, 12.0, 6.0),
                                       child: Text(
                                         rowFerramentasRow.nome!,
                                         style: FlutterFlowTheme.of(context)
