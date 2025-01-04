@@ -13,20 +13,20 @@ class ProjetosModel extends FlutterFlowModel<ProjetosWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for menuWeb component.
-  late MenuWebModel menuWebModel;
   // Models for comp_projetos dynamic component.
   late FlutterFlowDynamicModels<CompProjetosModel> compProjetosModels;
+  // Model for menuWeb component.
+  late MenuWebModel menuWebModel;
 
   @override
   void initState(BuildContext context) {
-    menuWebModel = createModel(context, () => MenuWebModel());
     compProjetosModels = FlutterFlowDynamicModels(() => CompProjetosModel());
+    menuWebModel = createModel(context, () => MenuWebModel());
   }
 
   @override
   void dispose() {
-    menuWebModel.dispose();
     compProjetosModels.dispose();
+    menuWebModel.dispose();
   }
 }

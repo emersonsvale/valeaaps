@@ -1,7 +1,7 @@
 // Export pages
-export '/pages/home/home_widget.dart' show HomeWidget;
-export '/pages/projetos/projetos_widget.dart' show ProjetosWidget;
-export '/pages/curriculo/curriculo_widget.dart' show CurriculoWidget;
-export '/pages/auth2/auth2_widget.dart' show Auth2Widget;
-export '/pages/dashboard/dashboard_widget.dart' show DashboardWidget;
-export '/pages/proposta/proposta_widget.dart' show PropostaWidget;
+export '/site/home/home_widget.dart' show HomeWidget;
+export '/site/projetos/projetos_widget.dart' show ProjetosWidget;
+export '/site/curriculo/curriculo_widget.dart' show CurriculoWidget;
+export '/sistema/auth2/auth2_widget.dart' show Auth2Widget;
+export '/sistema/dashboard/dashboard_widget.dart' show DashboardWidget;
+export '/sistema/proposta/proposta_widget.dart' show PropostaWidget;

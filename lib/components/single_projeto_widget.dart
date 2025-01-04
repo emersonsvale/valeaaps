@@ -1,8 +1,6 @@
 import '/backend/supabase/supabase.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
@@ -189,8 +187,12 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.end,
                                         children: [
-                                          FFButtonWidget(
-                                            onPressed: () async {
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
                                               await ProjetosTable().update(
                                                 data: {
                                                   'likes': (projetProjetosRow
@@ -210,58 +212,91 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                                       minWait: 1000,
                                                       maxWait: 3000);
                                             },
-                                            text: valueOrDefault<String>(
-                                              projetProjetosRow.likes
-                                                  ?.toString(),
-                                              '0',
-                                            ),
-                                            icon: const Icon(
-                                              Icons.favorite,
-                                              size: 24.0,
-                                            ),
-                                            options: FFButtonOptions(
+                                            child: Container(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 0.0, 16.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .info,
-                                                        letterSpacing: 0.0,
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xFF1F2228),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 12.0, 0.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(8.0),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                        child: Image.network(
+                                                          'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/logos/favorite_24dp_D8CBC3_FILL1_wght400_GRAD0_opsz24.png',
+                                                          width: 24.0,
+                                                          height: 24.0,
+                                                          fit: BoxFit.contain,
+                                                        ),
                                                       ),
-                                              elevation: 0.0,
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                                    ),
+                                                    Text(
+                                                      valueOrDefault<String>(
+                                                        projetProjetosRow.likes
+                                                            ?.toString(),
+                                                        '0',
+                                                      ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily: 'Inter',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                          FlutterFlowIconButton(
-                                            borderColor: Colors.transparent,
-                                            borderRadius: 8.0,
-                                            buttonSize: 40.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
-                                            icon: Icon(
-                                              Icons.close,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .info,
-                                              size: 24.0,
-                                            ),
-                                            onPressed: () async {
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
                                               Navigator.pop(context);
                                             },
+                                            child: Container(
+                                              height: 40.0,
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xFF1F2228),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(8.0),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.network(
+                                                        'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/logos/close_24dp_D8CBC3_FILL1_wght400_GRAD0_opsz24.png',
+                                                        width: 24.0,
+                                                        height: 24.0,
+                                                        fit: BoxFit.contain,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                           ),
                                         ].divide(const SizedBox(width: 12.0)),
                                       ),
@@ -276,7 +311,7 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 24.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,

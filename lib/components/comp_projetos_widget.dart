@@ -50,10 +50,10 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
         applyInitialState: true,
         effectsBuilder: () => [
           ScaleEffect(
-            curve: Curves.easeInOut,
+            curve: Curves.easeIn,
             delay: 0.0.ms,
-            duration: 450.0.ms,
-            begin: const Offset(0.9, 0.9),
+            duration: 640.0.ms,
+            begin: const Offset(0.95, 0.95),
             end: const Offset(1.0, 1.0),
           ),
         ],
@@ -120,13 +120,21 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
           },
           child: Stack(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12.0),
-                child: Image.network(
-                  widget.parameter1!,
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.0),
+                  border: Border.all(
+                    color: const Color(0xFF564E4E),
+                  ),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12.0),
+                  child: Image.network(
+                    widget.parameter1!,
+                    width: double.infinity,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               if (responsiveVisibility(
@@ -144,6 +152,9 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
                       end: AlignmentDirectional(0, 1.0),
                     ),
                     borderRadius: BorderRadius.circular(12.0),
+                    border: Border.all(
+                      color: const Color(0xFF564E4E),
+                    ),
                   ),
                 ),
               if (responsiveVisibility(
@@ -176,11 +187,18 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Icon(
-                                      Icons.favorite,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24.0,
+                                    Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.network(
+                                          'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/logos/favorite_24dp_D8CBC3_FILL1_wght400_GRAD0_opsz24.png',
+                                          width: 24.0,
+                                          height: 24.0,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
                                     ),
                                     Text(
                                       widget.parameter2!.toString(),

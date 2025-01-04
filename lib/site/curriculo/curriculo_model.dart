@@ -13,20 +13,20 @@ class CurriculoModel extends FlutterFlowModel<CurriculoWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for menuWeb component.
-  late MenuWebModel menuWebModel;
   // Model for pCurriculo component.
   late PCurriculoModel pCurriculoModel;
+  // Model for menuWeb component.
+  late MenuWebModel menuWebModel;
 
   @override
   void initState(BuildContext context) {
-    menuWebModel = createModel(context, () => MenuWebModel());
     pCurriculoModel = createModel(context, () => PCurriculoModel());
+    menuWebModel = createModel(context, () => MenuWebModel());
   }
 
   @override
   void dispose() {
-    menuWebModel.dispose();
     pCurriculoModel.dispose();
+    menuWebModel.dispose();
   }
 }

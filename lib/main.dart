@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
       });
     jwtTokenStream.listen((_) {});
     Future.delayed(
-      const Duration(milliseconds: 5000),
+      const Duration(milliseconds: 1000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
   }
@@ -76,7 +76,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Emerson do Vale | Low/No Code Developer',
+      title:
+          'Emerson Vale - Software Engineer | Web Developer | Flutter Developer | FlutterFlow | Bubble | Supabase | Xano',
       localizationsDelegates: const [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,

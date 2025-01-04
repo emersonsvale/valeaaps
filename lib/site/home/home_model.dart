@@ -27,8 +27,6 @@ class HomeModel extends FlutterFlowModel<HomeWidget> {
 
   // Stores action output result for [Backend Call - Query Rows] action in Home widget.
   List<ClientesParceirosRow>? parciro;
-  // Model for menuWeb component.
-  late MenuWebModel menuWebModel;
   // State field(s) for MouseRegion widget.
   bool mouseRegionHovered1 = false;
   // State field(s) for MouseRegion widget.
@@ -37,17 +35,19 @@ class HomeModel extends FlutterFlowModel<HomeWidget> {
   bool mouseRegionHovered3 = false;
   // Models for comp_ferramenta dynamic component.
   late FlutterFlowDynamicModels<CompFerramentaModel> compFerramentaModels;
+  // Model for menuWeb component.
+  late MenuWebModel menuWebModel;
 
   @override
   void initState(BuildContext context) {
-    menuWebModel = createModel(context, () => MenuWebModel());
     compFerramentaModels =
         FlutterFlowDynamicModels(() => CompFerramentaModel());
+    menuWebModel = createModel(context, () => MenuWebModel());
   }
 
   @override
   void dispose() {
-    menuWebModel.dispose();
     compFerramentaModels.dispose();
+    menuWebModel.dispose();
   }
 }

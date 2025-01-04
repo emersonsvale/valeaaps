@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
 
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -302,14 +304,13 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Container(
-                  color: Colors.transparent,
-                  child: Center(
-                    child: Image.asset(
-                      'assets/images/Ativo_14x.png',
-                      width: 100.0,
-                      height: 100.0,
-                      fit: BoxFit.contain,
+              ? Center(
+                  child: SizedBox(
+                    width: 10.0,
+                    height: 10.0,
+                    child: SpinKitDoubleBounce(
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      size: 10.0,
                     ),
                   ),
                 )

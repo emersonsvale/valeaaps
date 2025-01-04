@@ -57,9 +57,18 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
               'Formação',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Inter',
-                    fontSize: 28.0,
+                    fontSize: 34.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.bold,
+                  ),
+            ),
+            Text(
+              'Conheça minha trajetória acadêmica e profissional! Aqui estão as formações e experiências que moldaram minha expertise em desenvolvimento de software e tecnologia. Cada etapa representa um compromisso contínuo com aprendizado, inovação e excelência.',
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Inter',
+                    fontSize: 14.0,
+                    letterSpacing: 0.0,
+                    fontWeight: FontWeight.normal,
                   ),
             ),
             Padding(
@@ -94,12 +103,16 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                             ],
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Icon(
-                              Icons.menu_book_outlined,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(0.0),
+                              child: Image.network(
+                                'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/logos/menu_book_24dp_D8CBC3_FILL1_wght400_GRAD0_opsz24.png',
+                                width: 24.0,
+                                height: 24.0,
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         ),
@@ -336,12 +349,16 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                             ],
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Icon(
-                              Icons.co_present,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(0.0),
+                              child: Image.network(
+                                'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/logos/co_present_24dp_D8CBC3_FILL1_wght400_GRAD0_opsz24.png',
+                                width: 24.0,
+                                height: 24.0,
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         ),

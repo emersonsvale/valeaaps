@@ -1,4 +1,3 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -52,25 +51,44 @@ class _MenuMobileWidgetState extends State<MenuMobileWidget> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              if (responsiveVisibility(
-                context: context,
-                tabletLandscape: false,
-                desktop: false,
-              ))
-                FlutterFlowIconButton(
-                  borderColor: FlutterFlowTheme.of(context).alternate,
-                  borderRadius: 8.0,
-                  buttonSize: 40.0,
-                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                  icon: Icon(
-                    Icons.close,
-                    color: FlutterFlowTheme.of(context).info,
-                    size: 24.0,
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  width: 40.0,
+                  height: 40.0,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1F2228),
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      color: const Color(0xFF564E4E),
+                    ),
                   ),
-                  onPressed: () async {
-                    Navigator.pop(context);
-                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.network(
+                            'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/logos/close_24dp_D8CBC3_FILL1_wght400_GRAD0_opsz24.png',
+                            width: 24.0,
+                            height: 24.0,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+              ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
                 child: InkWell(
