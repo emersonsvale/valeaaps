@@ -5,31 +5,37 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'proposta_model.dart';
-export 'proposta_model.dart';
+import 'single_projeto_page_model.dart';
+export 'single_projeto_page_model.dart';
 
-class PropostaWidget extends StatefulWidget {
-  /// Uma página de proposta responsiva, onde mostrar as informações do projeto
-  /// do cliente, informações do desenvolvedor, detalhes do serviço, detalhes de
-  /// precificação do serviço
-  const PropostaWidget({
+/// Uma página de proposta responsiva, onde mostrar as informações do projeto
+/// do cliente, informações do desenvolvedor, detalhes do serviço, detalhes de
+/// precificação do serviço
+class SingleProjetoPageWidget extends StatefulWidget {
+  const SingleProjetoPageWidget({
     super.key,
-    required this.prop,
+    required this.proj,
   });
 
-  final int? prop;
+  final int? proj;
+
+  static String routeName = 'SingleProjetoPage';
+  static String routePath = 'projeto/:proj';
 
   @override
-  State<PropostaWidget> createState() => _PropostaWidgetState();
+  State<SingleProjetoPageWidget> createState() =>
+      _SingleProjetoPageWidgetState();
 }
 
-class _PropostaWidgetState extends State<PropostaWidget>
+class _SingleProjetoPageWidgetState extends State<SingleProjetoPageWidget>
     with TickerProviderStateMixin {
-  late PropostaModel _model;
+  late SingleProjetoPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -38,7 +44,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PropostaModel());
+    _model = createModel(context, () => SingleProjetoPageModel());
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
@@ -50,8 +56,8 @@ class _PropostaWidgetState extends State<PropostaWidget>
             curve: Curves.easeInOut,
             delay: 480.0.ms,
             duration: 2000.0.ms,
-            begin: const Offset(1.0, 1.0),
-            end: const Offset(100.0, 100.0),
+            begin: Offset(1.0, 1.0),
+            end: Offset(100.0, 100.0),
           ),
         ],
       ),
@@ -64,8 +70,8 @@ class _PropostaWidgetState extends State<PropostaWidget>
             curve: Curves.easeInOut,
             delay: 410.0.ms,
             duration: 2000.0.ms,
-            begin: const Offset(1.0, 1.0),
-            end: const Offset(100.0, 100.0),
+            begin: Offset(1.0, 1.0),
+            end: Offset(100.0, 100.0),
           ),
         ],
       ),
@@ -83,11 +89,11 @@ class _PropostaWidgetState extends State<PropostaWidget>
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<PropostaRow>>(
-      future: PropostaTable().querySingleRow(
+    return FutureBuilder<List<ProjetosRow>>(
+      future: ProjetosTable().querySingleRow(
         queryFn: (q) => q.eqOrNull(
           'id',
-          widget.prop,
+          widget.proj,
         ),
       ),
       builder: (context, snapshot) {
@@ -107,11 +113,12 @@ class _PropostaWidgetState extends State<PropostaWidget>
             ),
           );
         }
-        List<PropostaRow> propostaPropostaRowList = snapshot.data!;
+        List<ProjetosRow> singleProjetoPageProjetosRowList = snapshot.data!;
 
-        final propostaPropostaRow = propostaPropostaRowList.isNotEmpty
-            ? propostaPropostaRowList.first
-            : null;
+        final singleProjetoPageProjetosRow =
+            singleProjetoPageProjetosRowList.isNotEmpty
+                ? singleProjetoPageProjetosRowList.first
+                : null;
 
         return GestureDetector(
           onTap: () {
@@ -127,17 +134,17 @@ class _PropostaWidgetState extends State<PropostaWidget>
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).primaryBackground,
               ),
-              child: SizedBox(
+              child: Container(
                 width: double.infinity,
                 height: double.infinity,
                 child: Stack(
                   children: [
                     Align(
-                      alignment: const AlignmentDirectional(1.19, 1.45),
+                      alignment: AlignmentDirectional(1.19, 1.45),
                       child: Container(
                         width: 455.0,
                         height: 455.0,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           color: Color(0xFF323030),
                           shape: BoxShape.circle,
                         ),
@@ -147,25 +154,25 @@ class _PropostaWidgetState extends State<PropostaWidget>
                     Container(
                       width: 455.0,
                       height: 455.0,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Color(0xFF323030),
                         shape: BoxShape.circle,
                       ),
                     ).animateOnPageLoad(
                         animationsMap['containerOnPageLoadAnimation2']!),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: BackdropFilter(
                         filter: ImageFilter.blur(
                           sigmaX: 100.0,
                           sigmaY: 100.0,
                         ),
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Container(
                             width: double.infinity,
                             height: double.infinity,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Stack(
                               children: [
                                 Column(
@@ -182,267 +189,437 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                               tablet: false,
                                             ))
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(24.0, 124.0, 24.0,
-                                                        24.0),
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 24.0),
                                                 child: Container(
-                                                  width: double.infinity,
-                                                  height: 512.0,
-                                                  constraints: const BoxConstraints(
-                                                    maxWidth: 1140.0,
-                                                  ),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            24.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                24.0,
-                                                                24.0,
-                                                                24.0,
-                                                                24.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Container(
-                                                          width: 695.0,
-                                                          height: 500.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        24.0),
-                                                          ),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Flexible(
-                                                                child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                  width: 1140.0,
+                                                  height: 573.59,
+                                                  child: Stack(
+                                                    children: [
+                                                      if (responsiveVisibility(
+                                                        context: context,
+                                                        phone: false,
+                                                        tablet: false,
+                                                      ))
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      24.0,
+                                                                      124.0,
+                                                                      24.0,
+                                                                      24.0),
+                                                          child: Container(
+                                                            width:
+                                                                double.infinity,
+                                                            height: 512.0,
+                                                            constraints:
+                                                                BoxConstraints(
+                                                              maxWidth: 1140.0,
+                                                            ),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          24.0),
+                                                            ),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0,
-                                                                          12.0),
-                                                                  child: Text(
-                                                                    'Proposta comercial',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Inter',
-                                                                          color:
-                                                                              const Color(0x7FD8CBC3),
-                                                                          fontSize:
-                                                                              18.0,
-                                                                          letterSpacing:
-                                                                              3.0,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        12.0,
-                                                                        0.0,
-                                                                        12.0),
-                                                                child:
-                                                                    GradientText(
-                                                                  'Vamos construir\num projeto\njuntos?',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Inter',
-                                                                        color: const Color(
-                                                                            0x7FD8CBC3),
-                                                                        fontSize:
-                                                                            40.0,
-                                                                        letterSpacing:
-                                                                            3.0,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                  colors: [
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .alternate
-                                                                  ],
-                                                                  gradientDirection:
-                                                                      GradientDirection
-                                                                          .ltr,
-                                                                  gradientType:
-                                                                      GradientType
-                                                                          .linear,
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        12.0,
-                                                                        0.0,
-                                                                        12.0),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Icon(
-                                                                      Icons
-                                                                          .arrow_circle_down_rounded,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      size:
-                                                                          43.0,
-                                                                    ),
-                                                                    Opacity(
-                                                                      opacity:
-                                                                          0.5,
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .arrow_circle_down_rounded,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        size:
-                                                                            33.0,
-                                                                      ),
-                                                                    ),
-                                                                    Opacity(
-                                                                      opacity:
-                                                                          0.1,
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .arrow_circle_down_rounded,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        size:
-                                                                            23.0,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              Row(
+                                                                          24.0,
+                                                                          24.0,
+                                                                          24.0,
+                                                                          24.0),
+                                                              child: Row(
                                                                 mainAxisSize:
                                                                     MainAxisSize
                                                                         .max,
                                                                 mainAxisAlignment:
                                                                     MainAxisAlignment
-                                                                        .spaceBetween,
+                                                                        .center,
                                                                 children: [
-                                                                  Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Opacity(
-                                                                        opacity:
-                                                                            0.5,
-                                                                        child:
-                                                                            Text(
-                                                                          'Tipo do projeto',
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Inter',
-                                                                                letterSpacing: 0.0,
-                                                                              ),
+                                                                  Container(
+                                                                    width:
+                                                                        918.7,
+                                                                    height:
+                                                                        500.0,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              24.0),
+                                                                    ),
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Flexible(
+                                                                          child:
+                                                                              Text(
+                                                                            'Projeto',
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  font: GoogleFonts.inter(
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                  ),
+                                                                                  color: Color(0x7FD8CBC3),
+                                                                                  fontSize: 18.0,
+                                                                                  letterSpacing: 3.0,
+                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                ),
+                                                                          ),
                                                                         ),
-                                                                      ),
-                                                                      Text(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          propostaPropostaRow
-                                                                              ?.tipoProjeto,
-                                                                          'XXXXXXXXXXXXXXXXX',
-                                                                        ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Inter',
-                                                                              fontSize: 16.0,
-                                                                              letterSpacing: 0.0,
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              24.0),
+                                                                          child:
+                                                                              GradientText(
+                                                                            valueOrDefault<String>(
+                                                                              singleProjetoPageProjetosRow?.titulo,
+                                                                              'Titulo',
                                                                             ),
-                                                                      ),
-                                                                    ],
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  font: GoogleFonts.inter(
+                                                                                    fontWeight: FontWeight.bold,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                  ),
+                                                                                  color: Color(0x7FD8CBC3),
+                                                                                  fontSize: 40.0,
+                                                                                  letterSpacing: 3.0,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                ),
+                                                                            colors: [
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                              FlutterFlowTheme.of(context).alternate
+                                                                            ],
+                                                                            gradientDirection:
+                                                                                GradientDirection.ltr,
+                                                                            gradientType:
+                                                                                GradientType.linear,
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              12.0,
+                                                                              0.0,
+                                                                              12.0),
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              Icon(
+                                                                                Icons.arrow_circle_up_rounded,
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                                size: 43.0,
+                                                                              ),
+                                                                              Opacity(
+                                                                                opacity: 0.5,
+                                                                                child: Icon(
+                                                                                  Icons.arrow_circle_up_rounded,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  size: 33.0,
+                                                                                ),
+                                                                              ),
+                                                                              Opacity(
+                                                                                opacity: 0.1,
+                                                                                child: Icon(
+                                                                                  Icons.arrow_circle_up_rounded,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  size: 23.0,
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                        Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceBetween,
+                                                                          children: [
+                                                                            Column(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                Opacity(
+                                                                                  opacity: 0.5,
+                                                                                  child: Text(
+                                                                                    'Cliente/Parceiro',
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          font: GoogleFonts.inter(
+                                                                                            fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                          ),
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                                Text(
+                                                                                  valueOrDefault<String>(
+                                                                                    singleProjetoPageProjetosRow?.parceiro,
+                                                                                    'Vale Apps',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        font: GoogleFonts.inter(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                        ),
+                                                                                        fontSize: 16.0,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                            Column(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                Opacity(
+                                                                                  opacity: 0.5,
+                                                                                  child: Text(
+                                                                                    'Tecnologias ultilizadas',
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          font: GoogleFonts.inter(
+                                                                                            fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                          ),
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                                                                                  child: FutureBuilder<List<FerramentasRow>>(
+                                                                                    future: FerramentasTable().queryRows(
+                                                                                      queryFn: (q) => q.inFilterOrNull(
+                                                                                        'id',
+                                                                                        [1, 2, 3],
+                                                                                      ),
+                                                                                    ),
+                                                                                    builder: (context, snapshot) {
+                                                                                      // Customize what your widget looks like when it's loading.
+                                                                                      if (!snapshot.hasData) {
+                                                                                        return Center(
+                                                                                          child: SizedBox(
+                                                                                            width: 10.0,
+                                                                                            height: 10.0,
+                                                                                            child: SpinKitDoubleBounce(
+                                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                              size: 10.0,
+                                                                                            ),
+                                                                                          ),
+                                                                                        );
+                                                                                      }
+                                                                                      List<FerramentasRow> rowFerramentasRowList = snapshot.data!;
+
+                                                                                      return Row(
+                                                                                        mainAxisSize: MainAxisSize.max,
+                                                                                        children: List.generate(rowFerramentasRowList.length, (rowIndex) {
+                                                                                          final rowFerramentasRow = rowFerramentasRowList[rowIndex];
+                                                                                          return AlignedTooltip(
+                                                                                            content: Padding(
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(12.0, 6.0, 12.0, 6.0),
+                                                                                              child: Text(
+                                                                                                rowFerramentasRow.nome!,
+                                                                                                style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                                      font: GoogleFonts.inter(
+                                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                                      ),
+                                                                                                      letterSpacing: 0.0,
+                                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                                    ),
+                                                                                              ),
+                                                                                            ),
+                                                                                            offset: 4.0,
+                                                                                            preferredDirection: AxisDirection.down,
+                                                                                            borderRadius: BorderRadius.circular(8.0),
+                                                                                            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                            elevation: 4.0,
+                                                                                            tailBaseWidth: 24.0,
+                                                                                            tailLength: 12.0,
+                                                                                            waitDuration: Duration(milliseconds: 1),
+                                                                                            showDuration: Duration(milliseconds: 1),
+                                                                                            triggerMode: TooltipTriggerMode.tap,
+                                                                                            child: ClipRRect(
+                                                                                              borderRadius: BorderRadius.circular(8.0),
+                                                                                              child: Image.network(
+                                                                                                valueOrDefault<String>(
+                                                                                                  rowFerramentasRow.image,
+                                                                                                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/6yx4hg4hwtil/sasasAS.png',
+                                                                                                ),
+                                                                                                width: 30.0,
+                                                                                                height: 30.0,
+                                                                                                fit: BoxFit.cover,
+                                                                                              ),
+                                                                                            ),
+                                                                                          );
+                                                                                        }).divide(SizedBox(width: 12.0)),
+                                                                                      );
+                                                                                    },
+                                                                                  ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   ),
-                                                                  Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Opacity(
-                                                                        opacity:
-                                                                            0.5,
-                                                                        child:
-                                                                            Text(
-                                                                          'Cliente',
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Inter',
-                                                                                letterSpacing: 0.0,
+                                                                ].divide(SizedBox(
+                                                                    width:
+                                                                        24.0)),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      if (responsiveVisibility(
+                                                        context: context,
+                                                        phone: false,
+                                                        tablet: false,
+                                                      ))
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Container(
+                                                              width: 540.34,
+                                                              child: Stack(
+                                                                children: [
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            0.0,
+                                                                            1.0),
+                                                                    child:
+                                                                        Container(
+                                                                      width:
+                                                                          535.4,
+                                                                      height:
+                                                                          295.4,
+                                                                      child:
+                                                                          Stack(
+                                                                        children: [
+                                                                          Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(-0.01, -0.36),
+                                                                            child:
+                                                                                ClipRRect(
+                                                                              borderRadius: BorderRadius.circular(8.0),
+                                                                              child: Image.network(
+                                                                                valueOrDefault<String>(
+                                                                                  singleProjetoPageProjetosRow?.imagemPc,
+                                                                                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/toucamdrfhgj/pattern_waves-11_1_3_0-0_35_1__hsla(240%2C_7%25%2C_18%25%2C_0)_hsla(23%2C_21%25%2C_81%25%2C_1).png',
+                                                                                ),
+                                                                                width: 372.1,
+                                                                                height: 241.25,
+                                                                                fit: BoxFit.cover,
                                                                               ),
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          propostaPropostaRow
-                                                                              ?.nomeCliente,
-                                                                          'XXXXXXXXXXXXXXXXX',
-                                                                        ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Inter',
-                                                                              fontSize: 16.0,
-                                                                              letterSpacing: 0.0,
                                                                             ),
+                                                                          ),
+                                                                          Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(0.0, 1.0),
+                                                                            child:
+                                                                                ClipRRect(
+                                                                              borderRadius: BorderRadius.circular(8.0),
+                                                                              child: Image.network(
+                                                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/0wysv3p3rkkf/laptop_realistic.png',
+                                                                                width: 536.9,
+                                                                                height: 295.4,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
                                                                       ),
-                                                                    ],
+                                                                    ),
+                                                                  ),
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            1.0,
+                                                                            1.0),
+                                                                    child:
+                                                                        Container(
+                                                                      width:
+                                                                          179.0,
+                                                                      height:
+                                                                          264.4,
+                                                                      child:
+                                                                          Stack(
+                                                                        children: [
+                                                                          Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(0.0, 0.0),
+                                                                            child:
+                                                                                ClipRRect(
+                                                                              borderRadius: BorderRadius.circular(24.0),
+                                                                              child: Image.network(
+                                                                                valueOrDefault<String>(
+                                                                                  singleProjetoPageProjetosRow?.imagemCelular,
+                                                                                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/toucamdrfhgj/pattern_waves-11_1_3_0-0_35_1__hsla(240%2C_7%25%2C_18%25%2C_0)_hsla(23%2C_21%25%2C_81%25%2C_1).png',
+                                                                                ),
+                                                                                width: 104.92,
+                                                                                height: 223.3,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(0.0, 1.0),
+                                                                            child:
+                                                                                ClipRRect(
+                                                                              borderRadius: BorderRadius.circular(8.0),
+                                                                              child: Image.network(
+                                                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/lgwv5j1m10a1/celular.png',
+                                                                                width: 558.5,
+                                                                                height: 295.4,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
                                                                   ),
                                                                 ],
                                                               ),
-                                                            ],
-                                                          ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ].divide(const SizedBox(
-                                                          width: 24.0)),
-                                                    ),
+                                                    ],
                                                   ),
                                                 ),
                                               ),
@@ -452,254 +629,446 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                               desktop: false,
                                             ))
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(24.0, 124.0, 24.0,
-                                                        24.0),
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 24.0),
                                                 child: Container(
-                                                  width: double.infinity,
-                                                  height: 561.0,
-                                                  constraints: const BoxConstraints(
-                                                    maxWidth: 1140.0,
-                                                  ),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            24.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                24.0,
-                                                                24.0,
-                                                                24.0,
-                                                                24.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Flexible(
-                                                          child: Container(
-                                                            width: 695.0,
-                                                            height: 500.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          24.0),
-                                                            ),
+                                                  width: 1140.0,
+                                                  height: 766.15,
+                                                  child: Stack(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    24.0,
+                                                                    124.0,
+                                                                    24.0,
+                                                                    24.0),
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height: 595.75,
+                                                          constraints:
+                                                              BoxConstraints(
+                                                            maxWidth: 1140.0,
+                                                          ),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        24.0),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        24.0,
+                                                                        24.0,
+                                                                        24.0,
+                                                                        24.0),
                                                             child: Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
                                                                       .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
                                                               children: [
-                                                                Flexible(
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            12.0,
-                                                                            0.0,
-                                                                            12.0),
-                                                                    child: Text(
-                                                                      'Proposta comercial',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Inter',
-                                                                            color:
-                                                                                const Color(0x7FD8CBC3),
-                                                                            fontSize:
-                                                                                18.0,
-                                                                            letterSpacing:
-                                                                                3.0,
-                                                                          ),
-                                                                    ),
+                                                                Container(
+                                                                  width: 918.7,
+                                                                  height: 500.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            24.0),
                                                                   ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0,
-                                                                          12.0),
-                                                                  child:
-                                                                      GradientText(
-                                                                    'Vamos construir\num projeto\njuntos?',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Inter',
-                                                                          color:
-                                                                              const Color(0x7FD8CBC3),
-                                                                          fontSize:
-                                                                              40.0,
-                                                                          letterSpacing:
-                                                                              3.0,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
-                                                                    colors: [
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate
-                                                                    ],
-                                                                    gradientDirection:
-                                                                        GradientDirection
-                                                                            .ltr,
-                                                                    gradientType:
-                                                                        GradientType
-                                                                            .linear,
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0,
-                                                                          12.0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Icon(
-                                                                        Icons
-                                                                            .arrow_circle_down_rounded,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        size:
-                                                                            43.0,
-                                                                      ),
-                                                                      Opacity(
-                                                                        opacity:
-                                                                            0.5,
-                                                                        child:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .arrow_circle_down_rounded,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryText,
-                                                                          size:
-                                                                              33.0,
-                                                                        ),
-                                                                      ),
-                                                                      Opacity(
-                                                                        opacity:
-                                                                            0.1,
-                                                                        child:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .arrow_circle_down_rounded,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryText,
-                                                                          size:
-                                                                              23.0,
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          24.0,
-                                                                          0.0,
-                                                                          0.0),
                                                                   child: Column(
                                                                     mainAxisSize:
                                                                         MainAxisSize
                                                                             .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .center,
                                                                     children: [
-                                                                      Column(
+                                                                      Flexible(
+                                                                        child:
+                                                                            Text(
+                                                                          'Projeto',
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                font: GoogleFonts.inter(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                ),
+                                                                                color: Color(0x7FD8CBC3),
+                                                                                fontSize: 18.0,
+                                                                                letterSpacing: 3.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            24.0),
+                                                                        child:
+                                                                            GradientText(
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                            singleProjetoPageProjetosRow?.titulo,
+                                                                            'Titulo',
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                font: GoogleFonts.inter(
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                ),
+                                                                                color: Color(0x7FD8CBC3),
+                                                                                fontSize: 40.0,
+                                                                                letterSpacing: 3.0,
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                          colors: [
+                                                                            FlutterFlowTheme.of(context).primaryText,
+                                                                            FlutterFlowTheme.of(context).alternate
+                                                                          ],
+                                                                          gradientDirection:
+                                                                              GradientDirection.ltr,
+                                                                          gradientType:
+                                                                              GradientType.linear,
+                                                                        ),
+                                                                      ),
+                                                                      Row(
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
                                                                         children: [
-                                                                          Opacity(
-                                                                            opacity:
-                                                                                0.5,
-                                                                            child:
-                                                                                Text(
-                                                                              'Tipo do projeto',
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                          Text(
-                                                                            'XXXXXXXXXXXXXXXXX',
-                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  fontFamily: 'Inter',
-                                                                                  fontSize: 16.0,
-                                                                                  letterSpacing: 0.0,
+                                                                          Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Opacity(
+                                                                                opacity: 0.5,
+                                                                                child: Text(
+                                                                                  'Cliente/Parceiro',
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        font: GoogleFonts.inter(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                      ),
                                                                                 ),
+                                                                              ),
+                                                                              Text(
+                                                                                valueOrDefault<String>(
+                                                                                  singleProjetoPageProjetosRow?.parceiro,
+                                                                                  'Vale Apps',
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      font: GoogleFonts.inter(
+                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                      ),
+                                                                                      fontSize: 16.0,
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                    ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Opacity(
+                                                                                opacity: 0.5,
+                                                                                child: Text(
+                                                                                  'Tecnologias ultilizadas',
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        font: GoogleFonts.inter(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                                                                                child: FutureBuilder<List<FerramentasRow>>(
+                                                                                  future: FerramentasTable().queryRows(
+                                                                                    queryFn: (q) => q.inFilterOrNull(
+                                                                                      'id',
+                                                                                      [
+                                                                                        1,
+                                                                                        2,
+                                                                                        3
+                                                                                      ],
+                                                                                    ),
+                                                                                  ),
+                                                                                  builder: (context, snapshot) {
+                                                                                    // Customize what your widget looks like when it's loading.
+                                                                                    if (!snapshot.hasData) {
+                                                                                      return Center(
+                                                                                        child: SizedBox(
+                                                                                          width: 10.0,
+                                                                                          height: 10.0,
+                                                                                          child: SpinKitDoubleBounce(
+                                                                                            color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                            size: 10.0,
+                                                                                          ),
+                                                                                        ),
+                                                                                      );
+                                                                                    }
+                                                                                    List<FerramentasRow> rowFerramentasRowList = snapshot.data!;
+
+                                                                                    return Row(
+                                                                                      mainAxisSize: MainAxisSize.max,
+                                                                                      children: List.generate(rowFerramentasRowList.length, (rowIndex) {
+                                                                                        final rowFerramentasRow = rowFerramentasRowList[rowIndex];
+                                                                                        return AlignedTooltip(
+                                                                                          content: Padding(
+                                                                                            padding: EdgeInsetsDirectional.fromSTEB(12.0, 6.0, 12.0, 6.0),
+                                                                                            child: Text(
+                                                                                              rowFerramentasRow.nome!,
+                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                                    font: GoogleFonts.inter(
+                                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                                    ),
+                                                                                                    letterSpacing: 0.0,
+                                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                                  ),
+                                                                                            ),
+                                                                                          ),
+                                                                                          offset: 4.0,
+                                                                                          preferredDirection: AxisDirection.down,
+                                                                                          borderRadius: BorderRadius.circular(8.0),
+                                                                                          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                          elevation: 4.0,
+                                                                                          tailBaseWidth: 24.0,
+                                                                                          tailLength: 12.0,
+                                                                                          waitDuration: Duration(milliseconds: 1),
+                                                                                          showDuration: Duration(milliseconds: 1),
+                                                                                          triggerMode: TooltipTriggerMode.tap,
+                                                                                          child: ClipRRect(
+                                                                                            borderRadius: BorderRadius.circular(8.0),
+                                                                                            child: Image.network(
+                                                                                              valueOrDefault<String>(
+                                                                                                rowFerramentasRow.image,
+                                                                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/6yx4hg4hwtil/sasasAS.png',
+                                                                                              ),
+                                                                                              width: 30.0,
+                                                                                              height: 30.0,
+                                                                                              fit: BoxFit.cover,
+                                                                                            ),
+                                                                                          ),
+                                                                                        );
+                                                                                      }).divide(SizedBox(width: 12.0)),
+                                                                                    );
+                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                            ],
                                                                           ),
                                                                         ],
                                                                       ),
-                                                                      Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Opacity(
-                                                                            opacity:
-                                                                                0.5,
-                                                                            child:
-                                                                                Text(
-                                                                              'Cliente',
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            12.0,
+                                                                            0.0,
+                                                                            12.0),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          children: [
+                                                                            Icon(
+                                                                              Icons.arrow_circle_up_rounded,
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                              size: 43.0,
                                                                             ),
-                                                                          ),
-                                                                          Text(
-                                                                            'XXXXXXXXXXXXXXXXX',
-                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  fontFamily: 'Inter',
-                                                                                  fontSize: 16.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                ),
-                                                                          ),
-                                                                        ],
+                                                                            Opacity(
+                                                                              opacity: 0.5,
+                                                                              child: Icon(
+                                                                                Icons.arrow_circle_up_rounded,
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                                size: 33.0,
+                                                                              ),
+                                                                            ),
+                                                                            Opacity(
+                                                                              opacity: 0.1,
+                                                                              child: Icon(
+                                                                                Icons.arrow_circle_up_rounded,
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                                size: 23.0,
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       ),
-                                                                    ].divide(const SizedBox(
-                                                                        height:
-                                                                            24.0)),
+                                                                    ],
                                                                   ),
                                                                 ),
                                                               ],
                                                             ),
                                                           ),
                                                         ),
-                                                      ].divide(const SizedBox(
-                                                          width: 24.0)),
-                                                    ),
+                                                      ),
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Container(
+                                                            width: 300.0,
+                                                            child: Stack(
+                                                              children: [
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          0.0,
+                                                                          1.0),
+                                                                  child:
+                                                                      Container(
+                                                                    width:
+                                                                        535.4,
+                                                                    height:
+                                                                        295.4,
+                                                                    child:
+                                                                        Stack(
+                                                                      children: [
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0.05,
+                                                                              0.0),
+                                                                          child:
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                Image.network(
+                                                                              valueOrDefault<String>(
+                                                                                singleProjetoPageProjetosRow?.imagemPc,
+                                                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/toucamdrfhgj/pattern_waves-11_1_3_0-0_35_1__hsla(240%2C_7%25%2C_18%25%2C_0)_hsla(23%2C_21%25%2C_81%25%2C_1).png',
+                                                                              ),
+                                                                              width: 204.79,
+                                                                              height: 145.0,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0.0,
+                                                                              1.0),
+                                                                          child:
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                Image.network(
+                                                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/0wysv3p3rkkf/laptop_realistic.png',
+                                                                              width: 536.9,
+                                                                              height: 295.4,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          1.15,
+                                                                          0.75),
+                                                                  child:
+                                                                      Container(
+                                                                    width:
+                                                                        179.0,
+                                                                    height:
+                                                                        264.4,
+                                                                    child:
+                                                                        Stack(
+                                                                      children: [
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.89),
+                                                                          child:
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(20.0),
+                                                                            child:
+                                                                                Image.network(
+                                                                              valueOrDefault<String>(
+                                                                                singleProjetoPageProjetosRow?.imagemCelular,
+                                                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/toucamdrfhgj/pattern_waves-11_1_3_0-0_35_1__hsla(240%2C_7%25%2C_18%25%2C_0)_hsla(23%2C_21%25%2C_81%25%2C_1).png',
+                                                                              ),
+                                                                              width: 72.7,
+                                                                              height: 150.0,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0.0,
+                                                                              1.0),
+                                                                          child:
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                Image.network(
+                                                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/lgwv5j1m10a1/celular.png',
+                                                                              width: 558.5,
+                                                                              height: 161.55,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
                                               ),
@@ -730,457 +1099,17 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                             ),
                                             if (responsiveVisibility(
                                               context: context,
-                                              phone: false,
-                                              tablet: false,
-                                            ))
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        24.0, 24.0, 24.0, 24.0),
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  height: 560.0,
-                                                  constraints: const BoxConstraints(
-                                                    maxWidth: 1140.0,
-                                                  ),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            24.0),
-                                                    border: Border.all(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                    ),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                24.0,
-                                                                24.0,
-                                                                24.0,
-                                                                24.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Container(
-                                                          width: 500.0,
-                                                          height: 500.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        24.0),
-                                                          ),
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                            child: Image.asset(
-                                                              'assets/images/emes.png',
-                                                              width: double
-                                                                  .infinity,
-                                                              height: double
-                                                                  .infinity,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          width: 500.0,
-                                                          height: 500.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        24.0),
-                                                          ),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                'Quem sou',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Inter',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
-                                                                      fontSize:
-                                                                          20.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                              ),
-                                                              Text(
-                                                                'Emerson do Vale',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Inter',
-                                                                      fontSize:
-                                                                          40.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                              ),
-                                                              Text(
-                                                                'Software Engineer | Web Developer | Mobile Developer',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Inter',
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                              ),
-                                                              Flexible(
-                                                                child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          24.0,
-                                                                          0.0,
-                                                                          24.0),
-                                                                  child: Text(
-                                                                    'Engenheiro de Software apaixonado por transformar ideias em realidade usando ferramentas Low/No-Code, com mais de 3 anos de experiência no mercado. Já concluí mais de 10 projetos que impactaram negócios ao otimizar processos e criar novas oportunidades. Atendi mais de 15 clientes e estou integrando grandes equipes em software houses no Brasil e no exterior, atualmente com 2 projetos em desenvolvimento.\n\nCriador do canal no YouTube e blog NOCODEVS, sou mentor de mais de 15 profissionais, auxiliando-os na criação de SaaS e startups que têm mudado a realidade de seus usuários.\n\nAlém disso, sou pai, marido, multi-instrumentista musical, cristão, leitor ávido e entusiasta da tecnologia — qualidades que trazem criatividade e equilíbrio ao meu trabalho diário como engenheiro.',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Inter',
-                                                                          fontSize:
-                                                                              14.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceEvenly,
-                                                                children: [
-                                                                  MouseRegion(
-                                                                    opaque:
-                                                                        false,
-                                                                    cursor: MouseCursor
-                                                                            .defer ??
-                                                                        MouseCursor
-                                                                            .defer,
-                                                                    onEnter:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered1 =
-                                                                              true);
-                                                                    }),
-                                                                    onExit:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered1 =
-                                                                              false);
-                                                                    }),
-                                                                    child:
-                                                                        InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        await launchURL(
-                                                                            'https://www.instagram.com/emersonsvale/');
-                                                                      },
-                                                                      child:
-                                                                          Container(
-                                                                        width:
-                                                                            58.0,
-                                                                        height:
-                                                                            60.0,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryBackground,
-                                                                          boxShadow: [
-                                                                            BoxShadow(
-                                                                              blurRadius: 20.0,
-                                                                              color: _model.mouseRegionHovered1 == true ? const Color(0xFF948484) : const Color(0x00564E4E),
-                                                                              offset: const Offset(
-                                                                                2.0,
-                                                                                2.0,
-                                                                              ),
-                                                                              spreadRadius: 0.1,
-                                                                            )
-                                                                          ],
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(12.0),
-                                                                          border:
-                                                                              Border.all(
-                                                                            color:
-                                                                                valueOrDefault<Color>(
-                                                                              _model.mouseRegionHovered1 == true ? const Color(0xFF948484) : FlutterFlowTheme.of(context).alternate,
-                                                                              const Color(0xFF564E4E),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding:
-                                                                              const EdgeInsets.all(12.0),
-                                                                          child:
-                                                                              ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(8.0),
-                                                                            child:
-                                                                                Image.network(
-                                                                              'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/logos/instagranLogoN.png',
-                                                                              width: 24.0,
-                                                                              height: 24.0,
-                                                                              fit: BoxFit.contain,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  MouseRegion(
-                                                                    opaque:
-                                                                        false,
-                                                                    cursor: MouseCursor
-                                                                            .defer ??
-                                                                        MouseCursor
-                                                                            .defer,
-                                                                    onEnter:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered2 =
-                                                                              true);
-                                                                    }),
-                                                                    onExit:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered2 =
-                                                                              false);
-                                                                    }),
-                                                                    child:
-                                                                        InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        await launchURL(
-                                                                            'https://www.linkedin.com/in/emersonsvale/');
-                                                                      },
-                                                                      child:
-                                                                          Container(
-                                                                        width:
-                                                                            58.0,
-                                                                        height:
-                                                                            60.0,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryBackground,
-                                                                          boxShadow: [
-                                                                            BoxShadow(
-                                                                              blurRadius: 20.0,
-                                                                              color: _model.mouseRegionHovered2 == true ? const Color(0xFF948484) : const Color(0x00564E4E),
-                                                                              offset: const Offset(
-                                                                                2.0,
-                                                                                2.0,
-                                                                              ),
-                                                                              spreadRadius: 0.1,
-                                                                            )
-                                                                          ],
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(12.0),
-                                                                          border:
-                                                                              Border.all(
-                                                                            color:
-                                                                                valueOrDefault<Color>(
-                                                                              _model.mouseRegionHovered2 == true ? const Color(0xFF948484) : FlutterFlowTheme.of(context).alternate,
-                                                                              const Color(0xFF564E4E),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding:
-                                                                              const EdgeInsets.all(12.0),
-                                                                          child:
-                                                                              ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(8.0),
-                                                                            child:
-                                                                                Image.network(
-                                                                              'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/logos/linkedinLogo.png',
-                                                                              width: 24.0,
-                                                                              height: 24.0,
-                                                                              fit: BoxFit.contain,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  MouseRegion(
-                                                                    opaque:
-                                                                        false,
-                                                                    cursor: MouseCursor
-                                                                            .defer ??
-                                                                        MouseCursor
-                                                                            .defer,
-                                                                    onEnter:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered3 =
-                                                                              true);
-                                                                    }),
-                                                                    onExit:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered3 =
-                                                                              false);
-                                                                    }),
-                                                                    child:
-                                                                        Container(
-                                                                      width:
-                                                                          58.0,
-                                                                      height:
-                                                                          60.0,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
-                                                                        boxShadow: [
-                                                                          BoxShadow(
-                                                                            blurRadius:
-                                                                                20.0,
-                                                                            color: _model.mouseRegionHovered3 == true
-                                                                                ? const Color(0xFF948484)
-                                                                                : const Color(0x00564E4E),
-                                                                            offset:
-                                                                                const Offset(
-                                                                              2.0,
-                                                                              2.0,
-                                                                            ),
-                                                                            spreadRadius:
-                                                                                0.1,
-                                                                          )
-                                                                        ],
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(12.0),
-                                                                        border:
-                                                                            Border.all(
-                                                                          color:
-                                                                              valueOrDefault<Color>(
-                                                                            _model.mouseRegionHovered3 == true
-                                                                                ? const Color(0xFF948484)
-                                                                                : FlutterFlowTheme.of(context).alternate,
-                                                                            const Color(0xFF564E4E),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.all(12.0),
-                                                                        child:
-                                                                            ClipRRect(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                          child:
-                                                                              Image.network(
-                                                                            'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/logos/youtubeLogo.png',
-                                                                            width:
-                                                                                24.0,
-                                                                            height:
-                                                                                24.0,
-                                                                            fit:
-                                                                                BoxFit.contain,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ].divide(const SizedBox(
-                                                                    width:
-                                                                        16.0)),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ].divide(const SizedBox(
-                                                          width: 24.0)),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            if (responsiveVisibility(
-                                              context: context,
                                               tabletLandscape: false,
                                               desktop: false,
                                             ))
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 24.0, 24.0, 24.0),
                                                 child: Container(
                                                   width: double.infinity,
-                                                  height: 1015.0,
-                                                  constraints: const BoxConstraints(
+                                                  height: 1162.93,
+                                                  constraints: BoxConstraints(
                                                     maxWidth: 1140.0,
                                                   ),
                                                   decoration: BoxDecoration(
@@ -1196,7 +1125,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 24.0,
                                                                 24.0,
@@ -1233,14 +1162,14 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                   .infinity,
                                                               fit: BoxFit.cover,
                                                               alignment:
-                                                                  const Alignment(1.0,
+                                                                  Alignment(1.0,
                                                                       -1.0),
                                                             ),
                                                           ),
                                                         ),
                                                         Container(
                                                           width: 500.0,
-                                                          height: 656.0,
+                                                          height: 805.4,
                                                           decoration:
                                                               BoxDecoration(
                                                             borderRadius:
@@ -1265,8 +1194,15 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .alternate,
@@ -1274,6 +1210,14 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                           20.0,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                               Text(
@@ -1282,12 +1226,27 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       fontSize:
                                                                           40.0,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                               Text(
@@ -1296,17 +1255,32 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       fontSize:
                                                                           14.0,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           24.0,
@@ -1318,12 +1292,23 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             context)
                                                                         .bodyMedium
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Inter',
+                                                                          font:
+                                                                              GoogleFonts.inter(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
                                                                           fontSize:
                                                                               14.0,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
                                                                         ),
                                                                   ),
                                                                 ),
@@ -1343,18 +1328,6 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             .defer ??
                                                                         MouseCursor
                                                                             .defer,
-                                                                    onEnter:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered4 =
-                                                                              true);
-                                                                    }),
-                                                                    onExit:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered4 =
-                                                                              false);
-                                                                    }),
                                                                     child:
                                                                         InkWell(
                                                                       splashColor:
@@ -1387,8 +1360,8 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                           boxShadow: [
                                                                             BoxShadow(
                                                                               blurRadius: 20.0,
-                                                                              color: _model.mouseRegionHovered4 == true ? const Color(0xFF948484) : const Color(0x00564E4E),
-                                                                              offset: const Offset(
+                                                                              color: _model.mouseRegionHovered1 == true ? Color(0xFF948484) : Color(0x00564E4E),
+                                                                              offset: Offset(
                                                                                 2.0,
                                                                                 2.0,
                                                                               ),
@@ -1401,15 +1374,15 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                               Border.all(
                                                                             color:
                                                                                 valueOrDefault<Color>(
-                                                                              _model.mouseRegionHovered4 == true ? const Color(0xFF948484) : FlutterFlowTheme.of(context).alternate,
-                                                                              const Color(0xFF564E4E),
+                                                                              _model.mouseRegionHovered1 == true ? Color(0xFF948484) : FlutterFlowTheme.of(context).alternate,
+                                                                              Color(0xFF564E4E),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              const EdgeInsets.all(12.0),
+                                                                              EdgeInsets.all(12.0),
                                                                           child:
                                                                               ClipRRect(
                                                                             borderRadius:
@@ -1425,6 +1398,18 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                         ),
                                                                       ),
                                                                     ),
+                                                                    onEnter:
+                                                                        ((event) async {
+                                                                      safeSetState(() =>
+                                                                          _model.mouseRegionHovered1 =
+                                                                              true);
+                                                                    }),
+                                                                    onExit:
+                                                                        ((event) async {
+                                                                      safeSetState(() =>
+                                                                          _model.mouseRegionHovered1 =
+                                                                              false);
+                                                                    }),
                                                                   ),
                                                                   MouseRegion(
                                                                     opaque:
@@ -1433,18 +1418,6 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             .defer ??
                                                                         MouseCursor
                                                                             .defer,
-                                                                    onEnter:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered5 =
-                                                                              true);
-                                                                    }),
-                                                                    onExit:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered5 =
-                                                                              false);
-                                                                    }),
                                                                     child:
                                                                         InkWell(
                                                                       splashColor:
@@ -1477,8 +1450,8 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                           boxShadow: [
                                                                             BoxShadow(
                                                                               blurRadius: 20.0,
-                                                                              color: _model.mouseRegionHovered5 == true ? const Color(0xFF948484) : const Color(0x00564E4E),
-                                                                              offset: const Offset(
+                                                                              color: _model.mouseRegionHovered2 == true ? Color(0xFF948484) : Color(0x00564E4E),
+                                                                              offset: Offset(
                                                                                 2.0,
                                                                                 2.0,
                                                                               ),
@@ -1491,15 +1464,15 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                               Border.all(
                                                                             color:
                                                                                 valueOrDefault<Color>(
-                                                                              _model.mouseRegionHovered5 == true ? const Color(0xFF948484) : FlutterFlowTheme.of(context).alternate,
-                                                                              const Color(0xFF564E4E),
+                                                                              _model.mouseRegionHovered2 == true ? Color(0xFF948484) : FlutterFlowTheme.of(context).alternate,
+                                                                              Color(0xFF564E4E),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              const EdgeInsets.all(12.0),
+                                                                              EdgeInsets.all(12.0),
                                                                           child:
                                                                               ClipRRect(
                                                                             borderRadius:
@@ -1515,6 +1488,18 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                         ),
                                                                       ),
                                                                     ),
+                                                                    onEnter:
+                                                                        ((event) async {
+                                                                      safeSetState(() =>
+                                                                          _model.mouseRegionHovered2 =
+                                                                              true);
+                                                                    }),
+                                                                    onExit:
+                                                                        ((event) async {
+                                                                      safeSetState(() =>
+                                                                          _model.mouseRegionHovered2 =
+                                                                              false);
+                                                                    }),
                                                                   ),
                                                                   MouseRegion(
                                                                     opaque:
@@ -1523,18 +1508,6 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             .defer ??
                                                                         MouseCursor
                                                                             .defer,
-                                                                    onEnter:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered6 =
-                                                                              true);
-                                                                    }),
-                                                                    onExit:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered6 =
-                                                                              false);
-                                                                    }),
                                                                     child:
                                                                         Container(
                                                                       width:
@@ -1549,11 +1522,11 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                           BoxShadow(
                                                                             blurRadius:
                                                                                 20.0,
-                                                                            color: _model.mouseRegionHovered6 == true
-                                                                                ? const Color(0xFF948484)
-                                                                                : const Color(0x00564E4E),
+                                                                            color: _model.mouseRegionHovered3 == true
+                                                                                ? Color(0xFF948484)
+                                                                                : Color(0x00564E4E),
                                                                             offset:
-                                                                                const Offset(
+                                                                                Offset(
                                                                               2.0,
                                                                               2.0,
                                                                             ),
@@ -1567,17 +1540,17 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             Border.all(
                                                                           color:
                                                                               valueOrDefault<Color>(
-                                                                            _model.mouseRegionHovered6 == true
-                                                                                ? const Color(0xFF948484)
+                                                                            _model.mouseRegionHovered3 == true
+                                                                                ? Color(0xFF948484)
                                                                                 : FlutterFlowTheme.of(context).alternate,
-                                                                            const Color(0xFF564E4E),
+                                                                            Color(0xFF564E4E),
                                                                           ),
                                                                         ),
                                                                       ),
                                                                       child:
                                                                           Padding(
                                                                         padding:
-                                                                            const EdgeInsets.all(12.0),
+                                                                            EdgeInsets.all(12.0),
                                                                         child:
                                                                             ClipRRect(
                                                                           borderRadius:
@@ -1595,213 +1568,126 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                         ),
                                                                       ),
                                                                     ),
+                                                                    onEnter:
+                                                                        ((event) async {
+                                                                      safeSetState(() =>
+                                                                          _model.mouseRegionHovered3 =
+                                                                              true);
+                                                                    }),
+                                                                    onExit:
+                                                                        ((event) async {
+                                                                      safeSetState(() =>
+                                                                          _model.mouseRegionHovered3 =
+                                                                              false);
+                                                                    }),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     width:
                                                                         16.0)),
                                                               ),
                                                             ],
                                                           ),
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           height: 12.0)),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 24.0, 0.0, 0.0),
                                               child: Container(
                                                 width: double.infinity,
-                                                constraints: const BoxConstraints(
+                                                constraints: BoxConstraints(
                                                   maxWidth: double.infinity,
                                                 ),
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryText,
+                                                      .primaryBackground,
                                                 ),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 24.0,
                                                                 32.0,
-                                                                24.0,
+                                                                0.0,
                                                                 32.0),
                                                     child: Container(
                                                       width: double.infinity,
                                                       constraints:
-                                                          const BoxConstraints(
+                                                          BoxConstraints(
                                                         maxWidth: 1140.0,
                                                       ),
                                                       decoration:
-                                                          const BoxDecoration(),
+                                                          BoxDecoration(),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
-                                                                .start,
+                                                                .center,
                                                         children: [
-                                                          GradientText(
-                                                            'Agora vamos\nfalar sobre\no seu projeto',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Inter',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                                  fontSize:
-                                                                      40.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                ),
-                                                            colors: [
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .alternate,
-                                                              const Color(0x87564E4E)
-                                                            ],
-                                                            gradientDirection:
-                                                                GradientDirection
-                                                                    .ltr,
-                                                            gradientType:
-                                                                GradientType
-                                                                    .linear,
-                                                          ),
-                                                          Text(
-                                                            'Após analisar com detalhes o que me foi passado,\nchego a conclusão de que seu projeto envolve os\nseguintes elementos:',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Inter',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                          Builder(
-                                                            builder: (context) {
-                                                              final tipos = propostaPropostaRow
-                                                                      ?.tiposServicosEnuns
-                                                                      .map(
-                                                                          (e) =>
-                                                                              e)
-                                                                      .toList()
-                                                                      .toList() ??
-                                                                  [];
-
-                                                              return ListView
-                                                                  .builder(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .zero,
-                                                                primary: false,
-                                                                shrinkWrap:
-                                                                    true,
-                                                                scrollDirection:
-                                                                    Axis.vertical,
-                                                                itemCount: tipos
-                                                                    .length,
-                                                                itemBuilder:
-                                                                    (context,
-                                                                        tiposIndex) {
-                                                                  final tiposItem =
-                                                                      tipos[
-                                                                          tiposIndex];
-                                                                  return Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        children:
-                                                                            [
-                                                                          Opacity(
-                                                                            opacity:
-                                                                                0.5,
-                                                                            child:
-                                                                                Text(
-                                                                              valueOrDefault<String>(
-                                                                                tiposIndex.toString(),
-                                                                                '1',
-                                                                              ),
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
-                                                                                    color: FlutterFlowTheme.of(context).alternate,
-                                                                                    fontSize: 32.0,
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FontWeight.bold,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                          Opacity(
-                                                                            opacity:
-                                                                                0.5,
-                                                                            child:
-                                                                                SizedBox(
-                                                                              height: 25.0,
-                                                                              child: VerticalDivider(
-                                                                                thickness: 0.5,
-                                                                                color: FlutterFlowTheme.of(context).alternate,
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                          Text(
-                                                                            valueOrDefault<String>(
-                                                                              tiposItem,
-                                                                              'Serviços',
-                                                                            ),
-                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  fontFamily: 'Inter',
-                                                                                  color: FlutterFlowTheme.of(context).alternate,
-                                                                                  fontSize: 32.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                ),
-                                                                          ),
-                                                                        ].divide(const SizedBox(width: 24.0)),
-                                                                      ),
-                                                                      Opacity(
-                                                                        opacity:
-                                                                            0.5,
-                                                                        child:
-                                                                            Divider(
-                                                                          thickness:
-                                                                              0.5,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).alternate,
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              );
-                                                            },
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        12.0,
+                                                                        0.0),
+                                                            child: GradientText(
+                                                              'Etapas',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .inter(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    fontSize:
+                                                                        40.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                              colors: [
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                Color(
+                                                                    0x87564E4E)
+                                                              ],
+                                                              gradientDirection:
+                                                                  GradientDirection
+                                                                      .ltr,
+                                                              gradientType:
+                                                                  GradientType
+                                                                      .linear,
+                                                            ),
                                                           ),
                                                           SingleChildScrollView(
                                                             scrollDirection:
@@ -1828,7 +1714,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             24.0,
                                                                             24.0,
@@ -1880,8 +1766,13 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             Text(
                                                                               'Planejamento',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
+                                                                                    font: GoogleFonts.inter(
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                    ),
                                                                                     letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ],
@@ -1904,7 +1795,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             24.0,
                                                                             24.0,
@@ -1956,8 +1847,13 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             Text(
                                                                               'UX/UI Design',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
+                                                                                    font: GoogleFonts.inter(
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                    ),
                                                                                     letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ],
@@ -1980,7 +1876,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             24.0,
                                                                             24.0,
@@ -2032,8 +1928,13 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             Text(
                                                                               'Desenvolvimento',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
+                                                                                    font: GoogleFonts.inter(
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                    ),
                                                                                     letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ],
@@ -2056,7 +1957,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             24.0,
                                                                             24.0,
@@ -2108,8 +2009,13 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             Text(
                                                                               'Q.A Testes',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
+                                                                                    font: GoogleFonts.inter(
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                    ),
                                                                                     letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ],
@@ -2118,8 +2024,14 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ].divide(const SizedBox(
-                                                                  width: 12.0)),
+                                                              ]
+                                                                  .divide(SizedBox(
+                                                                      width:
+                                                                          12.0))
+                                                                  .addToEnd(
+                                                                      SizedBox(
+                                                                          width:
+                                                                              24.0)),
                                                             ),
                                                           ),
                                                           SingleChildScrollView(
@@ -2147,7 +2059,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             24.0,
                                                                             24.0,
@@ -2199,8 +2111,13 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             Text(
                                                                               'Publicação',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
+                                                                                    font: GoogleFonts.inter(
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                    ),
                                                                                     letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ],
@@ -2223,7 +2140,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             24.0,
                                                                             24.0,
@@ -2275,8 +2192,13 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             Text(
                                                                               'Entrega',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
+                                                                                    font: GoogleFonts.inter(
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                    ),
                                                                                     letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ],
@@ -2299,7 +2221,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             24.0,
                                                                             24.0,
@@ -2351,8 +2273,13 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             Text(
                                                                               'Acompanhamento',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
+                                                                                    font: GoogleFonts.inter(
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                    ),
                                                                                     letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ],
@@ -2375,7 +2302,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             24.0,
                                                                             24.0,
@@ -2427,8 +2354,13 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             Text(
                                                                               'Finalização.',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
+                                                                                    font: GoogleFonts.inter(
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                    ),
                                                                                     letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ],
@@ -2437,11 +2369,171 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ].divide(const SizedBox(
-                                                                  width: 12.0)),
+                                                              ]
+                                                                  .divide(SizedBox(
+                                                                      width:
+                                                                          12.0))
+                                                                  .addToEnd(
+                                                                      SizedBox(
+                                                                          width:
+                                                                              24.0)),
                                                             ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
+                                                            height: 12.0)),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: double.infinity,
+                                              constraints: BoxConstraints(
+                                                maxWidth: double.infinity,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: Image.asset(
+                                                    'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7%,_18%,_0)_hsla(23,_21%,_81%,_1)_(1).png',
+                                                  ).image,
+                                                ),
+                                              ),
+                                              child: Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(24.0, 32.0,
+                                                          24.0, 32.0),
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    constraints: BoxConstraints(
+                                                      maxWidth: 1140.0,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  24.0,
+                                                                  32.0,
+                                                                  24.0,
+                                                                  32.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          GradientText(
+                                                            'O desafio',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .inter(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize:
+                                                                      40.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                            colors: [
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .alternate,
+                                                              Color(0x87564E4E)
+                                                            ],
+                                                            gradientDirection:
+                                                                GradientDirection
+                                                                    .ltr,
+                                                            gradientType:
+                                                                GradientType
+                                                                    .linear,
+                                                          ),
+                                                          RichText(
+                                                            textScaler:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .textScaler,
+                                                            text: TextSpan(
+                                                              children: [
+                                                                TextSpan(
+                                                                  text: valueOrDefault<
+                                                                      String>(
+                                                                    singleProjetoPageProjetosRow
+                                                                        ?.titulo,
+                                                                    'Titulo',
+                                                                  ),
+                                                                  style:
+                                                                      TextStyle(),
+                                                                ),
+                                                                TextSpan(
+                                                                  text:
+                                                                      ' foi um projeto de média complexidade, exigindo uma abordagem robusta para garantir segurança, escalabilidade e uma experiência fluida tanto para cuidadores quanto para familiares. O desenvolvimento envolveu desafios técnicos e operacionais, além de funcionalidades adaptadas para usuários com baixa familiaridade com tecnologia.',
+                                                                  style:
+                                                                      TextStyle(),
+                                                                )
+                                                              ],
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .inter(
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ].divide(SizedBox(
                                                             height: 12.0)),
                                                       ),
                                                     ),
@@ -2459,302 +2551,22 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 0.0, 24.0),
-                                              child: Container(
-                                                width: double.infinity,
-                                                constraints: const BoxConstraints(
-                                                  maxWidth: double.infinity,
-                                                ),
-                                                decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: Image.asset(
-                                                      'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7%,_18%,_0)_hsla(23,_21%,_81%,_1)_(1).png',
-                                                    ).image,
-                                                  ),
-                                                ),
-                                                child: Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                24.0,
-                                                                32.0,
-                                                                24.0,
-                                                                32.0),
-                                                    child: Container(
-                                                      width: double.infinity,
-                                                      constraints:
-                                                          const BoxConstraints(
-                                                        maxWidth: 1140.0,
-                                                      ),
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    24.0,
-                                                                    32.0,
-                                                                    24.0,
-                                                                    32.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            GradientText(
-                                                              'Eu vou\nte entregar\ntudo isso:',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .alternate,
-                                                                    fontSize:
-                                                                        40.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                              colors: [
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                                const Color(
-                                                                    0x87564E4E)
-                                                              ],
-                                                              gradientDirection:
-                                                                  GradientDirection
-                                                                      .ltr,
-                                                              gradientType:
-                                                                  GradientType
-                                                                      .linear,
-                                                            ),
-                                                            Builder(
-                                                              builder:
-                                                                  (context) {
-                                                                final entregas = propostaPropostaRow
-                                                                        ?.entregas
-                                                                        .map((e) =>
-                                                                            e)
-                                                                        .toList()
-                                                                        .toList() ??
-                                                                    [];
-
-                                                                return ListView
-                                                                    .builder(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .zero,
-                                                                  primary:
-                                                                      false,
-                                                                  shrinkWrap:
-                                                                      true,
-                                                                  scrollDirection:
-                                                                      Axis.vertical,
-                                                                  itemCount:
-                                                                      entregas
-                                                                          .length,
-                                                                  itemBuilder:
-                                                                      (context,
-                                                                          entregasIndex) {
-                                                                    final entregasItem =
-                                                                        entregas[
-                                                                            entregasIndex];
-                                                                    return Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children:
-                                                                          [
-                                                                        Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          children:
-                                                                              [
-                                                                            Icon(
-                                                                              Icons.check_circle_outline,
-                                                                              color: FlutterFlowTheme.of(context).alternate,
-                                                                              size: 24.0,
-                                                                            ),
-                                                                            Text(
-                                                                              valueOrDefault<String>(
-                                                                                entregasItem,
-                                                                                'Entregas',
-                                                                              ),
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
-                                                                                    color: FlutterFlowTheme.of(context).alternate,
-                                                                                    fontSize: 14.0,
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FontWeight.normal,
-                                                                                  ),
-                                                                            ),
-                                                                          ].divide(const SizedBox(width: 24.0)),
-                                                                        ),
-                                                                      ].divide(const SizedBox(
-                                                                              height: 12.0)),
-                                                                    );
-                                                                  },
-                                                                );
-                                                              },
-                                                            ),
-                                                            Container(
-                                                              width: double
-                                                                  .infinity,
-                                                              height: 170.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12.0),
-                                                              ),
-                                                              child: Padding(
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        24.0,
-                                                                        24.0,
-                                                                        24.0,
-                                                                        24.0),
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      children: [
-                                                                        Text(
-                                                                          'Tudo isso por ${valueOrDefault<String>(
-                                                                            formatNumber(
-                                                                              propostaPropostaRow?.valorBruto,
-                                                                              formatType: FormatType.decimal,
-                                                                              decimalType: DecimalType.commaDecimal,
-                                                                              currency: 'R\$',
-                                                                            ),
-                                                                            'R\$0,00',
-                                                                          )}',
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Inter',
-                                                                                fontSize: 16.0,
-                                                                                letterSpacing: 0.0,
-                                                                              ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        Text(
-                                                                          valueOrDefault<
-                                                                              String>(
-                                                                            formatNumber(
-                                                                              propostaPropostaRow?.valorFinal,
-                                                                              formatType: FormatType.decimal,
-                                                                              decimalType: DecimalType.commaDecimal,
-                                                                              currency: 'R\$',
-                                                                            ),
-                                                                            'R\$0,00',
-                                                                          ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Inter',
-                                                                                fontSize: 42.0,
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.bold,
-                                                                              ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      children: [
-                                                                        Text(
-                                                                          'PIX, Boleto ou cartão de crédito.',
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Inter',
-                                                                                letterSpacing: 0.0,
-                                                                              ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ].divide(const SizedBox(
-                                                              height: 12.0)),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 24.0, 0.0, 24.0),
                                               child: Container(
                                                 width: double.infinity,
-                                                constraints: const BoxConstraints(
+                                                constraints: BoxConstraints(
                                                   maxWidth: double.infinity,
                                                 ),
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 24.0,
                                                                 32.0,
@@ -2763,11 +2575,11 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                     child: Container(
                                                       width: double.infinity,
                                                       constraints:
-                                                          const BoxConstraints(
+                                                          BoxConstraints(
                                                         maxWidth: 1140.0,
                                                       ),
                                                       decoration:
-                                                          const BoxDecoration(),
+                                                          BoxDecoration(),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -2776,13 +2588,22 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                 .start,
                                                         children: [
                                                           GradientText(
-                                                            'Agora vamos\ndefinir nossos\núltimos detalhes',
+                                                            'Objetivos',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .inter(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
@@ -2793,12 +2614,16 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
                                                                 ),
                                                             colors: [
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .primaryText,
-                                                              const Color(0x87564E4E)
+                                                              Color(0x87564E4E)
                                                             ],
                                                             gradientDirection:
                                                                 GradientDirection
@@ -2812,7 +2637,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                 double.infinity,
                                                             decoration:
                                                                 BoxDecoration(
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0xFFD8CBC3),
                                                               borderRadius:
                                                                   BorderRadius
@@ -2821,7 +2646,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsets
+                                                                  EdgeInsets
                                                                       .all(
                                                                           32.0),
                                                               child: Column(
@@ -2833,13 +2658,18 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                         .start,
                                                                 children: [
                                                                   Text(
-                                                                    'Prazo e entrega',
+                                                                    'Plataforma intuitiva e centrada no usuário',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Inter',
+                                                                          font:
+                                                                              GoogleFonts.inter(
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primaryBackground,
                                                                           fontSize:
@@ -2848,6 +2678,9 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                               0.0,
                                                                           fontWeight:
                                                                               FontWeight.bold,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
                                                                         ),
                                                                   ),
                                                                   RichText(
@@ -2857,33 +2690,9 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                     text:
                                                                         TextSpan(
                                                                       children: [
-                                                                        const TextSpan(
-                                                                          text:
-                                                                              'Para este projeto, de acordo com as suas particularidades, foi definido um prazo de entrega de ',
-                                                                          style:
-                                                                              TextStyle(),
-                                                                        ),
                                                                         TextSpan(
                                                                           text:
-                                                                              '${valueOrDefault<String>(
-                                                                            propostaPropostaRow?.prazoDias?.toString(),
-                                                                            '0',
-                                                                          )} dias',
-                                                                          style:
-                                                                              const TextStyle(
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                          ),
-                                                                        ),
-                                                                        const TextSpan(
-                                                                          text:
-                                                                              ' corridos sendo contados à partir do momento em que o projeto for pago. ',
-                                                                          style:
-                                                                              TextStyle(),
-                                                                        ),
-                                                                        const TextSpan(
-                                                                          text:
-                                                                              'Um contrato será desenvolvido para assegurar ambas as partes de que a entrega será feita dentro do prazo.',
+                                                                              'Criar interfaces simples, modernas e funcionais que entregam uma experiência fluida para todos os tipos de usuários.',
                                                                           style:
                                                                               TextStyle(),
                                                                         )
@@ -2892,16 +2701,23 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                               context)
                                                                           .bodyMedium
                                                                           .override(
-                                                                            fontFamily:
-                                                                                'Inter',
+                                                                            font:
+                                                                                GoogleFonts.inter(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
                                                                             color:
                                                                                 FlutterFlowTheme.of(context).alternate,
                                                                             letterSpacing:
                                                                                 0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     height:
                                                                         12.0)),
                                                               ),
@@ -2912,7 +2728,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                 double.infinity,
                                                             decoration:
                                                                 BoxDecoration(
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0xFFD8CBC3),
                                                               borderRadius:
                                                                   BorderRadius
@@ -2921,7 +2737,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsets
+                                                                  EdgeInsets
                                                                       .all(
                                                                           32.0),
                                                               child: Column(
@@ -2933,48 +2749,41 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                         .start,
                                                                 children: [
                                                                   Text(
-                                                                    'Pagamento',
+                                                                    'Tecnologia estável e de alta performance',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Inter',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryBackground,
-                                                                          fontSize:
-                                                                              18.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
-                                                                  ),
-                                                                  RichText(
-                                                                    textScaler:
-                                                                        MediaQuery.of(context)
-                                                                            .textScaler,
-                                                                    text:
-                                                                        TextSpan(
-                                                                      children: const [
-                                                                        TextSpan(
-                                                                          text:
-                                                                              'O pagamento deverá ser feito de acordo com o valor que foi definido por uma das formas de pagamento disponíveis. Vale lembrar que valores referente a ',
-                                                                          style:
-                                                                              TextStyle(),
-                                                                        ),
-                                                                        TextSpan(
-                                                                          text:
-                                                                              'Domínio, Hospedagem e Outros ',
-                                                                          style:
-                                                                              TextStyle(
+                                                                          font:
+                                                                              GoogleFonts.inter(
                                                                             fontWeight:
                                                                                 FontWeight.bold,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryBackground,
+                                                                          fontSize:
+                                                                              18.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
                                                                         ),
+                                                                  ),
+                                                                  RichText(
+                                                                    textScaler:
+                                                                        MediaQuery.of(context)
+                                                                            .textScaler,
+                                                                    text:
+                                                                        TextSpan(
+                                                                      children: [
                                                                         TextSpan(
                                                                           text:
-                                                                              'Não estão inclusos neste meio.',
+                                                                              'Utilizar arquiteturas sólidas e ferramentas confiáveis que garantam estabilidade, velocidade e segurança durante todo o uso.',
                                                                           style:
                                                                               TextStyle(),
                                                                         )
@@ -2983,16 +2792,23 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                               context)
                                                                           .bodyMedium
                                                                           .override(
-                                                                            fontFamily:
-                                                                                'Inter',
+                                                                            font:
+                                                                                GoogleFonts.inter(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
                                                                             color:
                                                                                 FlutterFlowTheme.of(context).alternate,
                                                                             letterSpacing:
                                                                                 0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     height:
                                                                         12.0)),
                                                               ),
@@ -3003,7 +2819,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                 double.infinity,
                                                             decoration:
                                                                 BoxDecoration(
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0xFFD8CBC3),
                                                               borderRadius:
                                                                   BorderRadius
@@ -3012,7 +2828,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsets
+                                                                  EdgeInsets
                                                                       .all(
                                                                           32.0),
                                                               child: Column(
@@ -3024,13 +2840,18 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                         .start,
                                                                 children: [
                                                                   Text(
-                                                                    'Validade do Contrato e Cancelamento',
+                                                                    'Integrações seguras e escaláveis',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Inter',
+                                                                          font:
+                                                                              GoogleFonts.inter(
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primaryBackground,
                                                                           fontSize:
@@ -3039,6 +2860,9 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                               0.0,
                                                                           fontWeight:
                                                                               FontWeight.bold,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
                                                                         ),
                                                                   ),
                                                                   RichText(
@@ -3047,10 +2871,10 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                             .textScaler,
                                                                     text:
                                                                         TextSpan(
-                                                                      children: const [
+                                                                      children: [
                                                                         TextSpan(
                                                                           text:
-                                                                              'O contrato passa a valer assim que o pagamento for realizado. Se o cliente decidir cancelar o serviço após o início, será reembolsado 50% do valor pago, sem exceções.',
+                                                                              'Conectar sistemas e serviços externos de forma integrada, com foco em escalabilidade e comunicação eficiente entre plataformas.',
                                                                           style:
                                                                               TextStyle(),
                                                                         )
@@ -3059,22 +2883,29 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                               context)
                                                                           .bodyMedium
                                                                           .override(
-                                                                            fontFamily:
-                                                                                'Inter',
+                                                                            font:
+                                                                                GoogleFonts.inter(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
                                                                             color:
                                                                                 FlutterFlowTheme.of(context).alternate,
                                                                             letterSpacing:
                                                                                 0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     height:
                                                                         12.0)),
                                                               ),
                                                             ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             height: 12.0)),
                                                       ),
                                                     ),
@@ -3100,7 +2931,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                             ),
                                             Container(
                                               width: double.infinity,
-                                              constraints: const BoxConstraints(
+                                              constraints: BoxConstraints(
                                                 maxWidth: double.infinity,
                                               ),
                                               decoration: BoxDecoration(
@@ -3109,18 +2940,18 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                         .primaryText,
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(24.0, 32.0,
                                                           24.0, 32.0),
                                                   child: Container(
                                                     width: double.infinity,
-                                                    constraints: const BoxConstraints(
+                                                    constraints: BoxConstraints(
                                                       maxWidth: 1140.0,
                                                     ),
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -3129,15 +2960,24 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                               .center,
                                                       children: [
                                                         GradientText(
-                                                          'Seu projeto\na um clique\nde distancia!',
+                                                          'Seja nosso próximo case de sucesso!',
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily:
-                                                                    'Inter',
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .alternate,
@@ -3147,12 +2987,16 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
                                                               ),
                                                           colors: [
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .alternate,
-                                                            const Color(0x87564E4E)
+                                                            Color(0x87564E4E)
                                                           ],
                                                           gradientDirection:
                                                               GradientDirection
@@ -3161,31 +3005,10 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                               GradientType
                                                                   .linear,
                                                         ),
-                                                        Text(
-                                                          'Para mim será uma honra usar minha expertises\nem prol do crescimento da sua empresa.\nClique no botão e daremos um Start\nno seu projeto.',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                        ),
                                                         FFButtonWidget(
                                                           onPressed: () async {
                                                             await launchURL(
-                                                                'https://api.whatsapp.com/send?phone=5599991562914&text=Ol%C3%A1,%20Emerson,%20proposta%20${widget.prop?.toString()}%20aceita,%20vamos%20juntos.');
+                                                                'https://api.whatsapp.com/send?phone=5599991562914&text=Ol%C3%A1,%20Emerson,%20proposta%20${widget.proj?.toString()}%20aceita,%20vamos%20juntos.');
                                                           },
                                                           text:
                                                               'Vamos nessa! 🚀',
@@ -3194,32 +3017,47 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                             width: 300.0,
                                                             height: 60.0,
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         0.0,
                                                                         16.0,
                                                                         0.0),
                                                             iconPadding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
                                                                         0.0,
                                                                         0.0),
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF695959),
                                                             textStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
                                                                     .titleSmall
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .fontStyle,
+                                                                      ),
                                                                       color: Colors
                                                                           .white,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleSmall
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleSmall
+                                                                          .fontStyle,
                                                                     ),
                                                             elevation: 0.0,
                                                             borderRadius:
@@ -3228,7 +3066,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                         8.0),
                                                           ),
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           height: 12.0)),
                                                     ),
                                                   ),
@@ -3236,14 +3074,14 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      24.0, 24.0, 24.0, 24.0),
+                                                      24.0, 24.0, 0.0, 24.0),
                                               child: Container(
-                                                constraints: const BoxConstraints(
+                                                constraints: BoxConstraints(
                                                   maxWidth: 1140.0,
                                                 ),
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -3256,11 +3094,26 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                               .of(context)
                                                           .bodyMedium
                                                           .override(
-                                                            fontFamily: 'Inter',
+                                                            font: GoogleFonts
+                                                                .inter(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
                                                             fontSize: 24.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
                                                           ),
                                                     ),
                                                     FutureBuilder<
@@ -3310,12 +3163,12 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                       rowIndex];
                                                               return Flexible(
                                                                 child:
-                                                                    SizedBox(
+                                                                    Container(
                                                                   width: 320.0,
                                                                   height: 254.0,
                                                                   child: Stack(
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                     children: [
@@ -3325,7 +3178,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                         height:
                                                                             double.infinity,
                                                                         constraints:
-                                                                            const BoxConstraints(
+                                                                            BoxConstraints(
                                                                           maxWidth:
                                                                               300.0,
                                                                           maxHeight:
@@ -3345,7 +3198,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                         ),
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               24.0,
                                                                               12.0,
                                                                               24.0,
@@ -3370,32 +3223,40 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                                                       children: [
                                                                                         Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(90.0, 0.0, 0.0, 0.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(90.0, 0.0, 0.0, 0.0),
                                                                                           child: Text(
                                                                                             valueOrDefault<String>(
                                                                                               rowDepoimentosRow.nome,
                                                                                               '-',
                                                                                             ),
                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                  fontFamily: 'Inter',
+                                                                                                  font: GoogleFonts.inter(
+                                                                                                    fontWeight: FontWeight.bold,
+                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                  ),
                                                                                                   fontSize: 16.0,
                                                                                                   letterSpacing: 0.0,
                                                                                                   fontWeight: FontWeight.bold,
+                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                 ),
                                                                                           ),
                                                                                         ),
                                                                                         Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(90.0, 0.0, 0.0, 0.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(90.0, 0.0, 0.0, 0.0),
                                                                                           child: Text(
                                                                                             valueOrDefault<String>(
                                                                                               rowDepoimentosRow.empresa,
                                                                                               '-',
                                                                                             ),
                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                  fontFamily: 'Inter',
+                                                                                                  font: GoogleFonts.inter(
+                                                                                                    fontWeight: FontWeight.normal,
+                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                  ),
                                                                                                   fontSize: 10.0,
                                                                                                   letterSpacing: 0.0,
                                                                                                   fontWeight: FontWeight.normal,
+                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                 ),
                                                                                           ),
                                                                                         ),
@@ -3411,21 +3272,25 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                                       ),
                                                                                       textAlign: TextAlign.start,
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            fontFamily: 'Inter',
+                                                                                            font: GoogleFonts.inter(
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                            ),
                                                                                             fontSize: 12.0,
                                                                                             letterSpacing: 0.0,
                                                                                             fontWeight: FontWeight.normal,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                           ),
                                                                                     ),
-                                                                                  ].divide(const SizedBox(height: 12.0)),
+                                                                                  ].divide(SizedBox(height: 12.0)),
                                                                                 ),
                                                                               ),
-                                                                            ].divide(const SizedBox(width: 12.0)),
+                                                                            ].divide(SizedBox(width: 12.0)),
                                                                           ),
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             -0.7,
                                                                             -0.9),
                                                                         child:
@@ -3435,7 +3300,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                           height:
                                                                               double.infinity,
                                                                           constraints:
-                                                                              const BoxConstraints(
+                                                                              BoxConstraints(
                                                                             maxWidth:
                                                                                 70.0,
                                                                             maxHeight:
@@ -3444,12 +3309,12 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:
-                                                                                const Color(0xFF2D3138),
+                                                                                Color(0xFF2D3138),
                                                                             borderRadius:
                                                                                 BorderRadius.circular(16.0),
                                                                             border:
                                                                                 Border.all(
-                                                                              color: const Color(0xFF564E4E),
+                                                                              color: Color(0xFF564E4E),
                                                                             ),
                                                                           ),
                                                                           child:
@@ -3470,18 +3335,21 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                                   ),
                                                                 ),
                                                               );
-                                                            }),
+                                                            }).addToEnd(
+                                                                SizedBox(
+                                                                    width:
+                                                                        24.0)),
                                                           ),
                                                         );
                                                       },
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(height: 12.0)),
+                                                      SizedBox(height: 12.0)),
                                                 ),
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 24.0, 24.0, 24.0),
                                               child: Column(
@@ -3493,8 +3361,30 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Inter',
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
                                                         ),
                                                   ),
                                                   Text(
@@ -3503,12 +3393,34 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Inter',
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
                                                         ),
                                                   ),
                                                 ].divide(
-                                                    const SizedBox(height: 10.0)),
+                                                    SizedBox(height: 10.0)),
                                               ),
                                             ),
                                           ],
@@ -3519,11 +3431,15 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                 ),
                                 Container(
                                   height: 124.0,
-                                  decoration: const BoxDecoration(),
-                                  child: wrapWithModel(
-                                    model: _model.menuWebModel,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: const MenuWebWidget(),
+                                  decoration: BoxDecoration(),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 0.0, 12.0, 0.0),
+                                    child: wrapWithModel(
+                                      model: _model.menuWebModel,
+                                      updateCallback: () => safeSetState(() {}),
+                                      child: MenuWebWidget(),
+                                    ),
                                   ),
                                 ),
                               ],

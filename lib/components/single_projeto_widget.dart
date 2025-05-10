@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'single_projeto_model.dart';
 export 'single_projeto_model.dart';
 
@@ -47,9 +48,9 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
+        padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
         child: FutureBuilder<List<ProjetosRow>>(
           future: (_model.requestCompleter ??= Completer<List<ProjetosRow>>()
                 ..complete(ProjetosTable().querySingleRow(
@@ -82,7 +83,7 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
             return Container(
               width: double.infinity,
               height: double.infinity,
-              constraints: const BoxConstraints(
+              constraints: BoxConstraints(
                 maxWidth: 900.0,
                 maxHeight: 700.0,
               ),
@@ -98,7 +99,7 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                     Container(
                       width: double.infinity,
                       height: double.infinity,
-                      constraints: const BoxConstraints(
+                      constraints: BoxConstraints(
                         maxHeight: 400.0,
                       ),
                       decoration: BoxDecoration(
@@ -106,13 +107,13 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                         borderRadius: BorderRadius.circular(24.0),
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 24.0, 24.0, 24.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: SizedBox(
+                              child: Container(
                                 width: double.infinity,
                                 height: double.infinity,
                                 child: Stack(
@@ -136,9 +137,9 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 1.0),
+                                      alignment: AlignmentDirectional(0.0, 1.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 24.0, 24.0, 24.0),
                                         child: Builder(
                                           builder: (context) {
@@ -173,14 +174,14 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                                     fit: BoxFit.cover,
                                                   ),
                                                 );
-                                              }).divide(const SizedBox(width: 24.0)),
+                                              }).divide(SizedBox(width: 24.0)),
                                             );
                                           },
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 24.0, 24.0, 24.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -215,12 +216,12 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                             child: Container(
                                               height: 40.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFF1F2228),
+                                                color: Color(0xFF1F2228),
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 12.0, 0.0),
                                                 child: Row(
@@ -229,7 +230,7 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsets.all(8.0),
+                                                          EdgeInsets.all(8.0),
                                                       child: ClipRRect(
                                                         borderRadius:
                                                             BorderRadius
@@ -248,13 +249,34 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                                             ?.toString(),
                                                         '0',
                                                       ),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily: 'Inter',
-                                                            letterSpacing: 0.0,
-                                                          ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
                                                     ),
                                                   ],
                                                 ),
@@ -272,7 +294,7 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                             child: Container(
                                               height: 40.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFF1F2228),
+                                                color: Color(0xFF1F2228),
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                               ),
@@ -281,7 +303,7 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.all(8.0),
+                                                        EdgeInsets.all(8.0),
                                                     child: ClipRRect(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -298,7 +320,7 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 12.0)),
+                                        ].divide(SizedBox(width: 12.0)),
                                       ),
                                     ),
                                   ],
@@ -311,7 +333,7 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 24.0),
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 24.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -349,15 +371,32 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                       rowFerramentasRowList[rowIndex];
                                   return AlignedTooltip(
                                     content: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           12.0, 6.0, 12.0, 6.0),
                                       child: Text(
                                         rowFerramentasRow.nome!,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily: 'Inter',
+                                              font: GoogleFonts.inter(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .fontStyle,
+                                              ),
                                               letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .fontStyle,
                                             ),
                                       ),
                                     ),
@@ -370,8 +409,8 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                     elevation: 4.0,
                                     tailBaseWidth: 24.0,
                                     tailLength: 12.0,
-                                    waitDuration: const Duration(milliseconds: 1),
-                                    showDuration: const Duration(milliseconds: 1),
+                                    waitDuration: Duration(milliseconds: 1),
+                                    showDuration: Duration(milliseconds: 1),
                                     triggerMode: TooltipTriggerMode.tap,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
@@ -383,7 +422,7 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                                       ),
                                     ),
                                   );
-                                }).divide(const SizedBox(width: 12.0)),
+                                }).divide(SizedBox(width: 12.0)),
                               );
                             },
                           ),
@@ -395,10 +434,18 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Inter',
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FontWeight.bold,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
                                   fontSize: 34.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
                           ),
                           Text(
@@ -409,12 +456,25 @@ class _SingleProjetoWidgetState extends State<SingleProjetoWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Inter',
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
                           ),
-                        ].divide(const SizedBox(height: 12.0)),
+                        ].divide(SizedBox(height: 12.0)),
                       ),
                     ),
                   ],

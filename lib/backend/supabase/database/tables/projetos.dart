@@ -9,7 +9,7 @@ class ProjetosTable extends SupabaseTable<ProjetosRow> {
 }
 
 class ProjetosRow extends SupabaseDataRow {
-  ProjetosRow(super.data);
+  ProjetosRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => ProjetosTable();
@@ -44,4 +44,31 @@ class ProjetosRow extends SupabaseDataRow {
 
   int? get likes => getField<int>('likes');
   set likes(int? value) => setField<int>('likes', value);
+
+  String? get linkWeb => getField<String>('link_web');
+  set linkWeb(String? value) => setField<String>('link_web', value);
+
+  String? get linkGoogle => getField<String>('link_google');
+  set linkGoogle(String? value) => setField<String>('link_google', value);
+
+  String? get linkApple => getField<String>('link_apple');
+  set linkApple(String? value) => setField<String>('link_apple', value);
+
+  int? get ranking => getField<int>('ranking');
+  set ranking(int? value) => setField<int>('ranking', value);
+
+  bool? get mobile => getField<bool>('mobile');
+  set mobile(bool? value) => setField<bool>('mobile', value);
+
+  String? get imagemCelular => getField<String>('imagem_celular');
+  set imagemCelular(String? value) => setField<String>('imagem_celular', value);
+
+  String? get imagemPc => getField<String>('imagem_pc');
+  set imagemPc(String? value) => setField<String>('imagem_pc', value);
+
+  String? get parceiro => getField<String>('parceiro');
+  set parceiro(String? value) => setField<String>('parceiro', value);
+
+  String? get desafio => getField<String>('desafio');
+  set desafio(String? value) => setField<String>('desafio', value);
 }

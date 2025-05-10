@@ -7,9 +7,10 @@ import 'package:provider/provider.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
-import '/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+
+import '/index.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -77,49 +78,64 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const ProjetosWidget() : const HomeWidget(),
+          appStateNotifier.loggedIn ? CasesWidget() : HomeWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const ProjetosWidget() : const HomeWidget(),
+              appStateNotifier.loggedIn ? CasesWidget() : HomeWidget(),
           routes: [
             FFRoute(
-              name: 'Home',
-              path: 'home',
-              builder: (context, params) => const HomeWidget(),
+              name: HomeWidget.routeName,
+              path: HomeWidget.routePath,
+              builder: (context, params) => HomeWidget(),
             ),
             FFRoute(
-              name: 'Projetos',
-              path: 'projetos',
-              builder: (context, params) => const ProjetosWidget(),
+              name: CasesWidget.routeName,
+              path: CasesWidget.routePath,
+              builder: (context, params) => CasesWidget(),
             ),
             FFRoute(
-              name: 'Curriculo',
-              path: 'curriculo',
-              builder: (context, params) => const CurriculoWidget(),
+              name: CurriculoWidget.routeName,
+              path: CurriculoWidget.routePath,
+              builder: (context, params) => CurriculoWidget(),
             ),
             FFRoute(
-              name: 'Auth2',
-              path: 'auth2',
-              builder: (context, params) => const Auth2Widget(),
+              name: Auth2Widget.routeName,
+              path: Auth2Widget.routePath,
+              builder: (context, params) => Auth2Widget(),
             ),
             FFRoute(
-              name: 'dashboard',
-              path: 'dashboard',
+              name: DashboardWidget.routeName,
+              path: DashboardWidget.routePath,
               requireAuth: true,
-              builder: (context, params) => const DashboardWidget(),
+              builder: (context, params) => DashboardWidget(),
             ),
             FFRoute(
-              name: 'proposta',
-              path: 'p/:prop',
+              name: PropostaWidget.routeName,
+              path: PropostaWidget.routePath,
               builder: (context, params) => PropostaWidget(
                 prop: params.getParam(
                   'prop',
                   ParamType.int,
                 ),
               ),
+            ),
+            FFRoute(
+              name: SingleProjetoPageWidget.routeName,
+              path: SingleProjetoPageWidget.routePath,
+              builder: (context, params) => SingleProjetoPageWidget(
+                proj: params.getParam(
+                  'proj',
+                  ParamType.int,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: EmersonWidget.routeName,
+              path: EmersonWidget.routePath,
+              builder: (context, params) => EmersonWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
@@ -356,7 +372,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

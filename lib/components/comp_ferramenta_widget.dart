@@ -51,6 +51,56 @@ class _CompFerramentaWidgetState extends State<CompFerramentaWidget> {
     return MouseRegion(
       opaque: false,
       cursor: MouseCursor.defer ?? MouseCursor.defer,
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          color: FlutterFlowTheme.of(context).secondaryBackground,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 15.0,
+              color: valueOrDefault<Color>(
+                (_model.mouseRegionHovered == true) &&
+                        (widget.nome == _model.nome)
+                    ? Color(0xFF948484)
+                    : Color(0xFF564E4E),
+                Color(0xFF948484),
+              ),
+              offset: Offset(
+                2.0,
+                2.0,
+              ),
+              spreadRadius: 0.0,
+            )
+          ],
+          borderRadius: BorderRadius.circular(14.0),
+          border: Border.all(
+            color: valueOrDefault<Color>(
+              (_model.mouseRegionHovered == true) &&
+                      (widget.nome == _model.nome)
+                  ? Color(0xFF948484)
+                  : Color(0xFF564E4E),
+              Color(0xFF948484),
+            ),
+          ),
+        ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12.0),
+                child: Image.network(
+                  widget.imagem!,
+                  width: 200.0,
+                  height: 200.0,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
       onEnter: ((event) async {
         safeSetState(() => _model.mouseRegionHovered = true);
         _model.nome = widget.nome;
@@ -63,52 +113,6 @@ class _CompFerramentaWidgetState extends State<CompFerramentaWidget> {
       onExit: ((event) async {
         safeSetState(() => _model.mouseRegionHovered = false);
       }),
-      child: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 15.0,
-              color: valueOrDefault<Color>(
-                (_model.mouseRegionHovered == true) &&
-                        (widget.nome == _model.nome)
-                    ? const Color(0xFF948484)
-                    : const Color(0xFF564E4E),
-                const Color(0xFF948484),
-              ),
-              offset: const Offset(
-                2.0,
-                2.0,
-              ),
-              spreadRadius: 0.0,
-            )
-          ],
-          borderRadius: BorderRadius.circular(14.0),
-          border: Border.all(
-            color: valueOrDefault<Color>(
-              (_model.mouseRegionHovered == true) &&
-                      (widget.nome == _model.nome)
-                  ? const Color(0xFF948484)
-                  : const Color(0xFF564E4E),
-              const Color(0xFF948484),
-            ),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12.0),
-            child: Image.network(
-              widget.imagem!,
-              width: 200.0,
-              height: 200.0,
-              fit: BoxFit.contain,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

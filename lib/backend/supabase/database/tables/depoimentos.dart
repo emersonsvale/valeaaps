@@ -9,7 +9,7 @@ class DepoimentosTable extends SupabaseTable<DepoimentosRow> {
 }
 
 class DepoimentosRow extends SupabaseDataRow {
-  DepoimentosRow(super.data);
+  DepoimentosRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => DepoimentosTable();

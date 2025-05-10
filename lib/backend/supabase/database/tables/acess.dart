@@ -9,7 +9,7 @@ class AcessTable extends SupabaseTable<AcessRow> {
 }
 
 class AcessRow extends SupabaseDataRow {
-  AcessRow(super.data);
+  AcessRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => AcessTable();

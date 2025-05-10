@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'auth2_widget.dart' show Auth2Widget;
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,8 @@ class Auth2Model extends FlutterFlowModel<Auth2Widget> {
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
+  int get tabBarPreviousIndex =>
+      tabBarController != null ? tabBarController!.previousIndex : 0;
 
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;

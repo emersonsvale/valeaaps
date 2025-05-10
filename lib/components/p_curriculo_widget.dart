@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'p_curriculo_model.dart';
 export 'p_curriculo_model.dart';
@@ -12,7 +13,7 @@ class PCurriculoWidget extends StatefulWidget {
   const PCurriculoWidget({
     super.key,
     String? parameter1,
-  }) : parameter1 = parameter1 ?? '';
+  }) : this.parameter1 = parameter1 ?? '';
 
   final String parameter1;
 
@@ -47,7 +48,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -56,23 +57,35 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
             Text(
               'Formação',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Inter',
+                    font: GoogleFonts.inter(
+                      fontWeight: FontWeight.bold,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                    ),
                     fontSize: 34.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.bold,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                   ),
             ),
             Text(
               'Conheça minha trajetória acadêmica e profissional! Aqui estão as formações e experiências que moldaram minha expertise em desenvolvimento de software e tecnologia. Cada etapa representa um compromisso contínuo com aprendizado, inovação e excelência.',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Inter',
+                    font: GoogleFonts.inter(
+                      fontWeight: FontWeight.normal,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                    ),
                     fontSize: 14.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.normal,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                   ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
+              padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -90,7 +103,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                           height: 50.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).accent4,
-                            boxShadow: const [
+                            boxShadow: [
                               BoxShadow(
                                 blurRadius: 4.0,
                                 color: Color(0x33000000),
@@ -104,7 +117,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(10.0),
+                            padding: EdgeInsets.all(10.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(0.0),
                               child: Image.network(
@@ -120,17 +133,25 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                       AutoSizeText(
                         'Educação',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
+                              font: GoogleFonts.inter(
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
                               fontSize: 28.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
                             ),
                       ),
-                    ].divide(const SizedBox(width: 24.0)),
+                    ].divide(SizedBox(width: 24.0)),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 24.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 24.0, 0.0),
                     child: FutureBuilder<List<EducacaoRow>>(
                       future: EducacaoTable().queryRows(
                         queryFn: (q) => q,
@@ -164,7 +185,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 12.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -205,7 +226,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
-                                              offset: const Offset(
+                                              offset: Offset(
                                                 0.0,
                                                 0.0,
                                               ),
@@ -248,7 +269,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 12.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -260,10 +281,20 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Inter',
+                                              font: GoogleFonts.inter(
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
                                             ),
                                       ),
                                       Text(
@@ -281,13 +312,23 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Inter',
+                                              font: GoogleFonts.inter(
+                                                fontWeight: FontWeight.normal,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
                                             ),
                                       ),
                                       Text(
@@ -295,19 +336,29 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Inter',
+                                              font: GoogleFonts.inter(
+                                                fontWeight: FontWeight.normal,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
                                             ),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 25.0)),
+                              ].divide(SizedBox(width: 25.0)),
                             );
                           }),
                         );
@@ -318,7 +369,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 24.0),
+              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 24.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -336,7 +387,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                           height: 50.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).accent4,
-                            boxShadow: const [
+                            boxShadow: [
                               BoxShadow(
                                 blurRadius: 4.0,
                                 color: Color(0x33000000),
@@ -350,7 +401,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(10.0),
+                            padding: EdgeInsets.all(10.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(0.0),
                               child: Image.network(
@@ -366,17 +417,25 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                       AutoSizeText(
                         'Experiências',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
+                              font: GoogleFonts.inter(
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
                               fontSize: 28.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
                             ),
                       ),
-                    ].divide(const SizedBox(width: 24.0)),
+                    ].divide(SizedBox(width: 24.0)),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 24.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 24.0, 0.0),
                     child: FutureBuilder<List<ExperienciasRow>>(
                       future: ExperienciasTable().queryRows(
                         queryFn: (q) => q,
@@ -410,7 +469,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 12.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -451,7 +510,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
-                                              offset: const Offset(
+                                              offset: Offset(
                                                 0.0,
                                                 0.0,
                                               ),
@@ -494,7 +553,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 12.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -506,10 +565,20 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Inter',
+                                              font: GoogleFonts.inter(
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
                                             ),
                                       ),
                                       Text(
@@ -527,13 +596,23 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Inter',
+                                              font: GoogleFonts.inter(
+                                                fontWeight: FontWeight.normal,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
                                             ),
                                       ),
                                       Text(
@@ -541,19 +620,29 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Inter',
+                                              font: GoogleFonts.inter(
+                                                fontWeight: FontWeight.normal,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
                                             ),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 25.0)),
+                              ].divide(SizedBox(width: 25.0)),
                             );
                           }),
                         );
@@ -566,10 +655,16 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
             Text(
               'Competências',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Inter',
+                    font: GoogleFonts.inter(
+                      fontWeight: FontWeight.bold,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                    ),
                     fontSize: 28.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.bold,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                   ),
             ),
             Container(
@@ -582,7 +677,7 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
                 child: FutureBuilder<List<FerramentasRow>>(
                   future: FerramentasTable().queryRows(
                     queryFn: (q) => q,
@@ -622,8 +717,21 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Inter',
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                             ),
                             LinearPercentIndicator(
@@ -635,18 +743,18 @@ class _PCurriculoWidgetState extends State<PCurriculoWidget> {
                                   FlutterFlowTheme.of(context).secondaryText,
                               backgroundColor:
                                   FlutterFlowTheme.of(context).accent4,
-                              barRadius: const Radius.circular(10.0),
+                              barRadius: Radius.circular(10.0),
                               padding: EdgeInsets.zero,
                             ),
-                          ].divide(const SizedBox(height: 5.0)),
+                          ].divide(SizedBox(height: 5.0)),
                         );
-                      }).divide(const SizedBox(height: 12.0)),
+                      }).divide(SizedBox(height: 12.0)),
                     );
                   },
                 ),
               ),
             ),
-          ].divide(const SizedBox(height: 24.0)),
+          ].divide(SizedBox(height: 24.0)),
         ),
       ),
     );

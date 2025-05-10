@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'comp_projetos_model.dart';
 export 'comp_projetos_model.dart';
 
@@ -53,8 +54,8 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
             curve: Curves.easeIn,
             delay: 0.0.ms,
             duration: 640.0.ms,
-            begin: const Offset(0.95, 0.95),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.95, 0.95),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -81,20 +82,6 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
     return MouseRegion(
       opaque: false,
       cursor: MouseCursor.defer ?? MouseCursor.defer,
-      onEnter: ((event) async {
-        safeSetState(() => _model.mouseRegionHovered = true);
-        if (animationsMap['stackOnActionTriggerAnimation'] != null) {
-          await animationsMap['stackOnActionTriggerAnimation']!
-              .controller
-              .forward(from: 0.0)
-              .whenComplete(animationsMap['stackOnActionTriggerAnimation']!
-                  .controller
-                  .reverse);
-        }
-      }),
-      onExit: ((event) async {
-        safeSetState(() => _model.mouseRegionHovered = false);
-      }),
       child: Builder(
         builder: (context) => InkWell(
           splashColor: Colors.transparent,
@@ -109,7 +96,7 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
                   elevation: 0,
                   insetPadding: EdgeInsets.zero,
                   backgroundColor: Colors.transparent,
-                  alignment: const AlignmentDirectional(0.0, 0.0)
+                  alignment: AlignmentDirectional(0.0, 0.0)
                       .resolve(Directionality.of(context)),
                   child: SingleProjetoWidget(
                     id: widget.parameter5!,
@@ -124,7 +111,7 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.0),
                   border: Border.all(
-                    color: const Color(0xFF564E4E),
+                    color: Color(0xFF564E4E),
                   ),
                 ),
                 child: ClipRRect(
@@ -145,7 +132,7 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
                   width: double.infinity,
                   height: double.infinity,
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(
+                    gradient: LinearGradient(
                       colors: [Color(0x004B39EF), Colors.black],
                       stops: [0.0, 1.0],
                       begin: AlignmentDirectional(0.0, -1.0),
@@ -153,7 +140,7 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
                     ),
                     borderRadius: BorderRadius.circular(12.0),
                     border: Border.all(
-                      color: const Color(0xFF564E4E),
+                      color: Color(0xFF564E4E),
                     ),
                   ),
                 ),
@@ -163,7 +150,7 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
               ))
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
+                      EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -182,13 +169,13 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 5.0, 10.0, 5.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.all(12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(8.0),
@@ -205,15 +192,32 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Inter',
+                                            font: GoogleFonts.inter(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
                                             letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 5.0)),
+                                  ].divide(SizedBox(width: 5.0)),
                                 ),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 5.0)),
+                          ].divide(SizedBox(width: 5.0)),
                         ),
                       ),
                       Column(
@@ -225,10 +229,18 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Inter',
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FontWeight.bold,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
                           ),
                           Text(
@@ -239,9 +251,22 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Inter',
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
                                   fontSize: 12.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
                           ),
                         ],
@@ -255,6 +280,20 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
           animationsMap['stackOnActionTriggerAnimation']!,
         ),
       ),
+      onEnter: ((event) async {
+        safeSetState(() => _model.mouseRegionHovered = true);
+        if (animationsMap['stackOnActionTriggerAnimation'] != null) {
+          await animationsMap['stackOnActionTriggerAnimation']!
+              .controller
+              .forward(from: 0.0)
+              .whenComplete(animationsMap['stackOnActionTriggerAnimation']!
+                  .controller
+                  .reverse);
+        }
+      }),
+      onExit: ((event) async {
+        safeSetState(() => _model.mouseRegionHovered = false);
+      }),
     );
   }
 }

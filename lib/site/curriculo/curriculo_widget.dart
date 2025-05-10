@@ -12,6 +12,9 @@ export 'curriculo_model.dart';
 class CurriculoWidget extends StatefulWidget {
   const CurriculoWidget({super.key});
 
+  static String routeName = 'Curriculo';
+  static String routePath = 'curriculo';
+
   @override
   State<CurriculoWidget> createState() => _CurriculoWidgetState();
 }
@@ -39,8 +42,8 @@ class _CurriculoWidgetState extends State<CurriculoWidget>
             curve: Curves.easeInOut,
             delay: 480.0.ms,
             duration: 2000.0.ms,
-            begin: const Offset(1.0, 1.0),
-            end: const Offset(100.0, 100.0),
+            begin: Offset(1.0, 1.0),
+            end: Offset(100.0, 100.0),
           ),
         ],
       ),
@@ -53,8 +56,8 @@ class _CurriculoWidgetState extends State<CurriculoWidget>
             curve: Curves.easeInOut,
             delay: 410.0.ms,
             duration: 2000.0.ms,
-            begin: const Offset(1.0, 1.0),
-            end: const Offset(100.0, 100.0),
+            begin: Offset(1.0, 1.0),
+            end: Offset(100.0, 100.0),
           ),
         ],
       ),
@@ -86,17 +89,17 @@ class _CurriculoWidgetState extends State<CurriculoWidget>
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).primaryBackground,
           ),
-          child: SizedBox(
+          child: Container(
             width: double.infinity,
             height: double.infinity,
             child: Stack(
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(1.19, 1.45),
+                  alignment: AlignmentDirectional(1.19, 1.45),
                   child: Container(
                     width: 455.0,
                     height: 455.0,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       color: Color(0xFF323030),
                       shape: BoxShape.circle,
                     ),
@@ -106,56 +109,56 @@ class _CurriculoWidgetState extends State<CurriculoWidget>
                 Container(
                   width: 455.0,
                   height: 455.0,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Color(0xFF323030),
                     shape: BoxShape.circle,
                   ),
                 ).animateOnPageLoad(
                     animationsMap['containerOnPageLoadAnimation2']!),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: BackdropFilter(
                     filter: ImageFilter.blur(
                       sigmaX: 100.0,
                       sigmaY: 100.0,
                     ),
                     child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         height: double.infinity,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Stack(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Flexible(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 24.0),
                                       child: Container(
-                                        constraints: const BoxConstraints(
+                                        constraints: BoxConstraints(
                                           maxWidth: 1140.0,
                                         ),
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: SingleChildScrollView(
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 150.0, 0.0, 0.0),
                                                 child: wrapWithModel(
                                                   model: _model.pCurriculoModel,
                                                   updateCallback: () =>
                                                       safeSetState(() {}),
-                                                  child: const PCurriculoWidget(),
+                                                  child: PCurriculoWidget(),
                                                 ),
                                               ),
                                             ],
@@ -168,14 +171,14 @@ class _CurriculoWidgetState extends State<CurriculoWidget>
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(0.0, -1.0),
                               child: Container(
                                 height: 140.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: wrapWithModel(
                                   model: _model.menuWebModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: const MenuWebWidget(),
+                                  child: MenuWebWidget(),
                                 ),
                               ),
                             ),

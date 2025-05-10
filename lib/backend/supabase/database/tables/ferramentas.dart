@@ -9,7 +9,7 @@ class FerramentasTable extends SupabaseTable<FerramentasRow> {
 }
 
 class FerramentasRow extends SupabaseDataRow {
-  FerramentasRow(super.data);
+  FerramentasRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => FerramentasTable();

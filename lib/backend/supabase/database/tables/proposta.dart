@@ -9,7 +9,7 @@ class PropostaTable extends SupabaseTable<PropostaRow> {
 }
 
 class PropostaRow extends SupabaseDataRow {
-  PropostaRow(super.data);
+  PropostaRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => PropostaTable();
@@ -49,4 +49,15 @@ class PropostaRow extends SupabaseDataRow {
 
   List<String> get entregas => getListField<String>('entregas');
   set entregas(List<String>? value) => setListField<String>('entregas', value);
+
+  String? get maisInfo => getField<String>('mais_info');
+  set maisInfo(String? value) => setField<String>('mais_info', value);
+
+  String? get nomeProejeto => getField<String>('nome_proejeto');
+  set nomeProejeto(String? value) => setField<String>('nome_proejeto', value);
+
+  String? get diasCorridosOuUlteis =>
+      getField<String>('dias_corridos_ou_ulteis');
+  set diasCorridosOuUlteis(String? value) =>
+      setField<String>('dias_corridos_ou_ulteis', value);
 }

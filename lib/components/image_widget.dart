@@ -43,8 +43,8 @@ class _ImageWidgetState extends State<ImageWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 200.0.ms,
-            begin: const Offset(1.0, 1.0),
-            end: const Offset(1.1, 1.1),
+            begin: Offset(1.0, 1.0),
+            end: Offset(1.1, 1.1),
           ),
         ],
       ),
@@ -71,17 +71,28 @@ class _ImageWidgetState extends State<ImageWidget>
     return Container(
       width: double.infinity,
       height: double.infinity,
-      constraints: const BoxConstraints(
+      constraints: BoxConstraints(
         minWidth: double.infinity,
         minHeight: 300.0,
         maxWidth: double.infinity,
       ),
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
+        padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
         child: MouseRegion(
           opaque: false,
           cursor: MouseCursor.defer ?? MouseCursor.defer,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Image.network(
+              widget.linkImage!,
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.cover,
+            ),
+          ).animateOnActionTrigger(
+            animationsMap['imageOnActionTriggerAnimation']!,
+          ),
           onEnter: ((event) async {
             safeSetState(() => _model.mouseRegion5654Hovered = true);
             if (animationsMap['imageOnActionTriggerAnimation'] != null) {
@@ -98,17 +109,6 @@ class _ImageWidgetState extends State<ImageWidget>
                   .reset();
             }
           }),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(
-              widget.linkImage!,
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.cover,
-            ),
-          ).animateOnActionTrigger(
-            animationsMap['imageOnActionTriggerAnimation']!,
-          ),
         ),
       ),
     );

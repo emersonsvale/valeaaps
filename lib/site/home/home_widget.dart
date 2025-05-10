@@ -6,16 +6,20 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import 'package:aligned_tooltip/aligned_tooltip.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'home_model.dart';
 export 'home_model.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
+
+  static String routeName = 'Home';
+  static String routePath = 'home';
 
   @override
   State<HomeWidget> createState() => _HomeWidgetState();
@@ -33,18 +37,6 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
     super.initState();
     _model = createModel(context, () => HomeModel());
 
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.parciro = await ClientesParceirosTable().queryRows(
-        queryFn: (q) => q,
-      );
-      _model.empresas = _model.parciro!.toList().cast<ClientesParceirosRow>();
-      safeSetState(() {});
-      await AcessTable().insert({
-        'number': 1,
-      });
-    });
-
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
         loop: true,
@@ -55,8 +47,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
             curve: Curves.easeInOut,
             delay: 480.0.ms,
             duration: 2000.0.ms,
-            begin: const Offset(1.0, 1.0),
-            end: const Offset(100.0, 100.0),
+            begin: Offset(1.0, 1.0),
+            end: Offset(100.0, 100.0),
           ),
         ],
       ),
@@ -69,8 +61,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
             curve: Curves.easeInOut,
             delay: 410.0.ms,
             duration: 2000.0.ms,
-            begin: const Offset(1.0, 1.0),
-            end: const Offset(100.0, 100.0),
+            begin: Offset(1.0, 1.0),
+            end: Offset(100.0, 100.0),
           ),
         ],
       ),
@@ -82,8 +74,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 20000.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(-1000.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(-1000.0, 0.0),
           ),
         ],
       ),
@@ -95,8 +87,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 20000.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(-1000.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(-1000.0, 0.0),
           ),
         ],
       ),
@@ -108,8 +100,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 20000.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(-1000.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(-1000.0, 0.0),
           ),
         ],
       ),
@@ -121,8 +113,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 20000.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(-1000.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(-1000.0, 0.0),
           ),
         ],
       ),
@@ -154,17 +146,17 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).primaryBackground,
           ),
-          child: SizedBox(
+          child: Container(
             width: double.infinity,
             height: double.infinity,
             child: Stack(
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(1.19, 1.45),
+                  alignment: AlignmentDirectional(1.19, 1.45),
                   child: Container(
                     width: 455.0,
                     height: 455.0,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       color: Color(0xFF323030),
                       shape: BoxShape.circle,
                     ),
@@ -174,28 +166,28 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                 Container(
                   width: 455.0,
                   height: 455.0,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Color(0xFF323030),
                     shape: BoxShape.circle,
                   ),
                 ).animateOnPageLoad(
                     animationsMap['containerOnPageLoadAnimation2']!),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: BackdropFilter(
                     filter: ImageFilter.blur(
                       sigmaX: 100.0,
                       sigmaY: 100.0,
                     ),
                     child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         height: double.infinity,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: SizedBox(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Container(
                             width: double.infinity,
                             height: double.infinity,
                             child: Stack(
@@ -214,13 +206,13 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                               tablet: false,
                                             ))
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(24.0, 124.0, 24.0,
                                                         24.0),
                                                 child: Container(
                                                   width: double.infinity,
                                                   height: 512.0,
-                                                  constraints: const BoxConstraints(
+                                                  constraints: BoxConstraints(
                                                     maxWidth: 1140.0,
                                                   ),
                                                   decoration: BoxDecoration(
@@ -230,7 +222,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 24.0,
                                                                 24.0,
@@ -277,15 +269,22 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                               context)
                                                                           .bodyMedium
                                                                           .override(
-                                                                            fontFamily:
-                                                                                'Inter',
+                                                                            font:
+                                                                                GoogleFonts.inter(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
                                                                             fontSize:
                                                                                 40.0,
                                                                             letterSpacing:
                                                                                 0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
                                                                     ),
-                                                                    const TextSpan(
+                                                                    TextSpan(
                                                                       text:
                                                                           'produtos digitais ',
                                                                       style:
@@ -296,7 +295,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                             FontWeight.w600,
                                                                       ),
                                                                     ),
-                                                                    const TextSpan(
+                                                                    TextSpan(
                                                                       text:
                                                                           'de forma moderna e de alta qualidade.',
                                                                       style:
@@ -307,18 +306,31 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                           context)
                                                                       .bodyMedium
                                                                       .override(
-                                                                        fontFamily:
-                                                                            'Inter',
+                                                                        font: GoogleFonts
+                                                                            .inter(
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
                                                                         fontSize:
                                                                             40.0,
                                                                         letterSpacing:
                                                                             0.0,
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
                                                                       ),
                                                                 ),
                                                               ),
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           24.0,
@@ -333,14 +345,25 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                             context)
                                                                         .bodyMedium
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Inter',
+                                                                          font:
+                                                                              GoogleFonts.inter(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
                                                                           color:
-                                                                              const Color(0x7FD8CBC3),
+                                                                              Color(0x7FD8CBC3),
                                                                           fontSize:
                                                                               18.0,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
                                                                         ),
                                                                   )),
                                                                 ),
@@ -357,30 +380,43 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                     FFButtonOptions(
                                                                   width: 300.0,
                                                                   height: 60.0,
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
-                                                                  iconPadding: const EdgeInsetsDirectional
+                                                                  iconPadding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
                                                                           0.0),
-                                                                  color: const Color(
+                                                                  color: Color(
                                                                       0xFF695959),
                                                                   textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .titleSmall
                                                                       .override(
-                                                                        fontFamily:
-                                                                            'Inter',
+                                                                        font: GoogleFonts
+                                                                            .inter(
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .titleSmall
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .titleSmall
+                                                                              .fontStyle,
+                                                                        ),
                                                                         color: Colors
                                                                             .white,
                                                                         letterSpacing:
                                                                             0.0,
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .fontStyle,
                                                                       ),
                                                                   elevation:
                                                                       0.0,
@@ -388,14 +424,14 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                       BorderRadius
                                                                           .circular(
                                                                               8.0),
-                                                                  hoverColor: const Color(
+                                                                  hoverColor: Color(
                                                                       0xC7695959),
                                                                 ),
                                                               ),
                                                             ],
                                                           ),
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           width: 24.0)),
                                                     ),
                                                   ),
@@ -407,13 +443,13 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                               desktop: false,
                                             ))
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(24.0, 124.0, 24.0,
                                                         24.0),
                                                 child: Container(
                                                   width: double.infinity,
                                                   height: 557.0,
-                                                  constraints: const BoxConstraints(
+                                                  constraints: BoxConstraints(
                                                     maxWidth: 1140.0,
                                                   ),
                                                   decoration: BoxDecoration(
@@ -423,7 +459,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 24.0,
                                                                 24.0,
@@ -471,12 +507,17 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
-                                                                              fontFamily: 'Inter',
+                                                                              font: GoogleFonts.inter(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
                                                                               fontSize: 40.0,
                                                                               letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                             ),
                                                                       ),
-                                                                      const TextSpan(
+                                                                      TextSpan(
                                                                         text:
                                                                             'produtos digitais ',
                                                                         style:
@@ -487,7 +528,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                               FontWeight.w600,
                                                                         ),
                                                                       ),
-                                                                      const TextSpan(
+                                                                      TextSpan(
                                                                         text:
                                                                             'de forma moderna e de alta qualidade.',
                                                                         style:
@@ -498,19 +539,30 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                             context)
                                                                         .bodyMedium
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Inter',
+                                                                          font:
+                                                                              GoogleFonts.inter(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
                                                                           fontSize:
                                                                               32.0,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
                                                                         ),
                                                                   ),
                                                                 ),
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             24.0,
@@ -522,14 +574,21 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                               context)
                                                                           .bodyMedium
                                                                           .override(
-                                                                            fontFamily:
-                                                                                'Inter',
+                                                                            font:
+                                                                                GoogleFonts.inter(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
                                                                             color:
-                                                                                const Color(0x7FD8CBC3),
+                                                                                Color(0x7FD8CBC3),
                                                                             fontSize:
                                                                                 18.0,
                                                                             letterSpacing:
                                                                                 0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -548,30 +607,41 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                         300.0,
                                                                     height:
                                                                         60.0,
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             0.0,
                                                                             16.0,
                                                                             0.0),
                                                                     iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
+                                                                        EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
                                                                             0.0),
-                                                                    color: const Color(
+                                                                    color: Color(
                                                                         0xFF695959),
                                                                     textStyle: FlutterFlowTheme.of(
                                                                             context)
                                                                         .titleSmall
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Inter',
+                                                                          font:
+                                                                              GoogleFonts.inter(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                          ),
                                                                           color:
                                                                               Colors.white,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .titleSmall
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .titleSmall
+                                                                              .fontStyle,
                                                                         ),
                                                                     elevation:
                                                                         0.0,
@@ -584,7 +654,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                             ),
                                                           ),
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           width: 24.0)),
                                                     ),
                                                   ),
@@ -596,13 +666,13 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                               tablet: false,
                                             ))
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 24.0, 24.0, 24.0),
                                                 child: Container(
                                                   width: double.infinity,
                                                   height: 551.0,
-                                                  constraints: const BoxConstraints(
+                                                  constraints: BoxConstraints(
                                                     maxWidth: 1140.0,
                                                   ),
                                                   decoration: BoxDecoration(
@@ -618,7 +688,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 24.0,
                                                                 24.0,
@@ -688,8 +758,15 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .alternate,
@@ -697,14 +774,22 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                           20.0,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
-                                                                duration: const Duration(
+                                                                duration: Duration(
                                                                     milliseconds:
                                                                         600),
                                                                 curve: Curves
                                                                     .easeIn,
-                                                                child: const Text(
-                                                                  'Quem sou',
+                                                                child: Text(
+                                                                  'Quem somos',
                                                                 ),
                                                               )),
                                                               SelectionArea(
@@ -714,20 +799,35 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       fontSize:
                                                                           40.0,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
-                                                                duration: const Duration(
+                                                                duration: Duration(
                                                                     milliseconds:
                                                                         600),
                                                                 curve: Curves
                                                                     .easeIn,
-                                                                child: const Text(
-                                                                  'Emerson do Vale',
+                                                                child: Text(
+                                                                  'Vale Apps',
                                                                 ),
                                                               )),
                                                               SelectionArea(
@@ -737,25 +837,40 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       fontSize:
                                                                           14.0,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
-                                                                duration: const Duration(
+                                                                duration: Duration(
                                                                     milliseconds:
                                                                         600),
                                                                 curve: Curves
                                                                     .easeIn,
-                                                                child: const Text(
-                                                                  'Software Engineer | Web Developer | Mobile Developer',
+                                                                child: Text(
+                                                                  'Soluções Digitais | SaaS | Automação Empresarial',
                                                                 ),
                                                               )),
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           24.0,
@@ -769,20 +884,31 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                             context)
                                                                         .bodyMedium
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Inter',
+                                                                          font:
+                                                                              GoogleFonts.inter(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
                                                                           fontSize:
                                                                               14.0,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
                                                                         ),
-                                                                    duration: const Duration(
+                                                                    duration: Duration(
                                                                         milliseconds:
                                                                             600),
                                                                     curve: Curves
                                                                         .easeIn,
-                                                                    child: const Text(
-                                                                      'Engenheiro de Software apaixonado por transformar ideias em realidade usando ferramentas Low/No-Code, com mais de 3 anos de experiência no mercado. Já concluí mais de 10 projetos que impactaram negócios ao otimizar processos e criar novas oportunidades. Atendi mais de 15 clientes e estou integrando grandes equipes em software houses no Brasil e no exterior, atualmente com 2 projetos em desenvolvimento.\n\nCriador do canal no YouTube e blog NOCODEVS, sou mentor de mais de 15 profissionais, auxiliando-os na criação de SaaS e startups que têm mudado a realidade de seus usuários.\n\nAlém disso, sou pai, marido, multi-instrumentista musical, cristão, leitor ávido e entusiasta da tecnologia — qualidades que trazem criatividade e equilíbrio ao meu trabalho diário como engenheiro.',
+                                                                    child: Text(
+                                                                      'A Vale Apps é uma empresa de tecnologia especializada no desenvolvimento de soluções digitais, sistemas sob demanda e automações inteligentes para negócios. Atuamos com foco em performance, inovação e usabilidade, oferecendo plataformas modernas com integração via API, bots automatizados, atendentes virtuais e sistemas low-code.\n\nNosso diferencial está na entrega rápida, personalização completa e suporte estratégico para empresas que buscam digitalizar seus processos com eficiência e escalabilidade.\n\nAtendemos empresas no Brasil e no exterior, sempre com compromisso com resultado, ética e excelência técnica.',
                                                                     ),
                                                                   )),
                                                                 ),
@@ -802,18 +928,6 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                             .defer ??
                                                                         MouseCursor
                                                                             .defer,
-                                                                    onEnter:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered1 =
-                                                                              true);
-                                                                    }),
-                                                                    onExit:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered1 =
-                                                                              false);
-                                                                    }),
                                                                     child:
                                                                         InkWell(
                                                                       splashColor:
@@ -846,8 +960,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                           boxShadow: [
                                                                             BoxShadow(
                                                                               blurRadius: 20.0,
-                                                                              color: _model.mouseRegionHovered1 == true ? const Color(0xFF948484) : const Color(0x00564E4E),
-                                                                              offset: const Offset(
+                                                                              color: _model.mouseRegionHovered1 == true ? Color(0xFF948484) : Color(0x00564E4E),
+                                                                              offset: Offset(
                                                                                 2.0,
                                                                                 2.0,
                                                                               ),
@@ -860,15 +974,15 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                               Border.all(
                                                                             color:
                                                                                 valueOrDefault<Color>(
-                                                                              _model.mouseRegionHovered1 == true ? const Color(0xFF948484) : FlutterFlowTheme.of(context).alternate,
-                                                                              const Color(0xFF564E4E),
+                                                                              _model.mouseRegionHovered1 == true ? Color(0xFF948484) : FlutterFlowTheme.of(context).alternate,
+                                                                              Color(0xFF564E4E),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              const EdgeInsets.all(12.0),
+                                                                              EdgeInsets.all(12.0),
                                                                           child:
                                                                               ClipRRect(
                                                                             borderRadius:
@@ -884,6 +998,18 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                         ),
                                                                       ),
                                                                     ),
+                                                                    onEnter:
+                                                                        ((event) async {
+                                                                      safeSetState(() =>
+                                                                          _model.mouseRegionHovered1 =
+                                                                              true);
+                                                                    }),
+                                                                    onExit:
+                                                                        ((event) async {
+                                                                      safeSetState(() =>
+                                                                          _model.mouseRegionHovered1 =
+                                                                              false);
+                                                                    }),
                                                                   ),
                                                                   MouseRegion(
                                                                     opaque:
@@ -892,18 +1018,6 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                             .defer ??
                                                                         MouseCursor
                                                                             .defer,
-                                                                    onEnter:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered2 =
-                                                                              true);
-                                                                    }),
-                                                                    onExit:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered2 =
-                                                                              false);
-                                                                    }),
                                                                     child:
                                                                         InkWell(
                                                                       splashColor:
@@ -936,8 +1050,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                           boxShadow: [
                                                                             BoxShadow(
                                                                               blurRadius: 20.0,
-                                                                              color: _model.mouseRegionHovered2 == true ? const Color(0xFF948484) : const Color(0x00564E4E),
-                                                                              offset: const Offset(
+                                                                              color: _model.mouseRegionHovered2 == true ? Color(0xFF948484) : Color(0x00564E4E),
+                                                                              offset: Offset(
                                                                                 2.0,
                                                                                 2.0,
                                                                               ),
@@ -950,15 +1064,15 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                               Border.all(
                                                                             color:
                                                                                 valueOrDefault<Color>(
-                                                                              _model.mouseRegionHovered2 == true ? const Color(0xFF948484) : FlutterFlowTheme.of(context).alternate,
-                                                                              const Color(0xFF564E4E),
+                                                                              _model.mouseRegionHovered2 == true ? Color(0xFF948484) : FlutterFlowTheme.of(context).alternate,
+                                                                              Color(0xFF564E4E),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              const EdgeInsets.all(12.0),
+                                                                              EdgeInsets.all(12.0),
                                                                           child:
                                                                               ClipRRect(
                                                                             borderRadius:
@@ -974,6 +1088,18 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                         ),
                                                                       ),
                                                                     ),
+                                                                    onEnter:
+                                                                        ((event) async {
+                                                                      safeSetState(() =>
+                                                                          _model.mouseRegionHovered2 =
+                                                                              true);
+                                                                    }),
+                                                                    onExit:
+                                                                        ((event) async {
+                                                                      safeSetState(() =>
+                                                                          _model.mouseRegionHovered2 =
+                                                                              false);
+                                                                    }),
                                                                   ),
                                                                   MouseRegion(
                                                                     opaque:
@@ -982,18 +1108,6 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                             .defer ??
                                                                         MouseCursor
                                                                             .defer,
-                                                                    onEnter:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered3 =
-                                                                              true);
-                                                                    }),
-                                                                    onExit:
-                                                                        ((event) async {
-                                                                      safeSetState(() =>
-                                                                          _model.mouseRegionHovered3 =
-                                                                              false);
-                                                                    }),
                                                                     child:
                                                                         Container(
                                                                       width:
@@ -1009,10 +1123,10 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                             blurRadius:
                                                                                 20.0,
                                                                             color: _model.mouseRegionHovered3 == true
-                                                                                ? const Color(0xFF948484)
-                                                                                : const Color(0x00564E4E),
+                                                                                ? Color(0xFF948484)
+                                                                                : Color(0x00564E4E),
                                                                             offset:
-                                                                                const Offset(
+                                                                                Offset(
                                                                               2.0,
                                                                               2.0,
                                                                             ),
@@ -1027,16 +1141,16 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                           color:
                                                                               valueOrDefault<Color>(
                                                                             _model.mouseRegionHovered3 == true
-                                                                                ? const Color(0xFF948484)
+                                                                                ? Color(0xFF948484)
                                                                                 : FlutterFlowTheme.of(context).alternate,
-                                                                            const Color(0xFF564E4E),
+                                                                            Color(0xFF564E4E),
                                                                           ),
                                                                         ),
                                                                       ),
                                                                       child:
                                                                           Padding(
                                                                         padding:
-                                                                            const EdgeInsets.all(12.0),
+                                                                            EdgeInsets.all(12.0),
                                                                         child:
                                                                             ClipRRect(
                                                                           borderRadius:
@@ -1054,15 +1168,27 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                         ),
                                                                       ),
                                                                     ),
+                                                                    onEnter:
+                                                                        ((event) async {
+                                                                      safeSetState(() =>
+                                                                          _model.mouseRegionHovered3 =
+                                                                              true);
+                                                                    }),
+                                                                    onExit:
+                                                                        ((event) async {
+                                                                      safeSetState(() =>
+                                                                          _model.mouseRegionHovered3 =
+                                                                              false);
+                                                                    }),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     width:
                                                                         16.0)),
                                                               ),
                                                             ],
                                                           ),
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           width: 24.0)),
                                                     ),
                                                   ),
@@ -1074,12 +1200,12 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                               desktop: false,
                                             ))
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 24.0, 24.0, 24.0),
                                                 child: Container(
                                                   width: double.infinity,
-                                                  constraints: const BoxConstraints(
+                                                  constraints: BoxConstraints(
                                                     maxWidth: 1140.0,
                                                   ),
                                                   decoration: BoxDecoration(
@@ -1095,7 +1221,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 24.0,
                                                                 24.0,
@@ -1161,8 +1287,15 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .alternate,
@@ -1170,6 +1303,14 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                           20.0,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                               Text(
@@ -1178,12 +1319,27 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       fontSize:
                                                                           40.0,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                               Text(
@@ -1192,17 +1348,32 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       fontSize:
                                                                           14.0,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           24.0,
@@ -1214,12 +1385,23 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                             context)
                                                                         .bodyMedium
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Inter',
+                                                                          font:
+                                                                              GoogleFonts.inter(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
                                                                           fontSize:
                                                                               14.0,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
                                                                         ),
                                                                   ),
                                                                 ),
@@ -1271,7 +1453,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                       child:
                                                                           Padding(
                                                                         padding:
-                                                                            const EdgeInsets.all(12.0),
+                                                                            EdgeInsets.all(12.0),
                                                                         child:
                                                                             ClipRRect(
                                                                           borderRadius:
@@ -1329,7 +1511,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                       child:
                                                                           Padding(
                                                                         padding:
-                                                                            const EdgeInsets.all(12.0),
+                                                                            EdgeInsets.all(12.0),
                                                                         child:
                                                                             ClipRRect(
                                                                           borderRadius:
@@ -1370,7 +1552,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               12.0),
                                                                       child:
                                                                           ClipRRect(
@@ -1389,346 +1571,959 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     width:
                                                                         16.0)),
                                                               ),
                                                             ],
                                                           ),
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           height: 12.0)),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            SizedBox(
-                                              height: 350.0,
-                                              child: Stack(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 24.0,
-                                                                0.0, 24.0),
-                                                    child: Container(
-                                                      width: double.infinity,
-                                                      height: 414.0,
-                                                      decoration: const BoxDecoration(
-                                                        color:
-                                                            Color(0x7F1F2228),
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                          bottomLeft:
-                                                              Radius.circular(
+                                            Container(
+                                              width: double.infinity,
+                                              constraints: BoxConstraints(
+                                                maxWidth: 1440.0,
+                                              ),
+                                              decoration: BoxDecoration(),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 48.0, 24.0, 48.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  24.0,
+                                                                  0.0,
+                                                                  24.0,
                                                                   0.0),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  0.0),
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  0.0),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  0.0),
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: 1140.0,
+                                                        ),
+                                                        decoration:
+                                                            BoxDecoration(),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              'Especialidades',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .inter(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    color: Color(
+                                                                        0x7FD8CBC3),
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                            Text(
+                                                              'Soluções tecnológicas\nsob medida para sua empresa',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .inter(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    fontSize:
+                                                                        40.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                          ].divide(SizedBox(
+                                                              height: 12.0)),
                                                         ),
                                                       ),
-                                                      child: Column(
+                                                    ),
+                                                    SingleChildScrollView(
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .center,
                                                         children: [
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Container(
+                                                                width: 275.0,
+                                                                height: 380.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              24.0),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: Color(
+                                                                        0xFF564E4E),
+                                                                  ),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              24.0),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      FaIcon(
+                                                                        FontAwesomeIcons
+                                                                            .robot,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        size:
+                                                                            32.0,
+                                                                      ),
+                                                                      Text(
+                                                                        'Agente de IA',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.inter(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              fontSize: 24.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                      Text(
+                                                                        'Criamos Agentes de IA sob medida, que sabem tudo sobre seu negócio, oferecendo suporte 24/7, aumentando a produtividade e melhorando a experiência do cliente. ',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.inter(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                      FFButtonWidget(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          await launchURL(
+                                                                              'https://api.whatsapp.com/send?phone=5599991562914&text=Ol%C3%A1,%20Emerson,%20estou%20vindo%20do%20seu%20site%20e%20gostaria%20de%20falar%20sobre%20projetos.');
+                                                                        },
+                                                                        text:
+                                                                            'Solicitar serviço',
+                                                                        options:
+                                                                            FFButtonOptions(
+                                                                          width:
+                                                                              300.0,
+                                                                          height:
+                                                                              60.0,
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              16.0,
+                                                                              0.0,
+                                                                              16.0,
+                                                                              0.0),
+                                                                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          color:
+                                                                              Color(0xFF695959),
+                                                                          textStyle: FlutterFlowTheme.of(context)
+                                                                              .titleSmall
+                                                                              .override(
+                                                                                font: GoogleFonts.inter(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                                ),
+                                                                                color: Colors.white,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                              ),
+                                                                          elevation:
+                                                                              0.0,
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                          hoverColor:
+                                                                              Color(0xC7695959),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                width: 275.0,
+                                                                height: 380.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              24.0),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: Color(
+                                                                        0xFF564E4E),
+                                                                  ),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              24.0),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      FaIcon(
+                                                                        FontAwesomeIcons
+                                                                            .apple,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        size:
+                                                                            32.0,
+                                                                      ),
+                                                                      Text(
+                                                                        'Aplicativos',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.inter(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              fontSize: 24.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                      Text(
+                                                                        'Da concepção ao lançamento, criamos soluções digitais sob medida, com as mais recentes tecnologias, garantindo desempenho, escalabilidade e uma experiência de usuário excepcional.',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.inter(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                      FFButtonWidget(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          await launchURL(
+                                                                              'https://api.whatsapp.com/send?phone=5599991562914&text=Ol%C3%A1,%20Emerson,%20estou%20vindo%20do%20seu%20site%20e%20gostaria%20de%20falar%20sobre%20projetos.');
+                                                                        },
+                                                                        text:
+                                                                            'Solicitar serviço',
+                                                                        options:
+                                                                            FFButtonOptions(
+                                                                          width:
+                                                                              300.0,
+                                                                          height:
+                                                                              60.0,
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              16.0,
+                                                                              0.0,
+                                                                              16.0,
+                                                                              0.0),
+                                                                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          color:
+                                                                              Color(0xFF695959),
+                                                                          textStyle: FlutterFlowTheme.of(context)
+                                                                              .titleSmall
+                                                                              .override(
+                                                                                font: GoogleFonts.inter(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                                ),
+                                                                                color: Colors.white,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                              ),
+                                                                          elevation:
+                                                                              0.0,
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                          hoverColor:
+                                                                              Color(0xC7695959),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                width: 275.0,
+                                                                height: 380.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              24.0),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: Color(
+                                                                        0xFF564E4E),
+                                                                  ),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              24.0),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      FaIcon(
+                                                                        FontAwesomeIcons
+                                                                            .sistrix,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        size:
+                                                                            32.0,
+                                                                      ),
+                                                                      Text(
+                                                                        'Sites',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.inter(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              fontSize: 24.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                      Text(
+                                                                        'Criamos sites institucionais e landing pages personalizadas para fortalecer sua presença online, atraindo clientes e convertendo visitantes em vendas.',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.inter(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                      FFButtonWidget(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          await launchURL(
+                                                                              'https://api.whatsapp.com/send?phone=5599991562914&text=Ol%C3%A1,%20Emerson,%20estou%20vindo%20do%20seu%20site%20e%20gostaria%20de%20falar%20sobre%20projetos.');
+                                                                        },
+                                                                        text:
+                                                                            'Solicitar serviço',
+                                                                        options:
+                                                                            FFButtonOptions(
+                                                                          width:
+                                                                              300.0,
+                                                                          height:
+                                                                              60.0,
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              16.0,
+                                                                              0.0,
+                                                                              16.0,
+                                                                              0.0),
+                                                                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          color:
+                                                                              Color(0xFF695959),
+                                                                          textStyle: FlutterFlowTheme.of(context)
+                                                                              .titleSmall
+                                                                              .override(
+                                                                                font: GoogleFonts.inter(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                                ),
+                                                                                color: Colors.white,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                              ),
+                                                                          elevation:
+                                                                              0.0,
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                          hoverColor:
+                                                                              Color(0xC7695959),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                width: double
+                                                                    .infinity,
+                                                                height: double
+                                                                    .infinity,
+                                                                constraints:
+                                                                    BoxConstraints(
+                                                                  maxWidth:
+                                                                      275.0,
+                                                                  maxHeight:
+                                                                      380.0,
+                                                                ),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              24.0),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: Color(
+                                                                        0xFF564E4E),
+                                                                  ),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              24.0),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Icon(
+                                                                        Icons
+                                                                            .web_stories,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        size:
+                                                                            32.0,
+                                                                      ),
+                                                                      Text(
+                                                                        'Automações',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.inter(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              fontSize: 24.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                      Text(
+                                                                        'Otimizamos processos, eliminamos tarefas repetitivas e aumentamos a eficiência operacional. Desde workflows simples até complexas integrações de sistemas.',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.inter(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                      FFButtonWidget(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          await launchURL(
+                                                                              'https://api.whatsapp.com/send?phone=5599991562914&text=Ol%C3%A1,%20Emerson,%20estou%20vindo%20do%20seu%20site%20e%20gostaria%20de%20falar%20sobre%20projetos.');
+                                                                        },
+                                                                        text:
+                                                                            'Solicitar serviço',
+                                                                        options:
+                                                                            FFButtonOptions(
+                                                                          width:
+                                                                              300.0,
+                                                                          height:
+                                                                              60.0,
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              16.0,
+                                                                              0.0,
+                                                                              16.0,
+                                                                              0.0),
+                                                                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          color:
+                                                                              Color(0xFF695959),
+                                                                          textStyle: FlutterFlowTheme.of(context)
+                                                                              .titleSmall
+                                                                              .override(
+                                                                                font: GoogleFonts.inter(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                                ),
+                                                                                color: Colors.white,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                              ),
+                                                                          elevation:
+                                                                              0.0,
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                          hoverColor:
+                                                                              Color(0xC7695959),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ].divide(SizedBox(
+                                                                width: 24.0)),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      SizedBox(height: 24.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 389.0,
+                                              child: Stack(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 24.0,
+                                                                0.0, 24.0),
+                                                    child: FutureBuilder<
+                                                        List<
+                                                            ClientesParceirosRow>>(
+                                                      future:
+                                                          ClientesParceirosTable()
+                                                              .queryRows(
+                                                        queryFn: (q) => q,
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 10.0,
+                                                              height: 10.0,
+                                                              child:
+                                                                  SpinKitDoubleBounce(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 10.0,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        List<ClientesParceirosRow>
+                                                            containerClientesParceirosRowList =
+                                                            snapshot.data!;
+
+                                                        return Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height: 414.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Color(
+                                                                0x7F1F2228),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .only(
+                                                              bottomLeft: Radius
+                                                                  .circular(
+                                                                      0.0),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          0.0),
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      0.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      0.0),
+                                                            ),
+                                                          ),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Padding(
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         24.0,
                                                                         0.0,
                                                                         24.0,
                                                                         0.0),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    'Clientes e Parceiros',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Inter',
-                                                                          fontSize:
-                                                                              40.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Row(
+                                                                child: Column(
                                                                   mainAxisSize:
                                                                       MainAxisSize
                                                                           .max,
                                                                   mainAxisAlignment:
                                                                       MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
                                                                           .center,
                                                                   children: [
-                                                                    Builder(
-                                                                      builder:
-                                                                          (context) {
-                                                                        final empresasa = _model
-                                                                            .empresas
-                                                                            .map((e) =>
-                                                                                e)
-                                                                            .toList();
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          24.0,
+                                                                          12.0,
+                                                                          24.0,
+                                                                          12.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Alguns parceiros que temos o prazer de atender',
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.inter(
+                                                                                fontWeight: FontWeight.normal,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              color: Color(0xFFD8CBC3),
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      children:
+                                                                          [
+                                                                        Builder(
+                                                                          builder:
+                                                                              (context) {
+                                                                            final empresasa =
+                                                                                containerClientesParceirosRowList.map((e) => e).toList();
 
-                                                                        return SingleChildScrollView(
-                                                                          scrollDirection:
-                                                                              Axis.horizontal,
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.min,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.center,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.start,
-                                                                            children:
-                                                                                List.generate(empresasa.length, (empresasaIndex) {
-                                                                              final empresasaItem = empresasa[empresasaIndex];
-                                                                              return Align(
-                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                child: Container(
-                                                                                  decoration: BoxDecoration(
-                                                                                    borderRadius: BorderRadius.circular(14.0),
-                                                                                  ),
-                                                                                  child: Align(
-                                                                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                    child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-                                                                                      child: ClipRRect(
-                                                                                        borderRadius: BorderRadius.circular(12.0),
-                                                                                        child: Image.network(
-                                                                                          valueOrDefault<String>(
+                                                                            return SingleChildScrollView(
+                                                                              scrollDirection: Axis.horizontal,
+                                                                              child: Row(
+                                                                                mainAxisSize: MainAxisSize.min,
+                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: List.generate(empresasa.length, (empresasaIndex) {
+                                                                                  final empresasaItem = empresasa[empresasaIndex];
+                                                                                  return Align(
+                                                                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                    child: Container(
+                                                                                      decoration: BoxDecoration(
+                                                                                        borderRadius: BorderRadius.only(
+                                                                                          bottomLeft: Radius.circular(0.0),
+                                                                                          bottomRight: Radius.circular(0.0),
+                                                                                          topLeft: Radius.circular(0.0),
+                                                                                          topRight: Radius.circular(0.0),
+                                                                                        ),
+                                                                                      ),
+                                                                                      child: Container(
+                                                                                        width: 200.0,
+                                                                                        height: 150.0,
+                                                                                        child: custom_widgets.GrayscaleImageWidget(
+                                                                                          width: 200.0,
+                                                                                          height: 150.0,
+                                                                                          imageUrl: valueOrDefault<String>(
                                                                                             empresasaItem.foto,
                                                                                             'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/parceiros/logo-fraktal.png?t=2024-09-20T18%3A10%3A12.630Z',
                                                                                           ),
-                                                                                          width: 200.0,
-                                                                                          height: 150.0,
-                                                                                          fit: BoxFit.contain,
                                                                                         ),
                                                                                       ),
                                                                                     ),
-                                                                                  ),
-                                                                                ),
-                                                                              );
-                                                                            }).divide(const SizedBox(width: 12.0)),
-                                                                          ),
-                                                                        ).animateOnPageLoad(
-                                                                            animationsMap['rowOnPageLoadAnimation1']!);
-                                                                      },
-                                                                    ),
-                                                                    Builder(
-                                                                      builder:
-                                                                          (context) {
-                                                                        final empresasa = _model
-                                                                            .empresas
-                                                                            .map((e) =>
-                                                                                e)
-                                                                            .toList();
+                                                                                  );
+                                                                                }).divide(SizedBox(width: 12.0)),
+                                                                              ),
+                                                                            ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation1']!);
+                                                                          },
+                                                                        ),
+                                                                        Builder(
+                                                                          builder:
+                                                                              (context) {
+                                                                            final empresasa =
+                                                                                containerClientesParceirosRowList.map((e) => e).toList();
 
-                                                                        return SingleChildScrollView(
-                                                                          scrollDirection:
-                                                                              Axis.horizontal,
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.min,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.center,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.start,
-                                                                            children:
-                                                                                List.generate(empresasa.length, (empresasaIndex) {
-                                                                              final empresasaItem = empresasa[empresasaIndex];
-                                                                              return Align(
-                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                child: Container(
-                                                                                  decoration: BoxDecoration(
-                                                                                    borderRadius: BorderRadius.circular(14.0),
-                                                                                  ),
-                                                                                  child: Align(
-                                                                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                    child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-                                                                                      child: ClipRRect(
-                                                                                        borderRadius: BorderRadius.circular(12.0),
-                                                                                        child: Image.network(
-                                                                                          valueOrDefault<String>(
+                                                                            return SingleChildScrollView(
+                                                                              scrollDirection: Axis.horizontal,
+                                                                              child: Row(
+                                                                                mainAxisSize: MainAxisSize.min,
+                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: List.generate(empresasa.length, (empresasaIndex) {
+                                                                                  final empresasaItem = empresasa[empresasaIndex];
+                                                                                  return Align(
+                                                                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                    child: Container(
+                                                                                      decoration: BoxDecoration(
+                                                                                        borderRadius: BorderRadius.circular(14.0),
+                                                                                      ),
+                                                                                      child: Container(
+                                                                                        width: 200.0,
+                                                                                        height: 150.0,
+                                                                                        child: custom_widgets.GrayscaleImageWidget(
+                                                                                          width: 200.0,
+                                                                                          height: 150.0,
+                                                                                          imageUrl: valueOrDefault<String>(
                                                                                             empresasaItem.foto,
                                                                                             'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/parceiros/logo-fraktal.png?t=2024-09-20T18%3A10%3A12.630Z',
                                                                                           ),
-                                                                                          width: 200.0,
-                                                                                          height: 150.0,
-                                                                                          fit: BoxFit.contain,
                                                                                         ),
                                                                                       ),
                                                                                     ),
-                                                                                  ),
-                                                                                ),
-                                                                              );
-                                                                            }).divide(const SizedBox(width: 12.0)),
-                                                                          ),
-                                                                        ).animateOnPageLoad(
-                                                                            animationsMap['rowOnPageLoadAnimation2']!);
-                                                                      },
-                                                                    ),
-                                                                    Builder(
-                                                                      builder:
-                                                                          (context) {
-                                                                        final empresasa = _model
-                                                                            .empresas
-                                                                            .map((e) =>
-                                                                                e)
-                                                                            .toList();
+                                                                                  );
+                                                                                }).divide(SizedBox(width: 12.0)),
+                                                                              ),
+                                                                            ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation2']!);
+                                                                          },
+                                                                        ),
+                                                                        Builder(
+                                                                          builder:
+                                                                              (context) {
+                                                                            final empresasa =
+                                                                                containerClientesParceirosRowList.map((e) => e).toList();
 
-                                                                        return SingleChildScrollView(
-                                                                          scrollDirection:
-                                                                              Axis.horizontal,
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.min,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.center,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.start,
-                                                                            children:
-                                                                                List.generate(empresasa.length, (empresasaIndex) {
-                                                                              final empresasaItem = empresasa[empresasaIndex];
-                                                                              return Align(
-                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                child: Container(
-                                                                                  decoration: BoxDecoration(
-                                                                                    borderRadius: BorderRadius.circular(12.0),
-                                                                                  ),
-                                                                                  child: Align(
-                                                                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                    child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-                                                                                      child: ClipRRect(
+                                                                            return SingleChildScrollView(
+                                                                              scrollDirection: Axis.horizontal,
+                                                                              child: Row(
+                                                                                mainAxisSize: MainAxisSize.min,
+                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: List.generate(empresasa.length, (empresasaIndex) {
+                                                                                  final empresasaItem = empresasa[empresasaIndex];
+                                                                                  return Align(
+                                                                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                    child: Container(
+                                                                                      decoration: BoxDecoration(
                                                                                         borderRadius: BorderRadius.circular(12.0),
-                                                                                        child: Image.network(
-                                                                                          valueOrDefault<String>(
+                                                                                      ),
+                                                                                      child: Container(
+                                                                                        width: 200.0,
+                                                                                        height: 150.0,
+                                                                                        child: custom_widgets.GrayscaleImageWidget(
+                                                                                          width: 200.0,
+                                                                                          height: 150.0,
+                                                                                          imageUrl: valueOrDefault<String>(
                                                                                             empresasaItem.foto,
                                                                                             'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/parceiros/logo-fraktal.png?t=2024-09-20T18%3A10%3A12.630Z',
                                                                                           ),
-                                                                                          width: 200.0,
-                                                                                          height: 150.0,
-                                                                                          fit: BoxFit.contain,
                                                                                         ),
                                                                                       ),
                                                                                     ),
-                                                                                  ),
-                                                                                ),
-                                                                              );
-                                                                            }).divide(const SizedBox(width: 12.0)),
-                                                                          ),
-                                                                        ).animateOnPageLoad(
-                                                                            animationsMap['rowOnPageLoadAnimation3']!);
-                                                                      },
-                                                                    ),
-                                                                    Builder(
-                                                                      builder:
-                                                                          (context) {
-                                                                        final empresasa = _model
-                                                                            .empresas
-                                                                            .map((e) =>
-                                                                                e)
-                                                                            .toList();
+                                                                                  );
+                                                                                }).divide(SizedBox(width: 12.0)),
+                                                                              ),
+                                                                            ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation3']!);
+                                                                          },
+                                                                        ),
+                                                                        Builder(
+                                                                          builder:
+                                                                              (context) {
+                                                                            final empresasa =
+                                                                                containerClientesParceirosRowList.map((e) => e).toList();
 
-                                                                        return SingleChildScrollView(
-                                                                          scrollDirection:
-                                                                              Axis.horizontal,
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.min,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.center,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.start,
-                                                                            children:
-                                                                                List.generate(empresasa.length, (empresasaIndex) {
-                                                                              final empresasaItem = empresasa[empresasaIndex];
-                                                                              return Align(
-                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                child: Container(
-                                                                                  decoration: BoxDecoration(
-                                                                                    borderRadius: BorderRadius.circular(12.0),
-                                                                                  ),
-                                                                                  child: Align(
-                                                                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                    child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-                                                                                      child: ClipRRect(
+                                                                            return SingleChildScrollView(
+                                                                              scrollDirection: Axis.horizontal,
+                                                                              child: Row(
+                                                                                mainAxisSize: MainAxisSize.min,
+                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: List.generate(empresasa.length, (empresasaIndex) {
+                                                                                  final empresasaItem = empresasa[empresasaIndex];
+                                                                                  return Align(
+                                                                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                    child: Container(
+                                                                                      decoration: BoxDecoration(
                                                                                         borderRadius: BorderRadius.circular(12.0),
-                                                                                        child: Image.network(
-                                                                                          valueOrDefault<String>(
+                                                                                      ),
+                                                                                      child: Container(
+                                                                                        width: 200.0,
+                                                                                        height: 150.0,
+                                                                                        child: custom_widgets.GrayscaleImageWidget(
+                                                                                          width: 200.0,
+                                                                                          height: 150.0,
+                                                                                          imageUrl: valueOrDefault<String>(
                                                                                             empresasaItem.foto,
                                                                                             'https://abibhwgxbdlwhswjatay.supabase.co/storage/v1/object/public/images/parceiros/logo-fraktal.png?t=2024-09-20T18%3A10%3A12.630Z',
                                                                                           ),
-                                                                                          width: 200.0,
-                                                                                          height: 150.0,
-                                                                                          fit: BoxFit.contain,
                                                                                         ),
                                                                                       ),
                                                                                     ),
-                                                                                  ),
-                                                                                ),
-                                                                              );
-                                                                            }).divide(const SizedBox(width: 12.0)),
-                                                                          ),
-                                                                        ).animateOnPageLoad(
-                                                                            animationsMap['rowOnPageLoadAnimation4']!);
-                                                                      },
+                                                                                  );
+                                                                                }).divide(SizedBox(width: 12.0)),
+                                                                              ),
+                                                                            ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation4']!);
+                                                                          },
+                                                                        ),
+                                                                      ].divide(SizedBox(
+                                                                              width: 12.0)),
                                                                     ),
-                                                                  ],
+                                                                  ].divide(SizedBox(
+                                                                      height:
+                                                                          12.0)),
                                                                 ),
-                                                              ].divide(const SizedBox(
-                                                                  height:
-                                                                      12.0)),
-                                                            ),
+                                                              ),
+                                                            ],
                                                           ),
-                                                        ],
-                                                      ),
+                                                        );
+                                                      },
                                                     ),
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, -0.25),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   24.0,
@@ -1743,7 +2538,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Container(
                                                               width: MediaQuery
@@ -1753,7 +2548,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                   0.5,
                                                               height: 344.0,
                                                               decoration:
-                                                                  const BoxDecoration(
+                                                                  BoxDecoration(
                                                                 gradient:
                                                                     LinearGradient(
                                                                   colors: [
@@ -1780,7 +2575,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                           ),
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     1.0, 0.0),
                                                             child: Container(
                                                               width: MediaQuery
@@ -1790,7 +2585,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                   0.5,
                                                               height: 344.0,
                                                               decoration:
-                                                                  const BoxDecoration(
+                                                                  BoxDecoration(
                                                                 gradient:
                                                                     LinearGradient(
                                                                   colors: [
@@ -1828,14 +2623,14 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                               tablet: false,
                                             ))
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 24.0, 24.0, 24.0),
                                                 child: Container(
-                                                  constraints: const BoxConstraints(
+                                                  constraints: BoxConstraints(
                                                     maxWidth: 1140.0,
                                                   ),
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -1850,7 +2645,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                         child: Container(
                                                           width: 400.0,
                                                           decoration:
-                                                              const BoxDecoration(),
+                                                              BoxDecoration(),
                                                           child: Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -1860,25 +2655,35 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                     .start,
                                                             children: [
                                                               Text(
-                                                                'Conhecimentos',
+                                                                'Tecnologias Parceiras',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       fontSize:
                                                                           24.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .bold,
+                                                                              .normal,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             24.0,
@@ -1895,14 +2700,23 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                           context)
                                                                       .bodyMedium
                                                                       .override(
-                                                                        fontFamily:
-                                                                            'Inter',
+                                                                        font: GoogleFonts
+                                                                            .inter(
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
                                                                         fontSize:
                                                                             18.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
                                                                             FontWeight.bold,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
                                                                       ),
                                                                 ),
                                                               ),
@@ -1917,8 +2731,14 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       fontSize:
                                                                           14.0,
                                                                       letterSpacing:
@@ -1926,6 +2746,10 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .normal,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                             ],
@@ -1936,7 +2760,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                         width: 562.0,
                                                         height: 438.0,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: FutureBuilder<
                                                             List<
                                                                 FerramentasRow>>(
@@ -1974,7 +2798,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                   EdgeInsets
                                                                       .zero,
                                                               gridDelegate:
-                                                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                  SliverGridDelegateWithFixedCrossAxisCount(
                                                                 crossAxisCount:
                                                                     3,
                                                                 crossAxisSpacing:
@@ -2008,7 +2832,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                       true,
                                                                   child:
                                                                       CompFerramentaWidget(
-                                                                    key: const Key(
+                                                                    key: Key(
                                                                       'Keytn3_${'0'}',
                                                                     ),
                                                                     imagem:
@@ -2036,358 +2860,319 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 12.0)),
+                                                        SizedBox(width: 12.0)),
                                                   ),
                                                 ),
                                               ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 24.0, 24.0, 24.0),
-                                              child: Container(
-                                                constraints: const BoxConstraints(
-                                                  maxWidth: 1140.0,
+                                            if (responsiveVisibility(
+                                              context: context,
+                                              phone: false,
+                                              tablet: false,
+                                              tabletLandscape: false,
+                                              desktop: false,
+                                            ))
+                                              Container(
+                                                height: double.infinity,
+                                                constraints: BoxConstraints(
+                                                  maxWidth: 1440.0,
+                                                  maxHeight: 350.0,
                                                 ),
-                                                decoration: const BoxDecoration(),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                decoration: BoxDecoration(),
+                                                child: Stack(
                                                   children: [
-                                                    Text(
-                                                      'Depoimentos',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily: 'Inter',
-                                                            fontSize: 24.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                    ),
-                                                    FutureBuilder<
-                                                        List<DepoimentosRow>>(
-                                                      future: DepoimentosTable()
-                                                          .queryRows(
-                                                        queryFn: (q) => q,
-                                                      ),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        // Customize what your widget looks like when it's loading.
-                                                        if (!snapshot.hasData) {
-                                                          return Center(
-                                                            child: SizedBox(
-                                                              width: 10.0,
-                                                              height: 10.0,
-                                                              child:
-                                                                  SpinKitDoubleBounce(
-                                                                color: FlutterFlowTheme.of(
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          'Depoimentos',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                fontSize: 24.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                fontStyle: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .secondaryText,
-                                                                size: 10.0,
+                                                                    .bodyMedium
+                                                                    .fontStyle,
                                                               ),
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: FutureBuilder<
+                                                              List<
+                                                                  DepoimentosRow>>(
+                                                            future:
+                                                                DepoimentosTable()
+                                                                    .queryRows(
+                                                              queryFn: (q) => q,
                                                             ),
-                                                          );
-                                                        }
-                                                        List<DepoimentosRow>
-                                                            rowDepoimentosRowList =
-                                                            snapshot.data!;
+                                                            builder: (context,
+                                                                snapshot) {
+                                                              // Customize what your widget looks like when it's loading.
+                                                              if (!snapshot
+                                                                  .hasData) {
+                                                                return Center(
+                                                                  child:
+                                                                      SizedBox(
+                                                                    width: 10.0,
+                                                                    height:
+                                                                        10.0,
+                                                                    child:
+                                                                        SpinKitDoubleBounce(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                      size:
+                                                                          10.0,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              }
+                                                              List<DepoimentosRow>
+                                                                  rowDepoimentosRowList =
+                                                                  snapshot
+                                                                      .data!;
 
-                                                        return SingleChildScrollView(
-                                                          scrollDirection:
-                                                              Axis.horizontal,
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: List.generate(
-                                                                rowDepoimentosRowList
-                                                                    .length,
-                                                                (rowIndex) {
-                                                              final rowDepoimentosRow =
-                                                                  rowDepoimentosRowList[
-                                                                      rowIndex];
-                                                              return Flexible(
-                                                                child:
-                                                                    SizedBox(
-                                                                  width: 320.0,
-                                                                  height: 254.0,
-                                                                  child: Stack(
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                    children: [
-                                                                      Container(
-                                                                        width: double
-                                                                            .infinity,
+                                                              return SingleChildScrollView(
+                                                                scrollDirection:
+                                                                    Axis.horizontal,
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .min,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: List.generate(
+                                                                      rowDepoimentosRowList
+                                                                          .length,
+                                                                      (rowIndex) {
+                                                                    final rowDepoimentosRow =
+                                                                        rowDepoimentosRowList[
+                                                                            rowIndex];
+                                                                    return Flexible(
+                                                                      child:
+                                                                          Container(
+                                                                        width:
+                                                                            320.0,
                                                                         height:
-                                                                            double.infinity,
-                                                                        constraints:
-                                                                            const BoxConstraints(
-                                                                          maxWidth:
-                                                                              300.0,
-                                                                          maxHeight:
-                                                                              200.0,
-                                                                        ),
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).accent4,
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(12.0),
-                                                                          border:
-                                                                              Border.all(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).alternate,
-                                                                          ),
-                                                                        ),
+                                                                            254.0,
                                                                         child:
-                                                                            Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                              24.0,
-                                                                              12.0,
-                                                                              24.0,
-                                                                              12.0),
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.start,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.center,
-                                                                            children:
-                                                                                [
-                                                                              Flexible(
-                                                                                child: Column(
-                                                                                  mainAxisSize: MainAxisSize.min,
-                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                  children: [
-                                                                                    Column(
-                                                                                      mainAxisSize: MainAxisSize.max,
-                                                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                      children: [
-                                                                                        Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(90.0, 0.0, 0.0, 0.0),
-                                                                                          child: Text(
-                                                                                            valueOrDefault<String>(
-                                                                                              rowDepoimentosRow.nome,
-                                                                                              '-',
-                                                                                            ),
-                                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                  fontFamily: 'Inter',
-                                                                                                  fontSize: 16.0,
-                                                                                                  letterSpacing: 0.0,
-                                                                                                  fontWeight: FontWeight.bold,
-                                                                                                ),
-                                                                                          ),
-                                                                                        ),
-                                                                                        Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(90.0, 0.0, 0.0, 0.0),
-                                                                                          child: Text(
-                                                                                            valueOrDefault<String>(
-                                                                                              rowDepoimentosRow.empresa,
-                                                                                              '-',
-                                                                                            ),
-                                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                  fontFamily: 'Inter',
-                                                                                                  fontSize: 10.0,
-                                                                                                  letterSpacing: 0.0,
-                                                                                                  fontWeight: FontWeight.normal,
-                                                                                                ),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ],
-                                                                                    ),
-                                                                                    Text(
-                                                                                      valueOrDefault<String>(
-                                                                                        rowDepoimentosRow.texto,
-                                                                                        '-',
-                                                                                      ).maybeHandleOverflow(
-                                                                                        maxChars: 250,
-                                                                                        replacement: '…',
-                                                                                      ),
-                                                                                      textAlign: TextAlign.start,
-                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            fontFamily: 'Inter',
-                                                                                            fontSize: 12.0,
-                                                                                            letterSpacing: 0.0,
-                                                                                            fontWeight: FontWeight.normal,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ].divide(const SizedBox(height: 12.0)),
-                                                                                ),
-                                                                              ),
-                                                                            ].divide(const SizedBox(width: 12.0)),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Align(
-                                                                        alignment: const AlignmentDirectional(
-                                                                            -0.7,
-                                                                            -0.9),
-                                                                        child:
+                                                                            Stack(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                          children: [
                                                                             Container(
-                                                                          width:
-                                                                              double.infinity,
-                                                                          height:
-                                                                              double.infinity,
-                                                                          constraints:
-                                                                              const BoxConstraints(
-                                                                            maxWidth:
-                                                                                70.0,
-                                                                            maxHeight:
-                                                                                70.0,
-                                                                          ),
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color:
-                                                                                const Color(0xFF2D3138),
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(16.0),
-                                                                            border:
-                                                                                Border.all(
-                                                                              color: const Color(0xFF564E4E),
-                                                                            ),
-                                                                          ),
-                                                                          child:
-                                                                              ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(8.0),
-                                                                            child:
-                                                                                Image.network(
-                                                                              rowDepoimentosRow.foto!,
                                                                               width: double.infinity,
                                                                               height: double.infinity,
-                                                                              fit: BoxFit.contain,
+                                                                              constraints: BoxConstraints(
+                                                                                maxWidth: 300.0,
+                                                                                maxHeight: 200.0,
+                                                                              ),
+                                                                              decoration: BoxDecoration(
+                                                                                color: FlutterFlowTheme.of(context).accent4,
+                                                                                borderRadius: BorderRadius.circular(12.0),
+                                                                                border: Border.all(
+                                                                                  color: FlutterFlowTheme.of(context).alternate,
+                                                                                ),
+                                                                              ),
+                                                                              child: Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                                                  children: [
+                                                                                    Flexible(
+                                                                                      child: Column(
+                                                                                        mainAxisSize: MainAxisSize.min,
+                                                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                        children: [
+                                                                                          Column(
+                                                                                            mainAxisSize: MainAxisSize.max,
+                                                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                            children: [
+                                                                                              Padding(
+                                                                                                padding: EdgeInsetsDirectional.fromSTEB(90.0, 0.0, 0.0, 0.0),
+                                                                                                child: Text(
+                                                                                                  valueOrDefault<String>(
+                                                                                                    rowDepoimentosRow.nome,
+                                                                                                    '-',
+                                                                                                  ),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                        font: GoogleFonts.inter(
+                                                                                                          fontWeight: FontWeight.bold,
+                                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                        ),
+                                                                                                        fontSize: 16.0,
+                                                                                                        letterSpacing: 0.0,
+                                                                                                        fontWeight: FontWeight.bold,
+                                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ),
+                                                                                              Padding(
+                                                                                                padding: EdgeInsetsDirectional.fromSTEB(90.0, 0.0, 0.0, 0.0),
+                                                                                                child: Text(
+                                                                                                  valueOrDefault<String>(
+                                                                                                    rowDepoimentosRow.empresa,
+                                                                                                    '-',
+                                                                                                  ),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                        font: GoogleFonts.inter(
+                                                                                                          fontWeight: FontWeight.normal,
+                                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                        ),
+                                                                                                        fontSize: 10.0,
+                                                                                                        letterSpacing: 0.0,
+                                                                                                        fontWeight: FontWeight.normal,
+                                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ),
+                                                                                            ],
+                                                                                          ),
+                                                                                          Text(
+                                                                                            valueOrDefault<String>(
+                                                                                              rowDepoimentosRow.texto,
+                                                                                              '-',
+                                                                                            ).maybeHandleOverflow(
+                                                                                              maxChars: 250,
+                                                                                              replacement: '…',
+                                                                                            ),
+                                                                                            textAlign: TextAlign.start,
+                                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                  font: GoogleFonts.inter(
+                                                                                                    fontWeight: FontWeight.normal,
+                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                  ),
+                                                                                                  fontSize: 12.0,
+                                                                                                  letterSpacing: 0.0,
+                                                                                                  fontWeight: FontWeight.normal,
+                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                ),
+                                                                                          ),
+                                                                                        ].divide(SizedBox(height: 12.0)),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ].divide(SizedBox(width: 12.0)),
+                                                                                ),
+                                                                              ),
                                                                             ),
-                                                                          ),
+                                                                            Align(
+                                                                              alignment: AlignmentDirectional(-0.7, -0.9),
+                                                                              child: Container(
+                                                                                width: double.infinity,
+                                                                                height: double.infinity,
+                                                                                constraints: BoxConstraints(
+                                                                                  maxWidth: 70.0,
+                                                                                  maxHeight: 70.0,
+                                                                                ),
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Color(0xFF2D3138),
+                                                                                  borderRadius: BorderRadius.circular(16.0),
+                                                                                  border: Border.all(
+                                                                                    color: Color(0xFF564E4E),
+                                                                                  ),
+                                                                                ),
+                                                                                child: ClipRRect(
+                                                                                  borderRadius: BorderRadius.circular(8.0),
+                                                                                  child: Image.network(
+                                                                                    rowDepoimentosRow.foto!,
+                                                                                    width: double.infinity,
+                                                                                    height: double.infinity,
+                                                                                    fit: BoxFit.contain,
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
                                                                         ),
                                                                       ),
-                                                                    ],
-                                                                  ),
+                                                                    );
+                                                                  }),
                                                                 ),
                                                               );
-                                                            }),
+                                                            },
                                                           ),
-                                                        );
-                                                      },
+                                                        ),
+                                                      ].divide(SizedBox(
+                                                          height: 12.0)),
                                                     ),
-                                                  ].divide(
-                                                      const SizedBox(height: 12.0)),
+                                                  ],
                                                 ),
                                               ),
-                                            ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 24.0, 24.0, 24.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
-                                                  FutureBuilder<List<AcessRow>>(
-                                                    future:
-                                                        AcessTable().queryRows(
-                                                      queryFn: (q) => q,
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 10.0,
-                                                            height: 10.0,
-                                                            child:
-                                                                SpinKitDoubleBounce(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 10.0,
-                                                            ),
+                                                  SelectionArea(
+                                                      child:
+                                                          AnimatedDefaultTextStyle(
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
                                                           ),
-                                                        );
-                                                      }
-                                                      List<AcessRow>
-                                                          tooltipAcessRowList =
-                                                          snapshot.data!;
-
-                                                      return AlignedTooltip(
-                                                        content: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      24.0,
-                                                                      12.0,
-                                                                      24.0,
-                                                                      12.0),
-                                                          child: Text(
-                                                            tooltipAcessRowList
-                                                                .length
-                                                                .toString(),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Inter',
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
                                                         ),
-                                                        offset: 4.0,
-                                                        preferredDirection:
-                                                            AxisDirection.right,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryBackground,
-                                                        elevation: 4.0,
-                                                        tailBaseWidth: 24.0,
-                                                        tailLength: 12.0,
-                                                        waitDuration: const Duration(
-                                                            milliseconds: 100),
-                                                        showDuration: const Duration(
-                                                            milliseconds: 1500),
-                                                        triggerMode:
-                                                            TooltipTriggerMode
-                                                                .tap,
-                                                        child: SelectionArea(
-                                                            child:
-                                                                AnimatedDefaultTextStyle(
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                          duration: const Duration(
-                                                              milliseconds:
-                                                                  600),
-                                                          curve: Curves.easeIn,
-                                                          child: const Text(
-                                                            'Criado com muito 🧡 por Emerson Vale',
-                                                          ),
-                                                        )),
-                                                      );
-                                                    },
-                                                  ),
+                                                    duration: Duration(
+                                                        milliseconds: 600),
+                                                    curve: Curves.easeIn,
+                                                    child: Text(
+                                                      'Criado com muito 🧡 por Emerson Vale',
+                                                    ),
+                                                  )),
                                                   SelectionArea(
                                                       child: Text(
                                                     '52.050.025/0001-01',
@@ -2395,12 +3180,34 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Inter',
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
                                                         ),
                                                   )),
                                                 ].divide(
-                                                    const SizedBox(height: 10.0)),
+                                                    SizedBox(height: 10.0)),
                                               ),
                                             ),
                                           ],
@@ -2410,14 +3217,16 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                   ],
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, -1.0),
+                                  alignment: AlignmentDirectional(0.0, -1.0),
                                   child: Container(
+                                    width: 1140.0,
                                     height: 133.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: wrapWithModel(
                                       model: _model.menuWebModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const MenuWebWidget(),
+                                      updateOnChange: true,
+                                      child: MenuWebWidget(),
                                     ),
                                   ),
                                 ),
