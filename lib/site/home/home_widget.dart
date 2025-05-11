@@ -1262,7 +1262,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                         ),
                                                         Container(
                                                           width: 500.0,
-                                                          height: 764.0,
+                                                          height: 656.55,
                                                           decoration:
                                                               BoxDecoration(
                                                             borderRadius:
@@ -1314,7 +1314,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                     ),
                                                               ),
                                                               Text(
-                                                                'Emerson do Vale',
+                                                                'Vale Apps',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -1343,7 +1343,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                     ),
                                                               ),
                                                               Text(
-                                                                'Software Engineer | Web Developer | Mobile Developer',
+                                                                'Soluções Digitais | SaaS | Automação Empresarial',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -1380,7 +1380,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                           0.0,
                                                                           24.0),
                                                                   child: Text(
-                                                                    'Engenheiro de Software apaixonado por transformar ideias em realidade usando ferramentas Low/No-Code, com mais de 3 anos de experiência no mercado. Já concluí mais de 10 projetos que impactaram negócios ao otimizar processos e criar novas oportunidades. Atendi mais de 15 clientes e estou integrando grandes equipes em software houses no Brasil e no exterior, atualmente com 2 projetos em desenvolvimento.\n\nCriador do canal no YouTube e blog NOCODEVS, sou mentor de mais de 15 profissionais, auxiliando-os na criação de SaaS e startups que têm mudado a realidade de seus usuários.\n\nAlém disso, sou pai, marido, multi-instrumentista musical, cristão, leitor ávido e entusiasta da tecnologia — qualidades que trazem criatividade e equilíbrio ao meu trabalho diário como engenheiro.',
+                                                                    'A Vale Apps é uma empresa de tecnologia especializada no desenvolvimento de soluções digitais, sistemas sob demanda e automações inteligentes para negócios. Atuamos com foco em performance, inovação e usabilidade, oferecendo plataformas modernas com integração via API, bots automatizados, atendentes virtuais e sistemas low-code.\n\nNosso diferencial está na entrega rápida, personalização completa e suporte estratégico para empresas que buscam digitalizar seus processos com eficiência e escalabilidade.\n\nAtendemos empresas no Brasil e no exterior, sempre com compromisso com resultado, ética e excelência técnica.',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -1593,7 +1593,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        24.0, 48.0, 24.0, 48.0),
+                                                        0.0, 48.0, 0.0, 48.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -2208,7 +2208,13 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                             ].divide(SizedBox(
                                                                 width: 24.0)),
                                                           ),
-                                                        ],
+                                                        ]
+                                                            .addToStart(
+                                                                SizedBox(
+                                                                    width:
+                                                                        24.0))
+                                                            .addToEnd(SizedBox(
+                                                                width: 24.0)),
                                                       ),
                                                     ),
                                                   ].divide(
