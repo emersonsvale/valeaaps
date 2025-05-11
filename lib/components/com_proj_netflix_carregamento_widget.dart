@@ -35,6 +35,7 @@ class _ComProjNetflixCarregamentoWidgetState
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
         loop: true,
+        reverse: true,
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           FadeEffect(

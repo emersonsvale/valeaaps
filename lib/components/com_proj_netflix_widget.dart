@@ -94,6 +94,13 @@ class _ComProjNetflixWidgetState extends State<ComProjNetflixWidget>
                 ParamType.int,
               ),
             }.withoutNulls,
+            extra: <String, dynamic>{
+              kTransitionInfoKey: TransitionInfo(
+                hasTransition: true,
+                transitionType: PageTransitionType.fade,
+                duration: Duration(milliseconds: 0),
+              ),
+            },
           );
         },
         child: ClipRRect(

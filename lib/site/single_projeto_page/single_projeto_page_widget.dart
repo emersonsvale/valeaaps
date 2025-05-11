@@ -419,7 +419,7 @@ class _SingleProjetoPageWidgetState extends State<SingleProjetoPageWidget>
                                                                                     future: FerramentasTable().queryRows(
                                                                                       queryFn: (q) => q.inFilterOrNull(
                                                                                         'id',
-                                                                                        [1, 2, 3],
+                                                                                        singleProjetoPageProjetosRow?.ferramentas,
                                                                                       ),
                                                                                     ),
                                                                                     builder: (context, snapshot) {
@@ -2496,8 +2496,17 @@ class _SingleProjetoPageWidgetState extends State<SingleProjetoPageWidget>
                                                                       TextStyle(),
                                                                 ),
                                                                 TextSpan(
-                                                                  text:
-                                                                      ' foi um projeto de média complexidade, exigindo uma abordagem robusta para garantir segurança, escalabilidade e uma experiência fluida tanto para cuidadores quanto para familiares. O desenvolvimento envolveu desafios técnicos e operacionais, além de funcionalidades adaptadas para usuários com baixa familiaridade com tecnologia.',
+                                                                  text: ' - ',
+                                                                  style:
+                                                                      TextStyle(),
+                                                                ),
+                                                                TextSpan(
+                                                                  text: valueOrDefault<
+                                                                      String>(
+                                                                    singleProjetoPageProjetosRow
+                                                                        ?.desafio,
+                                                                    'Desafio',
+                                                                  ),
                                                                   style:
                                                                       TextStyle(),
                                                                 )

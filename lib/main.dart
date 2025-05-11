@@ -97,8 +97,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title:
-          'Emerson Vale - Software Engineer | Web Developer | Flutter Developer | FlutterFlow | Bubble | Supabase | Xano',
+      title: 'Emerson Vale',
       scrollBehavior: MyAppScrollBehavior(),
       localizationsDelegates: [
         FFLocalizationsDelegate(),
