@@ -3,21 +3,21 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'com_proj_netflix_carregamento_model.dart';
-export 'com_proj_netflix_carregamento_model.dart';
+import 'com_proj_tecnologias_carregamento_model.dart';
+export 'com_proj_tecnologias_carregamento_model.dart';
 
-class ComProjNetflixCarregamentoWidget extends StatefulWidget {
-  const ComProjNetflixCarregamentoWidget({super.key});
+class ComProjTecnologiasCarregamentoWidget extends StatefulWidget {
+  const ComProjTecnologiasCarregamentoWidget({super.key});
 
   @override
-  State<ComProjNetflixCarregamentoWidget> createState() =>
-      _ComProjNetflixCarregamentoWidgetState();
+  State<ComProjTecnologiasCarregamentoWidget> createState() =>
+      _ComProjTecnologiasCarregamentoWidgetState();
 }
 
-class _ComProjNetflixCarregamentoWidgetState
-    extends State<ComProjNetflixCarregamentoWidget>
+class _ComProjTecnologiasCarregamentoWidgetState
+    extends State<ComProjTecnologiasCarregamentoWidget>
     with TickerProviderStateMixin {
-  late ComProjNetflixCarregamentoModel _model;
+  late ComProjTecnologiasCarregamentoModel _model;
 
   final animationsMap = <String, AnimationInfo>{};
 
@@ -30,7 +30,7 @@ class _ComProjNetflixCarregamentoWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ComProjNetflixCarregamentoModel());
+    _model = createModel(context, () => ComProjTecnologiasCarregamentoModel());
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
@@ -65,22 +65,30 @@ class _ComProjNetflixCarregamentoWidgetState
       builder: (context) {
         final listas = _model.list.map((e) => e).toList();
 
-        return Row(
-          mainAxisSize: MainAxisSize.max,
-          children: List.generate(listas.length, (listasIndex) {
+        return GridView.builder(
+          padding: EdgeInsets.zero,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0,
+            childAspectRatio: 1.0,
+          ),
+          scrollDirection: Axis.vertical,
+          itemCount: listas.length,
+          itemBuilder: (context, listasIndex) {
             final listasItem = listas[listasIndex];
             return ClipRRect(
-              borderRadius: BorderRadius.circular(4.0),
+              borderRadius: BorderRadius.circular(14.0),
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
                 constraints: BoxConstraints(
-                  maxWidth: 218.0,
-                  maxHeight: 123.0,
+                  maxWidth: 200.0,
+                  maxHeight: 200.0,
                 ),
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  borderRadius: BorderRadius.circular(4.0),
+                  borderRadius: BorderRadius.circular(14.0),
                 ),
                 child: Container(
                   width: double.infinity,
@@ -127,7 +135,7 @@ class _ComProjNetflixCarregamentoWidgetState
                 ),
               ),
             ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!);
-          }).divide(SizedBox(width: 5.0)),
+          },
         );
       },
     );

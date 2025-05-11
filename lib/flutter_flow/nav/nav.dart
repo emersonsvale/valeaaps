@@ -1,13 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
 
 import '/auth/base_auth_user_provider.dart';
 
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 import '/index.dart';
@@ -95,11 +93,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: CasesWidget.routeName,
               path: CasesWidget.routePath,
               builder: (context, params) => CasesWidget(),
-            ),
-            FFRoute(
-              name: CurriculoWidget.routeName,
-              path: CurriculoWidget.routePath,
-              builder: (context, params) => CurriculoWidget(),
             ),
             FFRoute(
               name: Auth2Widget.routeName,
@@ -320,13 +313,14 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 10.0,
-                    height: 10.0,
-                    child: SpinKitDoubleBounce(
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 10.0,
+              ? Container(
+                  color: Colors.black,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/sasasAS.png',
+                      width: 100.0,
+                      height: 100.0,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 )

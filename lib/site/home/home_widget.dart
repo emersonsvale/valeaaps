@@ -1,4 +1,6 @@
 import '/backend/supabase/supabase.dart';
+import '/components/com_proj_netflix_carregamento_widget.dart';
+import '/components/com_proj_tecnologias_carregamento_widget.dart';
 import '/components/comp_ferramenta_widget.dart';
 import '/components/menu_web_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
@@ -2244,16 +2246,10 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                         // Customize what your widget looks like when it's loading.
                                                         if (!snapshot.hasData) {
                                                           return Center(
-                                                            child: SizedBox(
-                                                              width: 10.0,
-                                                              height: 10.0,
+                                                            child: Container(
+                                                              width: 1000.0,
                                                               child:
-                                                                  SpinKitDoubleBounce(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                size: 10.0,
-                                                              ),
+                                                                  ComProjNetflixCarregamentoWidget(),
                                                             ),
                                                           );
                                                         }
@@ -2780,19 +2776,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                             // Customize what your widget looks like when it's loading.
                                                             if (!snapshot
                                                                 .hasData) {
-                                                              return Center(
-                                                                child: SizedBox(
-                                                                  width: 10.0,
-                                                                  height: 10.0,
-                                                                  child:
-                                                                      SpinKitDoubleBounce(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    size: 10.0,
-                                                                  ),
-                                                                ),
-                                                              );
+                                                              return ComProjTecnologiasCarregamentoWidget();
                                                             }
                                                             List<FerramentasRow>
                                                                 gridViewFerramentasRowList =

@@ -227,7 +227,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                         color: FlutterFlowTheme.of(context)
                                             .accent1,
                                         borderRadius:
-                                            BorderRadius.circular(12.0),
+                                            BorderRadius.circular(14.0),
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -763,7 +763,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                         color: FlutterFlowTheme.of(context)
                                             .accent1,
                                         borderRadius:
-                                            BorderRadius.circular(12.0),
+                                            BorderRadius.circular(14.0),
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
                                               .primary,

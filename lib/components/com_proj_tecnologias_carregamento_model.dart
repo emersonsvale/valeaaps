@@ -1,10 +1,10 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'com_proj_netflix_carregamento_widget.dart'
-    show ComProjNetflixCarregamentoWidget;
+import 'com_proj_tecnologias_carregamento_widget.dart'
+    show ComProjTecnologiasCarregamentoWidget;
 import 'package:flutter/material.dart';
 
-class ComProjNetflixCarregamentoModel
-    extends FlutterFlowModel<ComProjNetflixCarregamentoWidget> {
+class ComProjTecnologiasCarregamentoModel
+    extends FlutterFlowModel<ComProjTecnologiasCarregamentoWidget> {
   ///  Local state fields for this component.
 
   List<int> list = [1, 2, 3, 4, 5, 6];
