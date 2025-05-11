@@ -71,4 +71,7 @@ class ProjetosRow extends SupabaseDataRow {
 
   String? get desafio => getField<String>('desafio');
   set desafio(String? value) => setField<String>('desafio', value);
+
+  String? get slug => getField<String>('slug');
+  set slug(String? value) => setField<String>('slug', value);
 }

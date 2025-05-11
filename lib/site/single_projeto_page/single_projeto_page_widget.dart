@@ -5,8 +5,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,7 +25,7 @@ class SingleProjetoPageWidget extends StatefulWidget {
     required this.proj,
   });
 
-  final int? proj;
+  final String? proj;
 
   static String routeName = 'SingleProjetoPage';
   static String routePath = 'projeto/:proj';
@@ -45,6 +47,31 @@ class _SingleProjetoPageWidgetState extends State<SingleProjetoPageWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => SingleProjetoPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 1000));
+      _model.reton = await ProjetosTable().queryRows(
+        queryFn: (q) => q.eqOrNull(
+          'slug',
+          widget.proj,
+        ),
+      );
+      if (_model.reton?.length != 1) {
+        context.goNamed(
+          CasesWidget.routeName,
+          extra: <String, dynamic>{
+            kTransitionInfoKey: TransitionInfo(
+              hasTransition: true,
+              transitionType: PageTransitionType.fade,
+              duration: Duration(milliseconds: 0),
+            ),
+          },
+        );
+
+        return;
+      }
+    });
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
@@ -92,7 +119,7 @@ class _SingleProjetoPageWidgetState extends State<SingleProjetoPageWidget>
     return FutureBuilder<List<ProjetosRow>>(
       future: ProjetosTable().querySingleRow(
         queryFn: (q) => q.eqOrNull(
-          'id',
+          'slug',
           widget.proj,
         ),
       ),
@@ -554,7 +581,7 @@ class _SingleProjetoPageWidgetState extends State<SingleProjetoPageWidget>
                                                                                 ClipRRect(
                                                                               borderRadius: BorderRadius.circular(8.0),
                                                                               child: Image.network(
-                                                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/0wysv3p3rkkf/laptop_realistic.png',
+                                                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/4wjxwmrq71t5/laptop_realistic.png',
                                                                                 width: 536.9,
                                                                                 height: 295.4,
                                                                                 fit: BoxFit.cover,
@@ -603,7 +630,7 @@ class _SingleProjetoPageWidgetState extends State<SingleProjetoPageWidget>
                                                                                 ClipRRect(
                                                                               borderRadius: BorderRadius.circular(8.0),
                                                                               child: Image.network(
-                                                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/lgwv5j1m10a1/celular.png',
+                                                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/portifolio-6e66eo/assets/66iy875v4th8/celular.png',
                                                                                 width: 558.5,
                                                                                 height: 295.4,
                                                                                 fit: BoxFit.cover,
@@ -1080,7 +1107,7 @@ class _SingleProjetoPageWidgetState extends State<SingleProjetoPageWidget>
                                                       BorderRadius.circular(
                                                           8.0),
                                                   child: Image.asset(
-                                                    'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7%,_18%,_0)_hsla(23,_21%,_81%,_1)_(1).png',
+                                                    'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7,_0)_hsla(23,_21,_1)_(1)_(1).png',
                                                     width: double.infinity,
                                                     height: 200.0,
                                                     fit: BoxFit.none,
@@ -2396,7 +2423,7 @@ class _SingleProjetoPageWidgetState extends State<SingleProjetoPageWidget>
                                                 image: DecorationImage(
                                                   fit: BoxFit.cover,
                                                   image: Image.asset(
-                                                    'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7%,_18%,_0)_hsla(23,_21%,_81%,_1)_(1).png',
+                                                    'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7,_0)_hsla(23,_21,_1)_(1)_(1).png',
                                                   ).image,
                                                 ),
                                               ),
@@ -2930,7 +2957,7 @@ class _SingleProjetoPageWidgetState extends State<SingleProjetoPageWidget>
                                                       BorderRadius.circular(
                                                           8.0),
                                                   child: Image.asset(
-                                                    'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7%,_18%,_0)_hsla(23,_21%,_81%,_1)_(1).png',
+                                                    'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7,_0)_hsla(23,_21,_1)_(1)_(1).png',
                                                     width: double.infinity,
                                                     height: 200.0,
                                                     fit: BoxFit.none,
@@ -3017,7 +3044,7 @@ class _SingleProjetoPageWidgetState extends State<SingleProjetoPageWidget>
                                                         FFButtonWidget(
                                                           onPressed: () async {
                                                             await launchURL(
-                                                                'https://api.whatsapp.com/send?phone=5599991562914&text=Ol%C3%A1,%20Emerson,%20proposta%20${widget.proj?.toString()}%20aceita,%20vamos%20juntos.');
+                                                                'https://api.whatsapp.com/send?phone=5599991562914&text=Ol%C3%A1,%20Emerson,%20proposta%20${widget.proj}%20aceita,%20vamos%20juntos.');
                                                           },
                                                           text:
                                                               'Vamos nessa! 🚀',

@@ -128,7 +128,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SingleProjetoPageWidget(
                 proj: params.getParam(
                   'proj',
-                  ParamType.int,
+                  ParamType.String,
                 ),
               ),
             ),

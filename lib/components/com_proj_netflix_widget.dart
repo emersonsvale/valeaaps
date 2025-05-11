@@ -17,7 +17,7 @@ class ComProjNetflixWidget extends StatefulWidget {
     this.imagemback,
   });
 
-  final int? idProjete;
+  final String? idProjete;
   final String? nomeProjeto;
   final String? imagem;
   final Future Function(String? imagem)? imagemback;
@@ -91,7 +91,7 @@ class _ComProjNetflixWidgetState extends State<ComProjNetflixWidget>
             pathParameters: {
               'proj': serializeParam(
                 widget.idProjete,
-                ParamType.int,
+                ParamType.String,
               ),
             }.withoutNulls,
             extra: <String, dynamic>{

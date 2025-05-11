@@ -475,7 +475,7 @@ class _CasesWidgetState extends State<CasesWidget>
                                                                               key: Key(
                                                                                 'Keyk1q_${listViewProjetosRow.id.toString()}',
                                                                               ),
-                                                                              idProjete: listViewProjetosRow.id,
+                                                                              idProjete: listViewProjetosRow.slug!,
                                                                               nomeProjeto: listViewProjetosRow.titulo!,
                                                                               imagem: listViewProjetosRow.capa!,
                                                                               imagemback: (imagem) async {
@@ -621,7 +621,7 @@ class _CasesWidgetState extends State<CasesWidget>
                                                                 ),
                                                                 idProjete:
                                                                     listViewProjetosRow
-                                                                        .id,
+                                                                        .slug!,
                                                                 nomeProjeto:
                                                                     listViewProjetosRow
                                                                         .titulo!,
@@ -763,7 +763,7 @@ class _CasesWidgetState extends State<CasesWidget>
                                                                 ),
                                                                 idProjete:
                                                                     listViewProjetosRow
-                                                                        .id,
+                                                                        .slug!,
                                                                 nomeProjeto:
                                                                     listViewProjetosRow
                                                                         .titulo!,
@@ -905,7 +905,7 @@ class _CasesWidgetState extends State<CasesWidget>
                                                                 ),
                                                                 idProjete:
                                                                     listViewProjetosRow
-                                                                        .id,
+                                                                        .slug!,
                                                                 nomeProjeto:
                                                                     listViewProjetosRow
                                                                         .titulo!,
@@ -1066,6 +1066,9 @@ class _CasesWidgetState extends State<CasesWidget>
                                                                   foto:
                                                                       listViewProjetosRow
                                                                           .capa!,
+                                                                  projet:
+                                                                      listViewProjetosRow
+                                                                          .slug!,
                                                                 ),
                                                               ),
                                                             );

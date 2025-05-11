@@ -887,7 +887,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                         BorderRadius.circular(
                                                             8.0),
                                                     child: Image.asset(
-                                                      'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7%,_18%,_0)_hsla(23,_21%,_81%,_1)_(1).png',
+                                                      'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7,_0)_hsla(23,_21,_1)_(1)_(1).png',
                                                       width: double.infinity,
                                                       height: 200.0,
                                                       fit: BoxFit.none,
@@ -2787,7 +2787,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                     image: DecorationImage(
                                                       fit: BoxFit.cover,
                                                       image: Image.asset(
-                                                        'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7%,_18%,_0)_hsla(23,_21%,_81%,_1)_(1).png',
+                                                        'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7,_0)_hsla(23,_21,_1)_(1)_(1).png',
                                                       ).image,
                                                     ),
                                                   ),
@@ -3524,7 +3524,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                                         BorderRadius.circular(
                                                             8.0),
                                                     child: Image.asset(
-                                                      'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7%,_18%,_0)_hsla(23,_21%,_81%,_1)_(1).png',
+                                                      'assets/images/pattern_waves-11_1_3_0-0_35_1__hsla(240,_7,_0)_hsla(23,_21,_1)_(1)_(1).png',
                                                       width: double.infinity,
                                                       height: 200.0,
                                                       fit: BoxFit.none,
