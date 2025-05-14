@@ -6,6 +6,7 @@ import '/components/menu_web_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_web_view.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -2854,6 +2855,125 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                   ),
                                                 ),
                                               ),
+                                            Container(
+                                              width: double.infinity,
+                                              constraints: BoxConstraints(
+                                                maxWidth: 1440.0,
+                                              ),
+                                              decoration: BoxDecoration(),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 48.0, 0.0, 48.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  24.0,
+                                                                  0.0,
+                                                                  24.0,
+                                                                  0.0),
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: 1140.0,
+                                                        ),
+                                                        decoration:
+                                                            BoxDecoration(),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              'Contato',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .inter(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    color: Color(
+                                                                        0x7FD8CBC3),
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                            Text(
+                                                              'Agende sua chamada conosco',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .inter(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    fontSize:
+                                                                        40.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                          ].divide(SizedBox(
+                                                              height: 12.0)),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    FlutterFlowWebView(
+                                                      content:
+                                                          '<style>\n  .calendly-inline-widget {\n    width: 100%;\n    max-width: 1140px; /* Ajuste conforme necessário */\n    height: 726.0px; /* Altura ideal só do calendário */\n    margin: 0 auto;\n    border-radius: 12px;\n    overflow: hidden;\n    background-color: transparent !important;\n  }\n  .calendly-inline-widget iframe {\n    background-color: transparent !important;\n    border: none !important;\n    overflow: hidden !important;\n    scrollbar-width: none !important; /* Firefox */\n  }\n\n  /* Chrome, Safari e Edge */\n  .calendly-inline-widget iframe::-webkit-scrollbar {\n    display: none !important;\n  }\n</style>\n\n<div class=\"calendly-inline-widget\"\n     data-url=\"https://calendly.com/valeapps/30min?background_color=14181b&text_color=d8cbc3&primary_color=695959\"\n     style=\"min-width:320px; height:726.0px;\"></div>\n<script type=\"text/javascript\" src=\"https://assets.calendly.com/assets/external/widget.js\" async></script>\n',
+                                                      height: 748.0,
+                                                      verticalScroll: true,
+                                                      horizontalScroll: true,
+                                                      html: true,
+                                                    ),
+                                                  ].divide(
+                                                      SizedBox(height: 24.0)),
+                                                ),
+                                              ),
+                                            ),
                                             if (responsiveVisibility(
                                               context: context,
                                               phone: false,

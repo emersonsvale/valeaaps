@@ -7,6 +7,7 @@ import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'email_cliente_proposta_model.dart';
 export 'email_cliente_proposta_model.dart';
 
@@ -298,18 +299,20 @@ class _EmailClientePropostaWidgetState
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: Text('E-mail incorreto'),
-                                              content: Text(
-                                                  'Lamento, mas seu e-mail não está vinculado a este projeto, tente novamente ou fale com nossa equipe.'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: Text('Ok'),
-                                                ),
-                                              ],
+                                            return WebViewAware(
+                                              child: AlertDialog(
+                                                title: Text('E-mail incorreto'),
+                                                content: Text(
+                                                    'Lamento, mas seu e-mail não está vinculado a este projeto, tente novamente ou fale com nossa equipe.'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
+                                              ),
                                             );
                                           },
                                         );

@@ -13,6 +13,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'proposta_model.dart';
 export 'proposta_model.dart';
 
@@ -60,13 +61,15 @@ class _PropostaWidgetState extends State<PropostaWidget>
             backgroundColor: Colors.transparent,
             alignment: AlignmentDirectional(0.0, 0.0)
                 .resolve(Directionality.of(context)),
-            child: GestureDetector(
-              onTap: () {
-                FocusScope.of(dialogContext).unfocus();
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-              child: EmailClientePropostaWidget(
-                id: widget.prop!,
+            child: WebViewAware(
+              child: GestureDetector(
+                onTap: () {
+                  FocusScope.of(dialogContext).unfocus();
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                child: EmailClientePropostaWidget(
+                  id: widget.prop!,
+                ),
               ),
             ),
           );

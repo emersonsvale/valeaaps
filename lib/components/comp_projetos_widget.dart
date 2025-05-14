@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'comp_projetos_model.dart';
 export 'comp_projetos_model.dart';
 
@@ -98,8 +99,10 @@ class _CompProjetosWidgetState extends State<CompProjetosWidget>
                   backgroundColor: Colors.transparent,
                   alignment: AlignmentDirectional(0.0, 0.0)
                       .resolve(Directionality.of(context)),
-                  child: SingleProjetoWidget(
-                    id: widget.parameter5!,
+                  child: WebViewAware(
+                    child: SingleProjetoWidget(
+                      id: widget.parameter5!,
+                    ),
                   ),
                 );
               },

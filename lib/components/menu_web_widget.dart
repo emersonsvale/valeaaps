@@ -5,6 +5,7 @@ import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'menu_web_model.dart';
 export 'menu_web_model.dart';
 
@@ -315,10 +316,12 @@ class _MenuWebWidgetState extends State<MenuWebWidget> {
                                             AlignmentDirectional(1.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: Container(
-                                          height: double.infinity,
-                                          width: 250.0,
-                                          child: MenuMobileWidget(),
+                                        child: WebViewAware(
+                                          child: Container(
+                                            height: double.infinity,
+                                            width: 250.0,
+                                            child: MenuMobileWidget(),
+                                          ),
                                         ),
                                       );
                                     },
