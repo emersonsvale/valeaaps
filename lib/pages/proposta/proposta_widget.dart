@@ -24,9 +24,11 @@ class PropostaWidget extends StatefulWidget {
   const PropostaWidget({
     super.key,
     required this.prop,
+    required this.id,
   });
 
-  final int? prop;
+  final String? prop;
+  final int? id;
 
   static String routeName = 'proposta';
   static String routePath = 'p/:prop';
@@ -50,6 +52,12 @@ class _PropostaWidgetState extends State<PropostaWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.retorn = await PropostaTable().queryRows(
+        queryFn: (q) => q.eqOrNull(
+          'slug',
+          widget.prop,
+        ),
+      );
       await Future.delayed(const Duration(milliseconds: 1000));
       await showDialog(
         barrierDismissible: false,
@@ -68,7 +76,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
                   FocusManager.instance.primaryFocus?.unfocus();
                 },
                 child: EmailClientePropostaWidget(
-                  id: widget.prop!,
+                  id: _model.retorn!.firstOrNull!.id,
                 ),
               ),
             ),
@@ -124,7 +132,7 @@ class _PropostaWidgetState extends State<PropostaWidget>
       builder: (context) => FutureBuilder<List<PropostaRow>>(
         future: PropostaTable().querySingleRow(
           queryFn: (q) => q.eqOrNull(
-            'id',
+            'slug',
             widget.prop,
           ),
         ),
@@ -4071,13 +4079,18 @@ class _PropostaWidgetState extends State<PropostaWidget>
                                       ),
                                     ],
                                   ),
-                                  Container(
-                                    height: 124.0,
-                                    decoration: BoxDecoration(),
-                                    child: wrapWithModel(
-                                      model: _model.menuWebModel,
-                                      updateCallback: () => safeSetState(() {}),
-                                      child: MenuWebWidget(),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.0, -1.0),
+                                    child: Container(
+                                      width: 1140.0,
+                                      height: 133.0,
+                                      decoration: BoxDecoration(),
+                                      child: wrapWithModel(
+                                        model: _model.menuWebModel,
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
+                                        child: MenuWebWidget(),
+                                      ),
                                     ),
                                   ),
                                 ],

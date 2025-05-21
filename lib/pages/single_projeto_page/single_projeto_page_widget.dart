@@ -3465,12 +3465,12 @@ class _SingleProjetoPageWidgetState extends State<SingleProjetoPageWidget>
                                     ),
                                   ],
                                 ),
-                                Container(
-                                  height: 124.0,
-                                  decoration: BoxDecoration(),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 12.0, 0.0),
+                                Align(
+                                  alignment: AlignmentDirectional(0.0, -1.0),
+                                  child: Container(
+                                    width: 1140.0,
+                                    height: 133.0,
+                                    decoration: BoxDecoration(),
                                     child: wrapWithModel(
                                       model: _model.menuWebModel,
                                       updateCallback: () => safeSetState(() {}),

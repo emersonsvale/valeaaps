@@ -60,4 +60,7 @@ class PropostaRow extends SupabaseDataRow {
       getField<String>('dias_corridos_ou_ulteis');
   set diasCorridosOuUlteis(String? value) =>
       setField<String>('dias_corridos_ou_ulteis', value);
+
+  String? get slug => getField<String>('slug');
+  set slug(String? value) => setField<String>('slug', value);
 }

@@ -111,6 +111,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => PropostaWidget(
                 prop: params.getParam(
                   'prop',
+                  ParamType.String,
+                ),
+                id: params.getParam(
+                  'id',
                   ParamType.int,
                 ),
               ),

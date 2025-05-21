@@ -2964,6 +2964,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                     FlutterFlowWebView(
                                                       content:
                                                           '<style>\n  .calendly-inline-widget {\n    width: 100%;\n    max-width: 1140px; /* Ajuste conforme necessário */\n    height: 726.0px; /* Altura ideal só do calendário */\n    margin: 0 auto;\n    border-radius: 12px;\n    overflow: hidden;\n    background-color: transparent !important;\n  }\n  .calendly-inline-widget iframe {\n    background-color: transparent !important;\n    border: none !important;\n    overflow: hidden !important;\n    scrollbar-width: none !important; /* Firefox */\n  }\n\n  /* Chrome, Safari e Edge */\n  .calendly-inline-widget iframe::-webkit-scrollbar {\n    display: none !important;\n  }\n</style>\n\n<div class=\"calendly-inline-widget\"\n     data-url=\"https://calendly.com/valeapps/30min?background_color=14181b&text_color=d8cbc3&primary_color=695959\"\n     style=\"min-width:320px; height:726.0px;\"></div>\n<script type=\"text/javascript\" src=\"https://assets.calendly.com/assets/external/widget.js\" async></script>\n',
+                                                      width: 1140.0,
                                                       height: 748.0,
                                                       verticalScroll: true,
                                                       horizontalScroll: true,
