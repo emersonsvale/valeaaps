@@ -5,7 +5,11 @@ nixPkgs  = ["flutter"]
 aptPkgs  = ["unzip"]
 
 [phases.install]
-commands = ["flutter pub get"]
+commands = [
+  "flutter config --enable-web",
+  "flutter pub upgrade --major-versions",
+  "flutter pub get"
+]
 
 [phases.build]
 commands = ["flutter build web --release"]
