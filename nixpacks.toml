@@ -1,15 +1,13 @@
-# nixpacks.toml
-
 [phases.setup]
-nixPkgs  = ["flutter"]
-aptPkgs  = ["unzip"]
-
-[phases.install]
-commands = ["flutter pub get"]
+commands = [
+  "git submodule update --init --recursive",
+  "flutter/bin/flutter config --enable-web"
+]
 
 [phases.build]
-commands = ["flutter build web --release"]
+commands = [
+  "flutter/bin/flutter build web --release"
+]
 
-[serve]
-command = "nginx -g 'daemon off;'"
-publish = "build/web"
+[deploy]
+startCommand = "npx serve -s build/web -l $PORT"
